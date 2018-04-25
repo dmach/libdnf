@@ -2074,7 +2074,11 @@ void loadModuleRepodata(DnfSack *sack, const GPtrArray *repos)
         yaml->close();
 
         priv->modules->loadFromString(hyRepo, yamlContent);
-        priv->defaults->fromString(yamlContent);
+        try {
+            priv->defaults->fromString(yamlContent, 0);
+        } catch (ModuleDefaultsContainer::ConflictException &exception) {
+            // TODO logger.warning(exception.what());
+        }
     }
 }
 
@@ -2090,7 +2094,11 @@ void loadDefaultsFromDisk(DnfSack *sack, const std::string &dirPath)
         const auto &yamlContent = yaml->getContent();
         yaml->close();
 
-        priv->defaults->fromString(yamlContent);
+        try {
+            priv->defaults->fromString(yamlContent, 1000);
+        } catch (ModuleDefaultsContainer::ConflictException &exception) {
+            // TODO logger.warning(exception.what());
+        }
     }
 
     try {
