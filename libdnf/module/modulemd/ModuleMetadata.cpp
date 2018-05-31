@@ -38,6 +38,7 @@ std::vector<std::shared_ptr<ModuleMetadata> > ModuleMetadata::wrapModulemdModule
 
         auto modulemd = std::shared_ptr<ModulemdModule>((ModulemdModule *) module, g_object_unref);
         moduleCluster.push_back(std::make_shared<ModuleMetadata>(modulemd));
+        g_object_ref(module);
     }
 
     return moduleCluster;
