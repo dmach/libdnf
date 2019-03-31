@@ -64,6 +64,7 @@ pkg_check_modules(RPM REQUIRED rpm>=4.11.0)
 pkg_check_modules(SMARTCOLS REQUIRED smartcols)
 pkg_check_modules(SQLite3 REQUIRED sqlite3)
 
+
 # always enable linking with libdnf utils
 include_directories(${CMAKE_SOURCE_DIR} libdnf/utils/)
 
@@ -108,6 +109,18 @@ endif()
 # valgrind path
 find_program(VALGRIND_PROGRAM NAMES valgrind PATH /usr/bin /usr/local/bin)
 
+# Ensure that static libsolvext dynamic library dependencies are linked in
+# libxml2 dependency
+find_package (LibXml2 REQUIRED)
+# zlib dependency
+find_package (ZLIB REQUIRED)
+# lzma dependency
+find_package (LZMA REQUIRED)
+# bzip2 dependency
+find_package (BZip2 REQUIRED)
+# zstd dependency
+find_library (ZSTD_LIBRARY NAMES zstd)
+# End static libsolvext dynamic library dependencies
 
 # compiler options
 add_compile_options(-Wcast-align -Wno-uninitialized -Wredundant-decls -Wwrite-strings -Wformat-nonliteral -Wmissing-format-attribute -Wsign-compare -Wtype-limits -Wuninitialized -Wall -Werror=implicit-function-declaration -Wl,--as-needed)
