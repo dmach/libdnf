@@ -31,6 +31,7 @@ option(WITH_GTKDOC "Enables libdnf GTK-Doc HTML documentation" ON)
 option(WITH_HTML "Enables hawkey HTML generation" ON)
 option(WITH_MAN "Enables hawkey man page generation" ON)
 option(WITH_ZCHUNK "Build with zchunk support" ON)
+option(WITH_LIBSOLVEXT_DEPS "Ensure that static libsolvext dynamic library dependencies are linked in" OFF)
 option(ENABLE_RHSM_SUPPORT "Build with Red Hat Subscription Manager support?" OFF)
 option(ENABLE_SOLV_URPMREORDER "Build with support for URPM-like solution reordering?" OFF)
 
@@ -68,11 +69,27 @@ pkg_check_modules(SQLite3 REQUIRED sqlite3)
 # always enable linking with libdnf utils
 include_directories(${CMAKE_SOURCE_DIR} libdnf/utils/)
 
+
 if (WITH_ZCHUNK)
     pkg_check_modules(ZCHUNKLIB zck>=0.9.11 REQUIRED)
     set (CMAKE_CXX_FLAGS          "${CMAKE_CXX_FLAGS} -DWITH_ZCHUNK")
     set (CMAKE_CXX_FLAGS_DEBUG    "${CMAKE_CXX_FLAGS_DEBUG} -DWITH_ZCHUNK")
 endif ()
+
+
+if(WITH_LIBSOLVEXT_DEPS)
+# libxml2 dependency
+find_package (LibXml2 REQUIRED)
+# zlib dependency
+find_package (ZLIB REQUIRED)
+# lzma dependency
+pkg_check_modules(LZMA REQUIRED liblzma)
+# bzip2 dependency
+find_package (BZip2 REQUIRED)
+# zstd dependency
+find_library (ZSTD_LIBRARY NAMES zstd)
+endif()
+
 
 if(ENABLE_RHSM_SUPPORT)
     pkg_check_modules(RHSM REQUIRED librhsm>=0.0.3)
@@ -109,18 +126,6 @@ endif()
 # valgrind path
 find_program(VALGRIND_PROGRAM NAMES valgrind PATH /usr/bin /usr/local/bin)
 
-# Ensure that static libsolvext dynamic library dependencies are linked in
-# libxml2 dependency
-find_package (LibXml2 REQUIRED)
-# zlib dependency
-find_package (ZLIB REQUIRED)
-# lzma dependency
-find_package (LZMA REQUIRED)
-# bzip2 dependency
-find_package (BZip2 REQUIRED)
-# zstd dependency
-find_library (ZSTD_LIBRARY NAMES zstd)
-# End static libsolvext dynamic library dependencies
 
 # compiler options
 add_compile_options(-Wcast-align -Wno-uninitialized -Wredundant-decls -Wwrite-strings -Wformat-nonliteral -Wmissing-format-attribute -Wsign-compare -Wtype-limits -Wuninitialized -Wall -Werror=implicit-function-declaration -Wl,--as-needed)

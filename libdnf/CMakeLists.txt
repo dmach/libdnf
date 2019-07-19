@@ -72,12 +72,18 @@ target_link_libraries(libdnf
     ${LIBMODULEMD_LIBRARIES}
     ${SMARTCOLS_LIBRARIES}
     ${GPGME_VANILLA_LIBRARIES}
+)
+
+if(WITH_LIBSOLVEXT_DEPS)
+target_link_libraries(libdnf
+    ${CMAKE_DL_LIBS}
     ${LIBXML2_LIBRARIES}
     ${ZLIB_LIBRARY}
-    ${LZMA_LIBRARY}
+    ${LZMA_LIBRARIES}
     ${BZIP2_LIBRARY}
     ${ZSTD_LIBRARY}
 )
+endif()
 
 if(ENABLE_RHSM_SUPPORT)
     target_link_libraries(libdnf ${RHSM_LIBRARIES})
