@@ -14,8 +14,11 @@ namespace libdnf::comps {
 ///
 /// @replaces dnf:dnf/comps.py:class:Environment
 class Environment {
-    std::string get_name();
-    std::string get_description();
+    std::string get_id() const;
+
+    std::string get_name() const;
+
+    std::string get_description() const;
 
     /// @replaces dnf:dnf/comps.py:attribute:Environment.ui_name
     std::string get_translated_name() const;
@@ -29,6 +32,8 @@ class Environment {
     /// @replaces dnf:dnf/comps.py:attribute:Environment.mandatory_groups
     /// @replaces dnf:dnf/comps.py:attribute:Environment.optional_groups
     std::vector<Group> get_groups(bool mandatory_groups, bool optional_groups) const;
+
+    // lukash: reference to Base is missing here, are we sure it won't be necessary for the methods?
 };
 
 
