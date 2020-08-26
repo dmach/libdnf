@@ -1,3 +1,23 @@
+/*
+Copyright (C) 2020 Red Hat, Inc.
+
+This file is part of libdnf: https://github.com/rpm-software-management/libdnf/
+
+Libdnf is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+Libdnf is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
 #include "tty.hpp"
 
 #include <sys/ioctl.h>
@@ -31,15 +51,15 @@ int get_width() {
 }
 
 
-bool is_interactive(void) {
+bool is_interactive() {
     return isatty(fileno(stdout)) == 1;
 }
 
 
-#define TTY_COMMAND(name, color)                 \
+#define TTY_COMMAND(name, escape_code)           \
     std::ostream & name(std::ostream & stream) { \
         if (is_interactive()) {                  \
-            stream << color;                     \
+            stream << escape_code;               \
         }                                        \
         return stream;                           \
     }
@@ -86,6 +106,12 @@ TTY_COMMAND(clear_line, "\033[2K")
 
 // tty::cursor_up
 TTY_COMMAND(cursor_up, "\x1b[A")
+
+// tty::cursor_hide
+TTY_COMMAND(cursor_hide, "\x1b[?25l")
+
+// tty::cursor_show
+TTY_COMMAND(cursor_show, "\x1b[?25h")
 
 
 }  // namespace libdnf::cli::utils::tty
