@@ -55,7 +55,7 @@ public:
     using Message = std::pair<MessageType, std::string>;
 
     explicit ProgressBar(int64_t total_ticks);
-    explicit ProgressBar(int64_t total_ticks, std::string description);
+    explicit ProgressBar(int64_t total_ticks, const std::string & description);
     virtual ~ProgressBar() = default;
 
     // ticks
@@ -85,7 +85,7 @@ public:
 
     // description
     std::string get_description() const { return description; }
-    void set_description(std::string value) { description = value; }
+    void set_description(const std::string & value) { description = value; }
 
     // messages
     void add_message(MessageType type, const std::string & message) { messages.push_back({type, message}); }

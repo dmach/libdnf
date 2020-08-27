@@ -43,7 +43,7 @@ public:
     virtual std::string to_string() = 0;
 
     std::string get_delimiter_before() const { return delimiter_before; }
-    void set_delimiter_before(std::string value) { delimiter_before = value; }
+    void set_delimiter_before(const std::string & value) { delimiter_before = value; }
 
 private:
     ProgressBar * bar = nullptr;
