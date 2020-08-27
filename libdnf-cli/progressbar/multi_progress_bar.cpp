@@ -36,6 +36,9 @@ namespace libdnf::cli::progressbar {
 MultiProgressBar::MultiProgressBar() : total(0, "Total") {
     total.set_auto_finish(false);
     total.start();
+    if (tty::is_interactive()) {
+        std::cout << tty::cursor_hide;
+    }
 }
 
 
@@ -43,6 +46,9 @@ MultiProgressBar::~MultiProgressBar() {
     std::lock_guard<std::mutex> lck(mtx);
     for (auto & i : bars_all) {
         delete i;
+    }
+    if (tty::is_interactive()) {
+        std::cout << tty::cursor_show;
     }
 }
 
