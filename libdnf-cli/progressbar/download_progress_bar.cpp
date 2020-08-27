@@ -32,13 +32,13 @@ namespace libdnf::cli::progressbar {
 
 
 // Columns (widgets):
-// <numbers><description...................><%%%><progress............><speed.....><size.....><time...>
+// <numbers><description...................><%%%><progress............><speed.....><size.....><time....>
 
 // Example:
-// [  1/999] filename                                                 | 123.4 kB/s | 123.4 kB |  00:01
-// [  2/999] filename                       100% [====================] 123.4 kB/s | 123.4 kB | -00:02
-// ---------------------------------------------------------------------------------------------------
-// [  1/999] Total                           10% [===                 ] 543.2 kB/s | 543.2 MB | -12:34
+// [  1/999] filename                                                 | 123.4 kB/s | 123.4 kB |  00m01s
+// [  2/999] filename                       100% [====================] 123.4 kB/s | 123.4 kB | -00m02s
+// ----------------------------------------------------------------------------------------------------
+// [  1/999] Total                           10% [===                 ] 543.2 kB/s | 543.2 MB | -12m34s
 
 
 DownloadProgressBar::DownloadProgressBar(int64_t download_size, const std::string & description)
