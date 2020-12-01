@@ -22,6 +22,10 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "libdnf/comps/comps.hpp"
 
+extern "C" {
+#include <solv/repo.h>
+}
+
 #include <filesystem>
 #include <fstream>
 
@@ -39,9 +43,10 @@ void CompsGroupTest::test_merge() {
     std::filesystem::path data_path = PROJECT_SOURCE_DIR "/test/libdnf/comps/data/";
 
     libdnf::comps::Comps comps;
+    Repo * repo = repo_create(comps.get_pool(), "repo");
     comps.load_installed();
-    comps.load_from_file(data_path / "core.xml");
-    comps.load_from_file(data_path / "standard.xml");
+    comps.load_from_file(data_path / "core.xml", repo);
+    comps.load_from_file(data_path / "standard.xml", repo);
 
     auto q_core = comps.get_group_sack().new_query();
     q_core.ifilter_installed(false);
@@ -51,7 +56,7 @@ void CompsGroupTest::test_merge() {
     CPPUNIT_ASSERT_EQUAL(std::string("Core"), core->get_name());
 
     // load another definiton of the core group that changes name from "Core" to "Core v2"
-    comps.load_from_file(data_path / "core-v2.xml");
+    comps.load_from_file(data_path / "core-v2.xml", repo);
 
     auto q_core2 = comps.get_group_sack().new_query();
     q_core2.ifilter_installed(false);

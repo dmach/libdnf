@@ -25,11 +25,14 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <libdnf/comps/group/group.hpp>
 #include <libxml/tree.h>
 
+extern "C" {
+#include <solv/pool.h>
+}
 
 namespace libdnf::comps {
 
 
-void load_group_from_xml(Group & grp, xmlNode * a_node);
+void load_group_from_solvable(Group & grp, Id solvable_id, Pool * pool);
 
 
 }  // namespace libdnf::comps

@@ -27,6 +27,10 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+extern "C" {
+#include <solv/solvable.h>
+}
+
 
 namespace libdnf::comps {
 
@@ -106,6 +110,9 @@ public:
     std::set<std::string> get_repos() { return repos; }
     void add_repo(const std::string & repoid) { repos.insert(repoid); }
 
+    std::vector<Solvable *> get_solvables() { return solvables; }
+    void add_solvable(Solvable * solvable) { solvables.push_back(solvable); }
+
     /// Determine if group is installed.
     /// If it belongs to the @System repo, return true.
     bool get_installed() const;
@@ -127,6 +134,9 @@ private:
     // list of repos a group comes from
     // installed groups map to [@System]
     std::set<std::string> repos;
+
+    // libsolv solvables for this group, used to get translations
+    std::vector<Solvable *> solvables;
 };
 
 

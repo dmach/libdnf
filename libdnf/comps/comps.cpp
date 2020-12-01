@@ -2,8 +2,20 @@
 #include <libdnf/comps/group/group-private.hpp>
 #include <libdnf/utils/xml.hpp>
 
+extern "C" {
+#include <solv/pool.h>
+#include <solv/repo.h>
+#include <solv/repo_comps.h>
+#include <solv/repodata.h>
+}
+
 #include <cstring>
 
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <set>
+#include <unistd.h>
 
 namespace libdnf::comps {
 
@@ -17,52 +29,38 @@ void Comps::load_installed() {
 }
 
 
-void Comps::load_from_file(const std::string & path) {
-    // xml parser context
-    xmlParserCtxtPtr xml_ctx = xmlNewParserCtxt();
+void Comps::load_from_file(const std::string & path, Repo * repo) {
+    FILE * xml_doc = fopen(path.c_str(), "r");
+    // TODO(pkratoch): libsolv doesn't support environments yet
+    repo_add_comps(repo, xml_doc, 0);
+    fclose(xml_doc);
 
-    if (xml_ctx == nullptr) {
-        throw std::bad_alloc();
-        // "Failed to allocate xml parser context"
-    }
-
-    // resulting xml document tree
-    // parse the file, activating the DTD validation option
-    // xml_doc = xmlCtxtReadFile(xml_ctx, path.c_str(), nullptr, XML_PARSE_DTDVALID);
-    xmlDocPtr xml_doc = xmlCtxtReadFile(xml_ctx, path.c_str(), nullptr, 0);
-
-    xmlNode * root_node = xmlDocGetRootElement(xml_doc);
-
-    // TODO(dmach): assert name == comps
-
-    xmlNode * cur_node = NULL;
-    for (cur_node = root_node->children; cur_node; cur_node = cur_node->next) {
-        if (cur_node->type != XML_ELEMENT_NODE) {
+    Id solvable_id;
+    // loop over all solvables that haven't been processed yet
+    FOR_POOL_SOLVABLES(solvable_id) {
+        if (processed_solvable_ids.find(solvable_id) != processed_solvable_ids.end()) {
             continue;
         }
-        if (strcmp(cur_node->name, "group") == 0) {
-            // create a Group object and populate it with data from xml
-            auto group = std::make_unique<Group>();
-            load_group_from_xml(*group, cur_node);
+        processed_solvable_ids.insert(solvable_id);
 
-            // query sack for available (not installed) groups with given id
-            auto q = get_group_sack().new_query();
-            q.ifilter_installed(false);
-            q.ifilter_id(libdnf::sack::QueryCmp::EQ, group->get_id());
+        auto group = std::make_unique<Group>();
 
-            if (q.empty()) {
-                // move the newly created group to the sack
-                get_group_sack().add_group(std::move(group));
-            } else {
-                // update an existing group
-                auto existing_group = q.get();
-                *existing_group.get() += *group;
-            }
+        load_group_from_solvable(*group, solvable_id, pool);
+
+        // query sack for available (not installed) groups with given id
+        auto q = get_group_sack().new_query();
+        q.ifilter_installed(false);
+        q.ifilter_id(libdnf::sack::QueryCmp::EQ, group->get_id());
+
+        if (q.empty()) {
+            // move the newly created group to the sack
+            get_group_sack().add_group(std::move(group));
+        } else {
+            // update an existing group
+            auto existing_group = q.get();
+            *existing_group.get() += *group;
         }
     }
-
-    xmlFreeDoc(xml_doc);
-    xmlFreeParserCtxt(xml_ctx);
 }
 
 

@@ -2,6 +2,12 @@
 #include <libdnf/utils/xml.hpp>
 #include <libxml/tree.h>
 
+extern "C" {
+#include <solv/pool.h>
+#include <solv/repo.h>
+#include <solv/repodata.h>
+}
+
 #include <cstring>
 #include <iostream>
 
@@ -33,59 +39,32 @@ Group & Group::operator+=(const Group & rhs) {
     this->is_uservisible = rhs.is_uservisible;
     this->is_default = rhs.is_default;
     this->repos.insert(rhs.repos.begin(), rhs.repos.end());
+    this->solvables.insert(this->solvables.begin(), rhs.solvables.begin(), rhs.solvables.end());
     return *this;
 }
 
 
-void load_group_from_xml(Group & grp, xmlNode * a_node) {
-    for (auto node = a_node->children; node; node = node->next) {
-        if (node->type != XML_ELEMENT_NODE) {
-            continue;
-        }
-
-        if (strcmp(node->name, "id") == 0) {
-            // <id>
-            grp.set_id(libdnf::utils::xml::get_content(node));
-        } else if (strcmp(node->name, "name") == 0) {
-            // <name>, <name lang="...">
-            auto lang = libdnf::utils::xml::get_attribute(node, "lang");
-            auto value = libdnf::utils::xml::get_content(node);
-            if (lang.first) {
-                // translated name
-                grp.set_translated_name(lang.second, value);
-            } else {
-                // name
-                grp.set_name(value);
-            }
-            //libdnf::utils::xml::free(lang);
-        } else if (strcmp(node->name, "description") == 0) {
-            // <description>, <description lang="...">
-            auto lang = libdnf::utils::xml::get_attribute(node, "lang");
-            auto value = libdnf::utils::xml::get_content(node);
-            if (lang.first) {
-                // translated name
-                grp.set_translated_description(lang.second, value);
-            } else {
-                // name
-                grp.set_description(value);
-            }
-            //libdnf::utils::xml::free(lang);
-        } else if (strcmp(node->name, "default") == 0) {
-            // <default>true|false</default>
-            grp.set_default(libdnf::utils::xml::get_bool(libdnf::utils::xml::get_content(node)));
-        } else if (strcmp(node->name, "uservisible") == 0) {
-            // <uservisible>true|false</uservisible>
-            grp.set_uservisible(libdnf::utils::xml::get_bool(libdnf::utils::xml::get_content(node)));
-        } else if (strcmp(node->name, "packagelist") == 0) {
-            // <packagelist>
-            // <packagereq type="default">pkg</packagereq>
-            // <packagereq type="conditional" requires="if-pkg">pkg</packagereq>
-        } else {
-            // else throw an error?
-            throw std::runtime_error((const char *)node->name);
-        }
+// TODO(pkratoch): Store also packagelist
+void load_group_from_solvable(Group & group, Id solvable_id, Pool * pool) {
+    Solvable * solvable = pool_id2solvable(pool, solvable_id);
+    std::string solvable_name(pool_id2str(pool, solvable->name));
+    group.set_id(solvable_name.substr(solvable_name.find(":") + 1));
+    if (pool_lookup_str(pool, solvable_id, SOLVABLE_SUMMARY)) {
+        group.set_name(solvable_lookup_str_poollang(solvable, SOLVABLE_SUMMARY));
     }
-    //std::cout << grp->get_id() << std::endl;
+    if (pool_lookup_str(pool, solvable_id, SOLVABLE_DESCRIPTION)) {
+        group.set_description(pool_lookup_str(pool, solvable_id, SOLVABLE_DESCRIPTION));
+    }
+    group.set_uservisible(pool_lookup_void(pool, solvable_id, SOLVABLE_ISVISIBLE));
+    group.set_default(pool_lookup_void(pool, solvable_id, SOLVABLE_ISDEFAULT));
+    if (pool_lookup_str(pool, solvable_id, SOLVABLE_ORDER)) {
+        group.set_order(pool_lookup_str(pool, solvable_id, SOLVABLE_ORDER));
+    }
+    if (pool_lookup_str(pool, solvable_id, SOLVABLE_LANGONLY)) {
+        group.set_langonly(pool_lookup_str(pool, solvable_id, SOLVABLE_LANGONLY));
+    }
+    group.add_repo(pool_id2str(pool, solvable->repo->repoid));
+    group.add_solvable(solvable);
 }
 
 

@@ -27,19 +27,29 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include "group/group.hpp"
 #include "group/sack.hpp"
 
+extern "C" {
+#include <solv/pool.h>
+#include <solv/repo.h>
+}
 
 namespace libdnf::comps {
 
 
 class Comps {
 public:
+    explicit Comps() { pool = pool_create(); }
+    ~Comps() { pool_free(pool); }
+
     // TODO(dmach): load to a new Comps object and merge when it's fully loaded for better transactional behavior
-    void load_from_file(const std::string & path);
+    void load_from_file(const std::string & path, Repo * repo);
     void load_installed();
     GroupSack & get_group_sack() { return group_sack; }
+    Pool * get_pool() { return pool; }
 
 private:
     GroupSack group_sack{*this};
+    Pool * pool;
+    std::set<Id> processed_solvable_ids;
 };
 
 
