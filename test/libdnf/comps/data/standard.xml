@@ -19,6 +19,7 @@
     <packagelist>
       <packagereq type="mandatory">cryptsetup</packagereq>
       <packagereq requires="gnome-control-center" type="conditional">chrony</packagereq>
+      <packagereq requires="nonexistent" type="conditional">conditional</packagereq>
     </packagelist>
   </group>
 </comps>
