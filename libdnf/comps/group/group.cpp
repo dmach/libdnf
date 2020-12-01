@@ -44,6 +44,38 @@ Group & Group::operator+=(const Group & rhs) {
 }
 
 
+std::string Group::get_translated_name(const char * lang) {
+    std::string translation;
+    for (auto solvable: get_solvables()) {
+        if (solvable_lookup_str_lang(solvable, SOLVABLE_SUMMARY, lang, 1)) {
+            translation = solvable_lookup_str_lang(solvable, SOLVABLE_SUMMARY, lang, 1);
+            // Return translation only if it's different from the untranslated string.
+            if (translation != solvable_lookup_str(solvable, SOLVABLE_SUMMARY)) {
+                return translation;
+            }
+        }
+    }
+    // Return the untranslated name when no translation was found
+    return this->name;
+}
+
+
+std::string Group::get_translated_description(const char * lang) {
+    std::string translation;
+    for (auto solvable: get_solvables()) {
+        if (solvable_lookup_str_lang(solvable, SOLVABLE_DESCRIPTION, lang, 1)) {
+            translation = solvable_lookup_str_lang(solvable, SOLVABLE_DESCRIPTION, lang, 1);
+            // Return translation only if it's different from the untranslated string.
+            if (translation != solvable_lookup_str(solvable, SOLVABLE_DESCRIPTION)) {
+                return translation;
+            }
+        }
+    }
+    // Return the untranslated description when no translation was found
+    return this->description;
+}
+
+
 // TODO(pkratoch): Store also packagelist
 void load_group_from_solvable(Group & group, Id solvable_id, Pool * pool) {
     Solvable * solvable = pool_id2solvable(pool, solvable_id);

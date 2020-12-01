@@ -60,7 +60,7 @@ public:
     /// If a translation is not found, return untranslated name.
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_name
-    std::string get_translated_name() const noexcept { return ""; }
+    std::string get_translated_name(const char * lang);
 
     void set_translated_name(const std::string & lang, const std::string & value) { translated_names.insert({lang, value}); }
 
@@ -68,7 +68,7 @@ public:
     /// If a translation is not found, return untranslated description.
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_description
-    std::string get_translated_description() const noexcept { return ""; }
+    std::string get_translated_description(const char * lang);
 
     void set_translated_description(const std::string & lang, const std::string & value) { translated_descriptions.insert({lang, value}); }
 
