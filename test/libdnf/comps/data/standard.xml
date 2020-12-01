@@ -13,6 +13,7 @@
     <description xml:lang="cs">Běžná sada služeb rozšiřujících minimální instalaci.</description>
     <description xml:lang="de">Eine Sammlung häufig verwendeter Werkzeuge, welche die Minimalinstallation erweitern.</description>
     <description xml:lang="ja">最小限のインストールを拡張するユーティリティの共通セット</description>
+    <display_order>1</display_order>
     <default>false</default>
     <uservisible>false</uservisible>
     <packagelist>

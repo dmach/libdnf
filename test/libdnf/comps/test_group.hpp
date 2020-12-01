@@ -28,14 +28,22 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 
 class CompsGroupTest : public CppUnit::TestCase {
     CPPUNIT_TEST_SUITE(CompsGroupTest);
+    CPPUNIT_TEST(test_load);
+    CPPUNIT_TEST(test_load_defaults);
     CPPUNIT_TEST(test_merge);
+    CPPUNIT_TEST(test_merge_with_empty);
+    CPPUNIT_TEST(test_merge_empty_with_nonempty);
     CPPUNIT_TEST_SUITE_END();
 
 public:
     void setUp() override;
     void tearDown() override;
 
+    void test_load();
+    void test_load_defaults();
     void test_merge();
+    void test_merge_with_empty();
+    void test_merge_empty_with_nonempty();
 };
 
 #endif
