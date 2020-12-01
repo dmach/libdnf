@@ -68,6 +68,18 @@ public:
 
     void set_translated_description(const std::string & lang, const std::string & value) { translated_descriptions.insert({lang, value}); }
 
+    /// Get group order
+    std::string get_order() const noexcept { return order; }
+
+    /// Set group order
+    void set_order(const std::string & value) { order = value; }
+
+    /// Get group langonly
+    std::string get_langonly() const noexcept { return langonly; }
+
+    /// Set group langonly
+    void set_langonly(const std::string & value) { langonly = value; }
+
     /// Determine if group is visible to the users
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.visible
@@ -105,6 +117,8 @@ private:
     std::string id;
     std::string name;
     std::string description;
+    std::string order;
+    std::string langonly;
     bool is_uservisible = true;
     bool is_default = false;
     std::map<std::string, std::string> translated_names;
