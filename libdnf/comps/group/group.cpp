@@ -21,6 +21,18 @@ Group & Group::operator+=(const Group & rhs) {
     if (!rhs.name.empty()) {
         this->name = rhs.name;
     }
+    if (!rhs.description.empty()) {
+        this->description = rhs.description;
+    }
+    if (!rhs.order.empty()) {
+        this->order = rhs.order;
+    }
+    if (!rhs.langonly.empty()) {
+        this->langonly = rhs.langonly;
+    }
+    this->is_uservisible = rhs.is_uservisible;
+    this->is_default = rhs.is_default;
+    this->repos.insert(rhs.repos.begin(), rhs.repos.end());
     return *this;
 }
 
