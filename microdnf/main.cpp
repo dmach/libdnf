@@ -23,6 +23,7 @@ along with microdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include "commands/remove/remove.hpp"
 #include "commands/repolist/repolist.hpp"
 #include "commands/repoquery/repoquery.hpp"
+#include "commands/test/test.hpp"
 #include "commands/upgrade/upgrade.hpp"
 #include "context.hpp"
 #include "utils.hpp"
@@ -154,6 +155,7 @@ int main(int argc, char * argv[]) {
     context.commands.push_back(std::make_unique<microdnf::CmdRemove>());
     context.commands.push_back(std::make_unique<microdnf::CmdRepolist>());
     context.commands.push_back(std::make_unique<microdnf::CmdRepoquery>());
+    context.commands.push_back(std::make_unique<microdnf::CmdTest>());
     context.commands.push_back(std::make_unique<microdnf::CmdUpgrade>());
 
     // Parse command line arguments
