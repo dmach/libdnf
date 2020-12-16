@@ -51,7 +51,7 @@ using GroupSackWeakPtr = WeakPtr<GroupSack, false>;
 class GroupSack : public libdnf::sack::Sack<Group, GroupQuery> {
 public:
     ~GroupSack();
-    
+
     GroupQuery new_query();
 
     /// Move an existing Group object to the GroupSack
@@ -61,8 +61,11 @@ public:
     GroupSackWeakPtr get_weak_ptr();
 
 private:
+    friend class Comps;
+    GroupSack(Comps & comps) : comps(comps) {}
+    
     Base * base;
-    Comps * comps;
+    Comps & comps;
 
     class Impl;
     std::unique_ptr<Impl> p_impl;

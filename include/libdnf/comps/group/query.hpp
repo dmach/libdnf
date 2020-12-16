@@ -24,14 +24,13 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include "libdnf/common/sack/query.hpp"
 #include "libdnf/comps/comps.hpp"
 #include "libdnf/comps/group/sack.hpp"
+#include "libdnf/comps/group/group.hpp"
 
 #include <memory>
 
 
 namespace libdnf::comps {
 
-
-class Group;
 
 class GroupQuery;
 
@@ -57,10 +56,10 @@ public:
 
 private:
     struct F {
-        static std::string id(const Group & obj) { return obj->get_id(); }
-        static bool is_uservisible(const Group & obj) { return obj->get_uservisible(); }
-        static bool is_default(const Group & obj) { return obj->get_default(); }
-        static bool is_installed(const Group & obj) { return obj->get_installed(); }
+        static std::string id(const Group & obj) { return obj.get_id(); }
+        static bool is_uservisible(const Group & obj) { return obj.get_uservisible(); }
+        static bool is_default(const Group & obj) { return obj.get_default(); }
+        static bool is_installed(const Group & obj) { return obj.get_installed(); }
     };
 
     GroupSackWeakPtr sack;

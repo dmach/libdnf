@@ -27,7 +27,7 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "libdnf/comps/group/query.hpp"
+//#include "libdnf/comps/group/query.hpp"
 
 extern "C" {
 #include <solv/solvable.h>
@@ -36,47 +36,50 @@ extern "C" {
 
 namespace libdnf::comps {
 
+class GroupQuery;
 
 /// @replaces dnf:dnf/comps.py:class:Group
 class Group {
 public:
-    std::vector<Solvable *> get_solvables() { return solvables; }
+    ~Group();
+
+    const std::vector<Solvable *> & get_solvables() const { return solvables; }
     void add_solvable(Solvable * solvable) { solvables.push_back(solvable); }
 
     /// Get group id
-    std::string get_id();
+    std::string get_id() const;
 
     /// Get group name
-    std::string get_name();
+    std::string get_name() const;
 
     /// Get group description
-    std::string get_description();
+    std::string get_description() const;
 
     /// Get translated name of a group based on current locales.
     /// If a translation is not found, return untranslated name.
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_name
-    std::string get_translated_name(const char * lang);
+    std::string get_translated_name(const char * lang) const;
 
     /// Get translated description of a group based on current locales.
     /// If a translation is not found, return untranslated description.
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_description
-    std::string get_translated_description(const char * lang);
+    std::string get_translated_description(const char * lang) const;
 
     /// Get group order
-    std::string get_order();
+    std::string get_order() const;
 
     /// Get group langonly
-    std::string get_langonly();
+    std::string get_langonly() const;
 
     /// Determine if group is visible to the users
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.visible
-    bool get_uservisible();
+    bool get_uservisible() const;
 
     /// Determine if group is installed by default
-    bool get_default();
+    bool get_default() const;
 
     /// @replaces dnf:dnf/comps.py:method:Group.packages_iter(self)
     //std::vector<Package> get_packages() const;
@@ -86,13 +89,13 @@ public:
     /// @replaces dnf:dnf/comps.py:attribute:Group.mandatory_packages
     /// @replaces dnf:dnf/comps.py:attribute:Group.optional_packages
     //std::vector<Package> get_packages(bool mandatory_groups, bool optional_groups) const;
-
-    std::set<std::string> get_repos();
+/*
+    std::set<std::string> get_repos() const;
 
     /// Determine if group is installed.
     /// If it belongs to the @System repo, return true.
-    bool get_installed();
-
+    bool get_installed() const;
+*/
     /// Merge a comps Group with another one
     Group & operator+=(const Group & rhs);
 
@@ -104,9 +107,6 @@ private:
     // libsolv solvables for this group
     std::vector<Solvable *> solvables;
 };
-
-
-inline Group::Group(GroupQuery * query) : query(query->get_weak_ptr()) {}
 
 
 }  // namespace libdnf::comps
