@@ -27,7 +27,8 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "libdnf/common/sack/sack.hpp"
+#include "libdnf/utils/weak_ptr.hpp"
+//#include "libdnf/common/sack/sack.hpp"
 //#include "libdnf/comps/group/query.hpp"
 
 extern "C" {
@@ -105,7 +106,7 @@ public:
     Group & operator+=(const Group & rhs);
 
 protected:
-    Group(GroupQuery * query);
+    explicit Group(GroupQuery * query);
 
 private:
     GroupQueryWeakPtr query;

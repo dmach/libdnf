@@ -18,34 +18,17 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 
-#ifndef LIBDNF_COMPS_GROUP_SACK_IMPL_HPP
-#define LIBDNF_COMPS_GROUP_SACK_IMPL_HPP
+#include "sack_impl.hpp"
 
-#include "libdnf/comps/group/sack.hpp"
-
-extern "C" {
-#include <solv/pool.h>
-}
 
 namespace libdnf::comps {
 
 
-class GroupSack::Impl {
-public:
-    explicit Impl();
-    ~Impl();
-private:
-    Pool * pool;
+GroupSack::Impl::Impl() {
+}
 
-private:
-    WeakPtrGuard<GroupSack, false> data_guard;
-
-    friend GroupSack;
-};
-
+GroupSack::Impl::~Impl() {
+}
 
 
 }  // namespace libdnf::comps
-
-
-#endif  // LIBDNF_COMPS_GROUP_SACK_IMPL_HPP

@@ -2,9 +2,11 @@
 #include <libdnf/comps/group/group-private.hpp>
 #include <libdnf/utils/xml.hpp>
 
+#include "libdnf/common/sack/query.hpp"
 
 #include "libdnf/comps/group/group.hpp"
 #include "libdnf/comps/group/sack.hpp"
+#include "libdnf/comps/group/query.hpp"
 
 
 extern "C" {
@@ -25,22 +27,31 @@ extern "C" {
 namespace libdnf::comps {
 
 
-explicit Comps()
-    : group_sack{this}
+Comps::Comps(libdnf::Base & base)
+    : base{base}
 {
     pool = pool_create();
 }
 
+
+Comps::~Comps() {
+    pool_free(pool);
+}
+
+
 void Comps::load_installed() {
+    /*
     auto core = get_group_sack().new_group();
     core->set_id("core");
     core->set_name("Core");
     core->add_repo("@System");
+    */
     // TODO(dmach): load from transaction database
 }
 
 
 void Comps::load_from_file(const std::string & path, Repo * repo) {
+    /*
     FILE * xml_doc = fopen(path.c_str(), "r");
     // TODO(pkratoch): libsolv doesn't support environments yet
     repo_add_comps(repo, xml_doc, 0);
@@ -72,6 +83,7 @@ void Comps::load_from_file(const std::string & path, Repo * repo) {
             *existing_group.get() += *group;
         }
     }
+    */
 }
 
 

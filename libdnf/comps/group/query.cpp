@@ -11,8 +11,14 @@ GroupQueryWeakPtr GroupQuery::get_weak_ptr() {
 }
 
 
-GroupQuery::GroupQuery(GroupSack * sack) : Query(), sack(sack->get_weak_ptr()) {}
+GroupQuery::GroupQuery(GroupSack * sack)
+    : Query()
+    , sack(sack->get_weak_ptr())
+    , p_impl{new Impl(sack)}
+{}
+
 GroupQuery::GroupQuery(const Set<Group> & src_set, GroupSack * sack) : Query(src_set), sack(sack->get_weak_ptr()) {}
+
 GroupQuery::GroupQuery(Set<Group> && src_set, GroupSack * sack) : Query(src_set), sack(sack->get_weak_ptr()) {}
 
 GroupQuery::~GroupQuery() {}

@@ -21,9 +21,11 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef LIBDNF_COMPS_GROUP_SACK_HPP
 #define LIBDNF_COMPS_GROUP_SACK_HPP
 
+
+#include "libdnf/utils/weak_ptr.hpp"
 #include "libdnf/common/sack/sack.hpp"
-#include "libdnf/comps/comps.hpp"
-#include "libdnf/comps/group/group.hpp"
+//#include "libdnf/comps/comps.hpp"
+//#include "libdnf/comps/group/group.hpp"
 
 #include <memory>
 
@@ -40,7 +42,7 @@ namespace libdnf::comps {
 
 class Comps;
 
-//class Group;
+class Group;
 
 class GroupQuery;
 
@@ -60,11 +62,12 @@ public:
     /// Create WeakPtr to GroupSack
     GroupSackWeakPtr get_weak_ptr();
 
-private:
+protected:
     friend class Comps;
-    GroupSack(Comps & comps) : comps(comps) {}
-    
-    Base * base;
+    explicit GroupSack(Comps & comps);
+    //explicit GroupSack();
+
+private:
     Comps & comps;
 
     class Impl;

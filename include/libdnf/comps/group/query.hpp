@@ -21,11 +21,12 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef LIBDNF_COMPS_GROUP_QUERY_HPP
 #define LIBDNF_COMPS_GROUP_QUERY_HPP
 
+#include "libdnf/utils/weak_ptr.hpp"
 #include "libdnf/common/sack/query.hpp"
-#include "libdnf/comps/comps.hpp"
-//#include "libdnf/comps/group/sack.hpp"
+//#include "libdnf/comps/comps.hpp"
+////#include "libdnf/comps/group/sack.hpp"
 #include "libdnf/comps/group/group.hpp"
-//#include "group.hpp"
+////#include "group.hpp"
 
 #include <memory>
 
