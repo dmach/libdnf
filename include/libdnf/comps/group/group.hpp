@@ -27,6 +27,7 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "libdnf/common/sack/sack.hpp"
 //#include "libdnf/comps/group/query.hpp"
 
 extern "C" {
@@ -37,6 +38,10 @@ extern "C" {
 namespace libdnf::comps {
 
 class GroupQuery;
+
+class GroupQuery;
+using GroupQueryWeakPtr = WeakPtr<GroupQuery, false>;
+
 
 /// @replaces dnf:dnf/comps.py:class:Group
 class Group {
@@ -89,13 +94,13 @@ public:
     /// @replaces dnf:dnf/comps.py:attribute:Group.mandatory_packages
     /// @replaces dnf:dnf/comps.py:attribute:Group.optional_packages
     //std::vector<Package> get_packages(bool mandatory_groups, bool optional_groups) const;
-/*
+
     std::set<std::string> get_repos() const;
 
     /// Determine if group is installed.
     /// If it belongs to the @System repo, return true.
     bool get_installed() const;
-*/
+
     /// Merge a comps Group with another one
     Group & operator+=(const Group & rhs);
 

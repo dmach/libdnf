@@ -23,8 +23,9 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "libdnf/common/sack/query.hpp"
 #include "libdnf/comps/comps.hpp"
-#include "libdnf/comps/group/sack.hpp"
+//#include "libdnf/comps/group/sack.hpp"
 #include "libdnf/comps/group/group.hpp"
+//#include "group.hpp"
 
 #include <memory>
 
@@ -33,8 +34,10 @@ namespace libdnf::comps {
 
 
 class GroupQuery;
-
 using GroupQueryWeakPtr = WeakPtr<GroupQuery, false>;
+
+class GroupSack;
+using GroupSackWeakPtr = WeakPtr<GroupSack, false>;
 
 
 class GroupQuery : public libdnf::sack::Query<Group> {

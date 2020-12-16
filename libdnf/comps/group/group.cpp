@@ -17,7 +17,8 @@ namespace libdnf::comps {
 
 
 Group::~Group() {}
-    
+
+
 std::string solvables_lookup_str(std::vector<Solvable *> solvables, Id key) {
     for (auto solvable: solvables) {
         if (solvable_lookup_str(solvable, key)) {
@@ -95,23 +96,15 @@ bool Group::get_default() const {
     return solvable_lookup_void(get_solvables()[0], SOLVABLE_ISDEFAULT);
 }
 
-/*
-std::set<std::string> Group::get_repos() const {
-    for (auto solvable: get_solvables()) {
-        if (solvable_lookup_str(solvable, repo_id)) {
-            return solvable_lookup_str(solvable, key);
-        }
-    }
-    //group.add_repo(pool_id2str(pool, solvable->repo->repoid));
-    std::set<std::string> empty;
-    return empty;
-}
-
 
 bool Group::get_installed() const {
     return get_repos().find("@System") != get_repos().end();
 }
-*/
+
+std::set<std::string> Group::get_repos() const {
+    std::set<std::string> result;
+    return result;
+}
 
 Group & Group::operator+=(const Group & rhs) {
     this->solvables.insert(this->solvables.begin(), rhs.solvables.begin(), rhs.solvables.end());
@@ -127,5 +120,6 @@ void load_group_from_solvable(Group & group, Id solvable_id, Pool * pool) {
 }
 
 Group::Group(GroupQuery * query) : query(query->get_weak_ptr()) {}
+
 
 }  // namespace libdnf::comps

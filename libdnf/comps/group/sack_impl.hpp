@@ -31,6 +31,8 @@ namespace libdnf::comps {
 
 
 class GroupSack::Impl {
+public:
+    ~Impl() {};
 private:
     Pool * pool;
 

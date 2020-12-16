@@ -23,6 +23,7 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "libdnf/common/sack/sack.hpp"
 #include "libdnf/comps/comps.hpp"
+#include "libdnf/comps/group/group.hpp"
 
 #include <memory>
 
@@ -39,7 +40,7 @@ namespace libdnf::comps {
 
 class Comps;
 
-class Group;
+//class Group;
 
 class GroupQuery;
 
@@ -51,11 +52,10 @@ using GroupSackWeakPtr = WeakPtr<GroupSack, false>;
 class GroupSack : public libdnf::sack::Sack<Group, GroupQuery> {
 public:
     ~GroupSack();
-
     GroupQuery new_query();
 
     /// Move an existing Group object to the GroupSack
-    void add_group(std::unique_ptr<Group> && group) { add_item(std::move(group)); }
+    void add_group(std::unique_ptr<Group> && group);
 
     /// Create WeakPtr to GroupSack
     GroupSackWeakPtr get_weak_ptr();

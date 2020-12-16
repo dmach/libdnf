@@ -13,4 +13,9 @@ GroupSackWeakPtr GroupSack::get_weak_ptr() {
 GroupSack::~GroupSack() {}
 
 
+void GroupSack::add_group(std::unique_ptr<Group> && group) {
+    add_item(std::move(group));
+}
+
+
 }  // namespace libdnf::comps

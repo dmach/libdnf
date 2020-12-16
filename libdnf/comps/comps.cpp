@@ -2,6 +2,11 @@
 #include <libdnf/comps/group/group-private.hpp>
 #include <libdnf/utils/xml.hpp>
 
+
+#include "libdnf/comps/group/group.hpp"
+#include "libdnf/comps/group/sack.hpp"
+
+
 extern "C" {
 #include <solv/pool.h>
 #include <solv/repo.h>
@@ -19,6 +24,12 @@ extern "C" {
 
 namespace libdnf::comps {
 
+
+explicit Comps()
+    : group_sack{this}
+{
+    pool = pool_create();
+}
 
 void Comps::load_installed() {
     auto core = get_group_sack().new_group();

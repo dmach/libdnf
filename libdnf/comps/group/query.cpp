@@ -1,5 +1,6 @@
 #include "libdnf/comps/group/query.hpp"
 #include "libdnf/comps/group/query_impl.hpp"
+#include "libdnf/comps/group/sack.hpp"
 
 
 namespace libdnf::comps {
