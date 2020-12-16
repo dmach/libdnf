@@ -22,21 +22,28 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #define LIBDNF_COMPS_GROUP_QUERY_HPP
 
 #include "libdnf/common/sack/query.hpp"
-#include "libdnf/comps/group/group.hpp"
-#include "libdnf/utils/weak_ptr.hpp"
+#include "libdnf/comps/comps.hpp"
+#include "libdnf/comps/group/sack.hpp"
+
+#include <memory>
 
 
 namespace libdnf::comps {
 
 
-/// Weak pointer to rpm repository. RepoWeakPtr does not own the repository (ptr_owner = false).
-/// Repositories are owned by RepoSack.
-using GroupWeakPtr = libdnf::WeakPtr<Group, false>;
+class Group;
+
+class GroupQuery;
+
+using GroupQueryWeakPtr = WeakPtr<GroupQuery, false>;
 
 
-class GroupQuery : public libdnf::sack::Query<GroupWeakPtr> {
+class GroupQuery : public libdnf::sack::Query<Group> {
 public:
-    using libdnf::sack::Query<GroupWeakPtr>::Query;
+    explicit GroupQuery(GroupSack * sack);
+    explicit GroupQuery(const Set<Group> & src_set, GroupSack * sack);
+    explicit GroupQuery(Set<Group> && src_set, GroupSack * sack);
+    ~GroupQuery();
 
     GroupQuery & ifilter_id(sack::QueryCmp cmp, const std::string & pattern);
     GroupQuery & ifilter_id(sack::QueryCmp cmp, const std::vector<std::string> & patterns);
@@ -44,13 +51,21 @@ public:
     GroupQuery & ifilter_default(bool value);
     GroupQuery & ifilter_installed(bool value);
 
+    /// Create WeakPtr to GroupQuery
+    GroupQueryWeakPtr get_weak_ptr();
+
+
 private:
     struct F {
-        static std::string id(const GroupWeakPtr & obj) { return obj->get_id(); }
-        static bool is_uservisible(const GroupWeakPtr & obj) { return obj->get_uservisible(); }
-        static bool is_default(const GroupWeakPtr & obj) { return obj->get_default(); }
-        static bool is_installed(const GroupWeakPtr & obj) { return obj->get_installed(); }
+        static std::string id(const Group & obj) { return obj->get_id(); }
+        static bool is_uservisible(const Group & obj) { return obj->get_uservisible(); }
+        static bool is_default(const Group & obj) { return obj->get_default(); }
+        static bool is_installed(const Group & obj) { return obj->get_installed(); }
     };
+
+    GroupSackWeakPtr sack;
+    class Impl;
+    std::unique_ptr<Impl> p_impl;
 };
 
 

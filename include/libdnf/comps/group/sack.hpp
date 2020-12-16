@@ -21,14 +21,17 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #ifndef LIBDNF_COMPS_GROUP_SACK_HPP
 #define LIBDNF_COMPS_GROUP_SACK_HPP
 
-
-#include "group.hpp"
-#include "query.hpp"
-
 #include "libdnf/common/sack/sack.hpp"
 #include "libdnf/comps/comps.hpp"
 
 #include <memory>
+
+
+namespace libdnf {
+
+class Base;
+
+}  // namespace libdnf
 
 
 namespace libdnf::comps {
@@ -36,27 +39,34 @@ namespace libdnf::comps {
 
 class Comps;
 
+class Group;
+
+class GroupQuery;
+
+class GroupSack;
+
+using GroupSackWeakPtr = WeakPtr<GroupSack, false>;
+
 
 class GroupSack : public libdnf::sack::Sack<Group, GroupQuery> {
 public:
-    explicit GroupSack(Comps & comps) : comps(&comps) {}
-
-    /// Create a new Group and store in in the GroupSack
-    GroupWeakPtr new_group();
+    ~GroupSack();
+    
+    GroupQuery new_query();
 
     /// Move an existing Group object to the GroupSack
     void add_group(std::unique_ptr<Group> && group) { add_item(std::move(group)); }
 
+    /// Create WeakPtr to GroupSack
+    GroupSackWeakPtr get_weak_ptr();
+
 private:
+    Base * base;
     Comps * comps;
+
+    class Impl;
+    std::unique_ptr<Impl> p_impl;
 };
-
-
-inline GroupWeakPtr GroupSack::new_group() {
-    auto group = std::make_unique<Group>();
-    return add_item_with_return(std::move(group));
-}
-
 
 }  // namespace libdnf::comps
 

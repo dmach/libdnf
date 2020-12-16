@@ -26,6 +26,7 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include "libdnf/rpm/solv_sack.hpp"
 #include "libdnf/conf/vars.hpp"
 #include "libdnf/transaction/sack.hpp"
+#include "libdnf/comps/group/sack.hpp"
 
 #include <map>
 
@@ -45,6 +46,7 @@ public:
     rpm::RepoSack & get_rpm_repo_sack() { return rpm_repo_sack; }
     rpm::SolvSack & get_rpm_solv_sack() { return rpm_solv_sack; }
     transaction::TransactionSack & get_transaction_sack() { return transaction_sack; }
+    comps::GroupSack & get_comps_group_sack() { return group_sack; }
 
     /// Gets base variables. They can be used in configuration files. Syntax in the config - ${var_name} or $var_name.
     Vars & get_vars() { return vars; }
@@ -69,6 +71,7 @@ private:
     rpm::RepoSack rpm_repo_sack{*this};
     rpm::SolvSack rpm_solv_sack{*this};
     transaction::TransactionSack transaction_sack{*this};
+    comps::GroupSack group_sack{*this};
     Vars vars;
 };
 

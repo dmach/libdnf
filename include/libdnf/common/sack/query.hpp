@@ -37,7 +37,6 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace libdnf::sack {
 
-
 /// Query is a Set with filtering capabilities.
 template <typename T>
 class Query : public Set<T> {

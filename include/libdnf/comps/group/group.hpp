@@ -27,6 +27,8 @@ along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "libdnf/comps/group/query.hpp"
+
 extern "C" {
 #include <solv/solvable.h>
 }
@@ -38,23 +40,17 @@ namespace libdnf::comps {
 /// @replaces dnf:dnf/comps.py:class:Group
 class Group {
 public:
-    /// Get group id
-    std::string get_id() const noexcept { return id; }
+    std::vector<Solvable *> get_solvables() { return solvables; }
+    void add_solvable(Solvable * solvable) { solvables.push_back(solvable); }
 
-    /// Set group id
-    void set_id(const std::string & value) { id = value; }
+    /// Get group id
+    std::string get_id();
 
     /// Get group name
-    std::string get_name() const noexcept { return name; }
-
-    /// Set group name
-    void set_name(const std::string & value) { name = value; }
+    std::string get_name();
 
     /// Get group description
-    std::string get_description() const { return description; }
-
-    /// Set group description
-    void set_description(const std::string & value) { description = value; }
+    std::string get_description();
 
     /// Get translated name of a group based on current locales.
     /// If a translation is not found, return untranslated name.
@@ -62,41 +58,25 @@ public:
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_name
     std::string get_translated_name(const char * lang);
 
-    void set_translated_name(const std::string & lang, const std::string & value) { translated_names.insert({lang, value}); }
-
     /// Get translated description of a group based on current locales.
     /// If a translation is not found, return untranslated description.
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.ui_description
     std::string get_translated_description(const char * lang);
 
-    void set_translated_description(const std::string & lang, const std::string & value) { translated_descriptions.insert({lang, value}); }
-
     /// Get group order
-    std::string get_order() const noexcept { return order; }
-
-    /// Set group order
-    void set_order(const std::string & value) { order = value; }
+    std::string get_order();
 
     /// Get group langonly
-    std::string get_langonly() const noexcept { return langonly; }
-
-    /// Set group langonly
-    void set_langonly(const std::string & value) { langonly = value; }
+    std::string get_langonly();
 
     /// Determine if group is visible to the users
     ///
     /// @replaces dnf:dnf/comps.py:attribute:Group.visible
-    bool get_uservisible() const noexcept { return is_uservisible; }
-
-    /// Set the 'uservisible' flag.
-    void set_uservisible(bool value) { is_uservisible = value; }
+    bool get_uservisible();
 
     /// Determine if group is installed by default
-    bool get_default() const noexcept { return is_default; }
-
-    /// Set the 'default' flag.
-    void set_default(bool value) { is_default = value; }
+    bool get_default();
 
     /// @replaces dnf:dnf/comps.py:method:Group.packages_iter(self)
     //std::vector<Package> get_packages() const;
@@ -107,37 +87,26 @@ public:
     /// @replaces dnf:dnf/comps.py:attribute:Group.optional_packages
     //std::vector<Package> get_packages(bool mandatory_groups, bool optional_groups) const;
 
-    std::set<std::string> get_repos() { return repos; }
-    void add_repo(const std::string & repoid) { repos.insert(repoid); }
-
-    std::vector<Solvable *> get_solvables() { return solvables; }
-    void add_solvable(Solvable * solvable) { solvables.push_back(solvable); }
+    std::set<std::string> get_repos();
 
     /// Determine if group is installed.
     /// If it belongs to the @System repo, return true.
-    bool get_installed() const;
+    bool get_installed();
 
     /// Merge a comps Group with another one
     Group & operator+=(const Group & rhs);
 
+protected:
+    Group(GroupQuery * query);
+
 private:
-    std::string id;
-    std::string name;
-    std::string description;
-    std::string order;
-    std::string langonly;
-    bool is_uservisible = true;
-    bool is_default = false;
-    std::map<std::string, std::string> translated_names;
-    std::map<std::string, std::string> translated_descriptions;
-
-    // list of repos a group comes from
-    // installed groups map to [@System]
-    std::set<std::string> repos;
-
-    // libsolv solvables for this group, used to get translations
+    GroupQueryWeakPtr query;
+    // libsolv solvables for this group
     std::vector<Solvable *> solvables;
 };
+
+
+inline Group::Group(GroupQuery * query) : query(query->get_weak_ptr()) {}
 
 
 }  // namespace libdnf::comps
