@@ -65,6 +65,7 @@ public:
     libdnf::Base * get_base() { return base.get(); };
     ThreadsManager & get_threads_manager() { return threads_manager; };
     sdbus::IObject * get_dbus_object() { return dbus_object.get(); };
+    const dnfdaemon::KeyValueMap & get_session_configuration() const noexcept { return session_configuration; }
 
     void fill_sack();
     bool read_all_repos();

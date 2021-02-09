@@ -37,7 +37,12 @@ void Configuration::read_configuration() {
 
 std::string Configuration::prepend_install_root(const std::string & path) {
     auto fs_path = std::filesystem::path(path);
-    return (std::filesystem::path(install_root) / fs_path.relative_path()).string();
+    if (fs_path.is_absolute()) {
+        // if path is absolute, don't prepend installroot
+        return fs_path.string();
+    } else {
+        return (std::filesystem::path(install_root) / fs_path.relative_path()).string();
+    }
 }
 
 void Configuration::read_main_config() {
@@ -94,13 +99,14 @@ void Configuration::read_repos(const libdnf::ConfigParser * repo_parser, const s
 void Configuration::read_repo_configs() {
     auto & logger = session.get_base()->get_logger();
     for (const auto & repos_dir : cfg_main->reposdir().get_value()) {
+        std::string installroot_repos_dir = prepend_install_root(repos_dir);
         // use canonical to resolve symlinks in repos_dir
         std::string pattern;
         try {
-            pattern = std::filesystem::canonical(prepend_install_root(repos_dir)).string() + "/*.repo";
+            pattern = std::filesystem::canonical(installroot_repos_dir).string() + "/*.repo";
         } catch (std::filesystem::filesystem_error & e) {
             logger.debug(
-                fmt::format("Error reading repository configuration directory \"{}\": {}", repos_dir, e.what()));
+                fmt::format("Error reading repository configuration directory \"{}\": {}", installroot_repos_dir, e.what()));
             continue;
         }
         glob_t glob_result;

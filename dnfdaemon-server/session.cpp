@@ -84,7 +84,6 @@ Session::Session(sdbus::IConnection & connection, dnfdaemon::KeyValueMap session
     , session_configuration(session_configuration)
     , object_path(object_path) {
 
-
     // adjust base.config from session_configuration
     auto & config = base->get_config();
     std::vector<std::string> config_items {
@@ -92,7 +91,11 @@ Session::Session(sdbus::IConnection & connection, dnfdaemon::KeyValueMap session
     for (auto & key: config_items) {
         if (session_configuration.find(key) != session_configuration.end()) {
             auto value = session_configuration_value<std::string>(key);
+            std::cerr << "SETTING: " << key << " = " << value << std::endl;
             config.opt_binds().at(key).new_string(libdnf::Option::Priority::RUNTIME, value);
+        } else {
+            // TODO: warn about invalid session_configuration keys
+            std::cerr << "ERROR SETTING: " << key << std::endl;
         }
     }
 
@@ -105,7 +108,11 @@ Session::Session(sdbus::IConnection & connection, dnfdaemon::KeyValueMap session
 
     // set cachedir
     auto system_cache_dir = config.system_cachedir().get_value();
-    config.cachedir().set(libdnf::Option::Priority::RUNTIME, system_cache_dir);
+    config.cachedir().set(libdnf::Option::Priority::DEFAULT, system_cache_dir);
+    std::cerr << "CACHEDIR: " << config.cachedir().get_value() << std::endl;
+    for (auto & dir : config.reposdir().get_value()) {
+        std::cerr << "REPOSDIR: " << dir << std::endl;
+    }
     // set variables
     base->get_vars().load(
         config.installroot().get_value(),

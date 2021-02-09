@@ -26,6 +26,7 @@ along with dnfdaemon-server.  If not, see <https://www.gnu.org/licenses/>.
 #include <sdbus-c++/sdbus-c++.h>
 
 #include <string>
+#include <iostream>
 
 void RepoConf::dbus_register() {
     auto dbus_object = session.get_dbus_object();
@@ -79,6 +80,24 @@ bool RepoConf::check_authorization(const std::string & actionid, const std::stri
 dnfdaemon::KeyValueMapList RepoConf::repo_list(const std::vector<std::string> & ids) {
     Configuration cfg(session);
     cfg.read_configuration();
+
+    /*
+    auto & config = cfg.cfg_main;
+    auto & session_configuration = session.get_session_configuration();
+    //base->get_config();
+    std::vector<std::string> config_items {
+        "config_file_path", "installroot", "cachedir", "reposdir", "varsdir"};
+    for (auto & key: config_items) {
+        if (session_configuration.find(key) != session_configuration.end()) {
+            auto value = session.session_configuration_value<std::string>(key);
+            std::cerr << "xSETTING: " << key << " = " << value << std::endl;
+            config.opt_binds().at(key).new_string(libdnf::Option::Priority::RUNTIME, value);
+        } else {
+            // TODO: warn about invalid session_configuration keys
+            std::cerr << "xERROR SETTING: " << key << std::endl;
+        }
+    }
+    */
 
     bool empty_ids = ids.empty();
     dnfdaemon::KeyValueMapList out;

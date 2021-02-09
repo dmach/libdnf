@@ -47,6 +47,8 @@ public:
     libdnf::ConfigParser * find_parser(const std::string & file_path);
 
 private:
+    friend class RepoConf;
+
     std::unique_ptr<libdnf::ConfigMain> cfg_main;
     // repoid: repoinfo
     std::map<std::string, std::unique_ptr<RepoInfo>> repos;
