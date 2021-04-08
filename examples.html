@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Examples &mdash; libdnf  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libdnf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libdnf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="making-queries">
+<h2>Making queries<a class="headerlink" href="#making-queries" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// prerequisite: a Base instance with loaded repos</span>
+<span class="n">Base</span> <span class="n">base</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="c1">// create a new query that corresponds</span>
+<span class="k">auto</span> <span class="n">query</span> <span class="o">=</span> <span class="n">base</span><span class="p">.</span><span class="n">get_package_sack</span><span class="p">().</span><span class="n">new_query</span><span class="p">();</span>
+<span class="n">query</span><span class="p">.</span><span class="n">ifilter_name</span><span class="p">(</span><span class="n">libdnf</span><span class="o">::</span><span class="n">sack</span><span class="o">::</span><span class="n">QueryCmp</span><span class="o">::</span><span class="n">EQ</span><span class="p">,</span> <span class="s">&quot;a-name&quot;</span><span class="p">);</span>
+<span class="n">query</span><span class="p">.</span><span class="n">ifilter_arch</span><span class="p">(</span><span class="n">libdnf</span><span class="o">::</span><span class="n">sack</span><span class="o">::</span><span class="n">QueryCmp</span><span class="o">::</span><span class="n">NEQ</span><span class="p">,</span> <span class="s">&quot;noarch&quot;</span><span class="p">);</span>
+
+<span class="c1">// Iterate through the query results.</span>
+<span class="c1">// Please note that we are **not** iterating through references,</span>
+<span class="c1">// because packages are weak pointers that are cheap to copy.</span>
+<span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">pkg</span> <span class="p">:</span> <span class="n">query</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pkg</span><span class="p">.</span><span class="n">get_full_nevra</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-operations-on-queries">
+<h2>Set operations on queries<a class="headerlink" href="#set-operations-on-queries" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// prerequisite: a Base instance with loaded repos</span>
+<span class="n">Base</span> <span class="n">base</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="k">auto</span> <span class="n">query1</span> <span class="o">=</span> <span class="n">base</span><span class="p">.</span><span class="n">get_package_sack</span><span class="p">().</span><span class="n">new_query</span><span class="p">();</span>
+<span class="n">query1</span><span class="p">.</span><span class="n">ifilter_name</span><span class="p">(</span><span class="n">libdnf</span><span class="o">::</span><span class="n">sack</span><span class="o">::</span><span class="n">QueryCmp</span><span class="o">::</span><span class="n">EQ</span><span class="p">,</span> <span class="s">&quot;a-name&quot;</span><span class="p">);</span>
+
+<span class="k">auto</span> <span class="n">query2</span> <span class="o">=</span> <span class="n">base</span><span class="p">.</span><span class="n">get_package_sack</span><span class="p">().</span><span class="n">new_query</span><span class="p">();</span>
+<span class="n">query2</span><span class="p">.</span><span class="n">ifilter_arch</span><span class="p">(</span><span class="n">libdnf</span><span class="o">::</span><span class="n">sack</span><span class="o">::</span><span class="n">QueryCmp</span><span class="o">::</span><span class="n">NEQ</span><span class="p">,</span> <span class="s">&quot;noarch&quot;</span><span class="p">);</span>
+
+<span class="n">query1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">query2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="working-with-excludes-and-includes">
+<h2>Working with excludes and includes<a class="headerlink" href="#working-with-excludes-and-includes" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// prerequisite: a Base instance with loaded repos</span>
+<span class="n">Base</span> <span class="n">base</span><span class="p">;</span>
+<span class="p">...</span>
+
+<span class="n">TBD</span>
+</pre></div>
+</div>
+<div class="section" id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, Red Hat.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

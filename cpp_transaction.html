@@ -1,0 +1,1145 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>libdnf::transaction &mdash; libdnf  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> libdnf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing/index.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libdnf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>libdnf::transaction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/cpp_transaction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="libdnf-transaction">
+<h1>libdnf::transaction<a class="headerlink" href="#libdnf-transaction" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction16CompsPackageTypeE">
+<span id="_CPPv3N6libdnf11transaction16CompsPackageTypeE"></span><span id="_CPPv2N6libdnf11transaction16CompsPackageTypeE"></span><span class="target" id="comps__group_8hpp_1a8253ccae61795d3affe0d13c44483ac8"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CompsPackageType</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CompsPackageType determines when a package in a comps group gets installed.</p>
+<p>Expected behavior:<ul class="simple">
+<li><p>All comps operations are weak, if something is not available, it’s silently skipped.</p></li>
+<li><p>If something is available but has unresolvable dependencies, an error is reported. </p></li>
+</ul>
+</p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16CompsPackageType11CONDITIONALE">
+<span id="_CPPv3N6libdnf11transaction16CompsPackageType11CONDITIONALE"></span><span id="_CPPv2N6libdnf11transaction16CompsPackageType11CONDITIONALE"></span><span class="target" id="comps__group_8hpp_1a8253ccae61795d3affe0d13c44483ac8a6685384d880fca387e09391a6e53e3a8"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">CONDITIONAL</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16CompsPackageType11CONDITIONALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16CompsPackageType7DEFAULTE">
+<span id="_CPPv3N6libdnf11transaction16CompsPackageType7DEFAULTE"></span><span id="_CPPv2N6libdnf11transaction16CompsPackageType7DEFAULTE"></span><span class="target" id="comps__group_8hpp_1a8253ccae61795d3affe0d13c44483ac8a5b39c8b553c821e7cddc6da64b5bd2ee"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEFAULT</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16CompsPackageType7DEFAULTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16CompsPackageType9MANDATORYE">
+<span id="_CPPv3N6libdnf11transaction16CompsPackageType9MANDATORYE"></span><span id="_CPPv2N6libdnf11transaction16CompsPackageType9MANDATORYE"></span><span class="target" id="comps__group_8hpp_1a8253ccae61795d3affe0d13c44483ac8ac25db15b6f91b287b5b3c8a515bd21ce"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">MANDATORY</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16CompsPackageType9MANDATORYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16CompsPackageType8OPTIONALE">
+<span id="_CPPv3N6libdnf11transaction16CompsPackageType8OPTIONALE"></span><span id="_CPPv2N6libdnf11transaction16CompsPackageType8OPTIONALE"></span><span class="target" id="comps__group_8hpp_1a8253ccae61795d3affe0d13c44483ac8a7951811e4b085cf68ed3dc3191f36405"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">OPTIONAL</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16CompsPackageType8OPTIONALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction16TransactionStateE">
+<span id="_CPPv3N6libdnf11transaction16TransactionStateE"></span><span id="_CPPv2N6libdnf11transaction16TransactionStateE"></span><span class="target" id="transaction_2transaction_8hpp_1a6d3d9282fb6173d3f07579e37b933f32"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionState</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16TransactionStateE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16TransactionState7UNKNOWNE">
+<span id="_CPPv3N6libdnf11transaction16TransactionState7UNKNOWNE"></span><span id="_CPPv2N6libdnf11transaction16TransactionState7UNKNOWNE"></span><span class="target" id="transaction_2transaction_8hpp_1a6d3d9282fb6173d3f07579e37b933f32a696b031073e74bf2cb98e5ef201d4aa3"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UNKNOWN</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16TransactionState7UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16TransactionState4DONEE">
+<span id="_CPPv3N6libdnf11transaction16TransactionState4DONEE"></span><span id="_CPPv2N6libdnf11transaction16TransactionState4DONEE"></span><span class="target" id="transaction_2transaction_8hpp_1a6d3d9282fb6173d3f07579e37b933f32a2ba22e58ca17bb728d522bba36cf8350"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DONE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16TransactionState4DONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction16TransactionState5ERRORE">
+<span id="_CPPv3N6libdnf11transaction16TransactionState5ERRORE"></span><span id="_CPPv2N6libdnf11transaction16TransactionState5ERRORE"></span><span class="target" id="transaction_2transaction_8hpp_1a6d3d9282fb6173d3f07579e37b933f32abb1ca97ec761fc37101737ba0aa2e7c5"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ERROR</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction16TransactionState5ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemActionE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemActionE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemActionE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemAction</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemActionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction7INSTALLE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction7INSTALLE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction7INSTALLE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a6a755e7d228a2b491321dbae0a7a248b"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">INSTALL</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction7INSTALLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction9DOWNGRADEE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction9DOWNGRADEE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction9DOWNGRADEE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06abbb3cffb81f571e078cb9f6bf0d3b3ff"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DOWNGRADE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction9DOWNGRADEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction10DOWNGRADEDE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction10DOWNGRADEDE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction10DOWNGRADEDE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a5cf088ec899c3f60b36ac6f72c4d299d"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DOWNGRADED</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction10DOWNGRADEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction8OBSOLETEE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction8OBSOLETEE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction8OBSOLETEE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06ae58e03b4a65d8410b9526d3d60d11fff"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">OBSOLETE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction8OBSOLETEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction9OBSOLETEDE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction9OBSOLETEDE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction9OBSOLETEDE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06abca23486b881000717b8b9dbd1b70e07"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">OBSOLETED</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction9OBSOLETEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction7UPGRADEE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction7UPGRADEE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction7UPGRADEE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a7f10b7b76869bf2e029b6ce4632e1323"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UPGRADE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction7UPGRADEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction8UPGRADEDE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction8UPGRADEDE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction8UPGRADEDE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06ac112c739c175b99f865ec63afedfeca6"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UPGRADED</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction8UPGRADEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction6REMOVEE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction6REMOVEE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction6REMOVEE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a78baf367c4626442174307cdf41c6538"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">REMOVE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction6REMOVEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction9REINSTALLE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction9REINSTALLE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction9REINSTALLE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a09b609f5ba417e5f9e234782ac994853"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">REINSTALL</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction9REINSTALLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction11REINSTALLEDE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction11REINSTALLEDE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction11REINSTALLEDE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06a1b34786a03942bd7a442e4da7444aae3"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">REINSTALLED</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction11REINSTALLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemAction13REASON_CHANGEE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemAction13REASON_CHANGEE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemAction13REASON_CHANGEE"></span><span class="target" id="transaction__item__action_8hpp_1a85d9913c8a405888d94387395e1c0b06ae2c51e0d5f7f4d03fcf809984097c269"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">REASON_CHANGE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemAction13REASON_CHANGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReasonE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReasonE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReasonE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077b"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemReason</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason7UNKNOWNE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason7UNKNOWNE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason7UNKNOWNE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077ba696b031073e74bf2cb98e5ef201d4aa3"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UNKNOWN</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason7UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason10DEPENDENCYE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason10DEPENDENCYE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason10DEPENDENCYE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077ba46e158d5ce615a4f0057515b9a242188"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEPENDENCY</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason10DEPENDENCYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason4USERE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason4USERE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason4USERE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077ba2e40ad879e955201df4dedbf8d479a12"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">USER</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason4USERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason5CLEANE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason5CLEANE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason5CLEANE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077baa88a6a0c276fd853999a1faedf19c00e"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">CLEAN</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason5CLEANE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason15WEAK_DEPENDENCYE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason15WEAK_DEPENDENCYE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason15WEAK_DEPENDENCYE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077ba26d82081ed7173fb087428e3f27d333b"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">WEAK_DEPENDENCY</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason15WEAK_DEPENDENCYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction21TransactionItemReason5GROUPE">
+<span id="_CPPv3N6libdnf11transaction21TransactionItemReason5GROUPE"></span><span id="_CPPv2N6libdnf11transaction21TransactionItemReason5GROUPE"></span><span class="target" id="transaction__item__reason_8hpp_1aab1844fa9fa9a986fbb91663f889077ba720909a4b948fc9e33633b61960d6b3c"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">GROUP</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction21TransactionItemReason5GROUPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction20TransactionItemStateE">
+<span id="_CPPv3N6libdnf11transaction20TransactionItemStateE"></span><span id="_CPPv2N6libdnf11transaction20TransactionItemStateE"></span><span class="target" id="transaction__item__state_8hpp_1a62b5e014e1073a8326388ef34138a7a1"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemState</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction20TransactionItemStateE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction20TransactionItemState7UNKNOWNE">
+<span id="_CPPv3N6libdnf11transaction20TransactionItemState7UNKNOWNE"></span><span id="_CPPv2N6libdnf11transaction20TransactionItemState7UNKNOWNE"></span><span class="target" id="transaction__item__state_8hpp_1a62b5e014e1073a8326388ef34138a7a1a696b031073e74bf2cb98e5ef201d4aa3"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UNKNOWN</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction20TransactionItemState7UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction20TransactionItemState4DONEE">
+<span id="_CPPv3N6libdnf11transaction20TransactionItemState4DONEE"></span><span id="_CPPv2N6libdnf11transaction20TransactionItemState4DONEE"></span><span class="target" id="transaction__item__state_8hpp_1a62b5e014e1073a8326388ef34138a7a1a2ba22e58ca17bb728d522bba36cf8350"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DONE</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction20TransactionItemState4DONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction20TransactionItemState5ERRORE">
+<span id="_CPPv3N6libdnf11transaction20TransactionItemState5ERRORE"></span><span id="_CPPv2N6libdnf11transaction20TransactionItemState5ERRORE"></span><span class="target" id="transaction__item__state_8hpp_1a62b5e014e1073a8326388ef34138a7a1abb1ca97ec761fc37101737ba0aa2e7c5"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ERROR</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction20TransactionItemState5ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N6libdnf11transaction19TransactionItemTypeE">
+<span id="_CPPv3N6libdnf11transaction19TransactionItemTypeE"></span><span id="_CPPv2N6libdnf11transaction19TransactionItemTypeE"></span><span class="target" id="transaction__item__type_8hpp_1a698b161e9497e5d7f31a2ba33a3bd5e7"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemType</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction19TransactionItemTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction19TransactionItemType7UNKNOWNE">
+<span id="_CPPv3N6libdnf11transaction19TransactionItemType7UNKNOWNE"></span><span id="_CPPv2N6libdnf11transaction19TransactionItemType7UNKNOWNE"></span><span class="target" id="transaction__item__type_8hpp_1a698b161e9497e5d7f31a2ba33a3bd5e7a696b031073e74bf2cb98e5ef201d4aa3"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">UNKNOWN</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction19TransactionItemType7UNKNOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction19TransactionItemType3RPME">
+<span id="_CPPv3N6libdnf11transaction19TransactionItemType3RPME"></span><span id="_CPPv2N6libdnf11transaction19TransactionItemType3RPME"></span><span class="target" id="transaction__item__type_8hpp_1a698b161e9497e5d7f31a2ba33a3bd5e7afe2284eb32d4b09d29fd34217324b19a"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">RPM</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction19TransactionItemType3RPME" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction19TransactionItemType5GROUPE">
+<span id="_CPPv3N6libdnf11transaction19TransactionItemType5GROUPE"></span><span id="_CPPv2N6libdnf11transaction19TransactionItemType5GROUPE"></span><span class="target" id="transaction__item__type_8hpp_1a698b161e9497e5d7f31a2ba33a3bd5e7a720909a4b948fc9e33633b61960d6b3c"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">GROUP</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction19TransactionItemType5GROUPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N6libdnf11transaction19TransactionItemType11ENVIRONMENTE">
+<span id="_CPPv3N6libdnf11transaction19TransactionItemType11ENVIRONMENTE"></span><span id="_CPPv2N6libdnf11transaction19TransactionItemType11ENVIRONMENTE"></span><span class="target" id="transaction__item__type_8hpp_1a698b161e9497e5d7f31a2ba33a3bd5e7a889a65415d92b72cffa7df3f8ecf13f9"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ENVIRONMENT</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction19TransactionItemType11ENVIRONMENTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N6libdnf11transaction18TransactionWeakPtrE">
+<span id="_CPPv3N6libdnf11transaction18TransactionWeakPtrE"></span><span id="_CPPv2N6libdnf11transaction18TransactionWeakPtrE"></span><span id="libdnf::transaction::TransactionWeakPtr"></span><span class="target" id="transaction_2query_8hpp_1ace2cd8917725102fa90c902bcf4305d6"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">WeakPtr</span><span class="pre">&lt;</span><span class="pre">Transaction</span><span class="pre">,</span> <span class="pre">false</span><span class="pre">&gt;</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionWeakPtr</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction18TransactionWeakPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Weak pointer to <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a>. TransactionWeakPtr does not own it (ptr_owner = false). <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> objects are owned by <a class="reference internal" href="#classlibdnf_1_1transaction_1_1TransactionSack"><span class="std std-ref">TransactionSack</span></a>.</p>
+<p>Weak pointer to <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a>. It doesn’t own the object (ptr_owner = false). Transactions are owned by <a class="reference internal" href="#classlibdnf_1_1transaction_1_1TransactionSack"><span class="std std-ref">TransactionSack</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N6libdnf11transaction22TransactionSackWeakPtrE">
+<span id="_CPPv3N6libdnf11transaction22TransactionSackWeakPtrE"></span><span id="_CPPv2N6libdnf11transaction22TransactionSackWeakPtrE"></span><span class="target" id="transaction_2sack_8hpp_1a17bcfe667a7d23a41b48b8f1d77f9ebf"></span><em class="property"><span class="pre">using</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionSackWeakPtr</span></code> <span class="pre">=</span> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">WeakPtr</span><span class="pre">&lt;</span><span class="pre">TransactionSack</span><span class="pre">,</span> <span class="pre">false</span><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction22TransactionSackWeakPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N6libdnf11transaction14TransactionPtrE">
+<span id="_CPPv3N6libdnf11transaction14TransactionPtrE"></span><span id="_CPPv2N6libdnf11transaction14TransactionPtrE"></span><span id="libdnf::transaction::TransactionPtr"></span><span class="target" id="transaction_2transaction_8hpp_1ae8a1ac061c644c04f53fc05cb0d28572"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><span class="pre">Transaction</span><span class="pre">&gt;</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionPtr</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction14TransactionPtrE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction30TransactionItemAction_get_nameE21TransactionItemAction">
+<span id="_CPPv3N6libdnf11transaction30TransactionItemAction_get_nameE21TransactionItemAction"></span><span id="_CPPv2N6libdnf11transaction30TransactionItemAction_get_nameE21TransactionItemAction"></span><span id="libdnf::transaction::TransactionItemAction_get_name__TransactionItemAction"></span><span class="target" id="transaction__item__action_8hpp_1ab3b6d9dfe2ea7e27f44c06fa04031f92"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemAction_get_name</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemActionE" title="libdnf::transaction::TransactionItemAction"><span class="pre">TransactionItemAction</span></a> <em><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction30TransactionItemAction_get_nameE21TransactionItemAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction31TransactionItemAction_get_shortE21TransactionItemAction">
+<span id="_CPPv3N6libdnf11transaction31TransactionItemAction_get_shortE21TransactionItemAction"></span><span id="_CPPv2N6libdnf11transaction31TransactionItemAction_get_shortE21TransactionItemAction"></span><span id="libdnf::transaction::TransactionItemAction_get_short__TransactionItemAction"></span><span class="target" id="transaction__item__action_8hpp_1a9b4e590361381a45f8dd3cbc1407d26b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemAction_get_short</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemActionE" title="libdnf::transaction::TransactionItemAction"><span class="pre">TransactionItemAction</span></a> <em><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction31TransactionItemAction_get_shortE21TransactionItemAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction39TransactionItemAction_is_forward_actionE21TransactionItemAction">
+<span id="_CPPv3N6libdnf11transaction39TransactionItemAction_is_forward_actionE21TransactionItemAction"></span><span id="_CPPv2N6libdnf11transaction39TransactionItemAction_is_forward_actionE21TransactionItemAction"></span><span id="libdnf::transaction::TransactionItemAction_is_forward_action__TransactionItemAction"></span><span class="target" id="transaction__item__action_8hpp_1a4c91211c4ef475ebba1d802bcedf544b"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemAction_is_forward_action</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemActionE" title="libdnf::transaction::TransactionItemAction"><span class="pre">TransactionItemAction</span></a> <em><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction39TransactionItemAction_is_forward_actionE21TransactionItemAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction40TransactionItemAction_is_backward_actionE21TransactionItemAction">
+<span id="_CPPv3N6libdnf11transaction40TransactionItemAction_is_backward_actionE21TransactionItemAction"></span><span id="_CPPv2N6libdnf11transaction40TransactionItemAction_is_backward_actionE21TransactionItemAction"></span><span id="libdnf::transaction::TransactionItemAction_is_backward_action__TransactionItemAction"></span><span class="target" id="transaction__item__action_8hpp_1a53f22d5836baa19b52e7a8e0b4bffe81"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemAction_is_backward_action</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemActionE" title="libdnf::transaction::TransactionItemAction"><span class="pre">TransactionItemAction</span></a> <em><span class="pre">action</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction40TransactionItemAction_is_backward_actionE21TransactionItemAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction31TransactionItemReason_to_stringE21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transaction31TransactionItemReason_to_stringE21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transaction31TransactionItemReason_to_stringE21TransactionItemReason"></span><span id="libdnf::transaction::TransactionItemReason_to_string__TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1a11368701371b4e17ebe7de61a1b99969"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemReason_to_string</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">reason</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction31TransactionItemReason_to_stringE21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction29TransactionItemReason_compareE21TransactionItemReason21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transaction29TransactionItemReason_compareE21TransactionItemReason21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transaction29TransactionItemReason_compareE21TransactionItemReason21TransactionItemReason"></span><span id="libdnf::transaction::TransactionItemReason_compare__TransactionItemReason.TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1adedea5052a050b6ed344e3431d3f8b27"></span><span class="pre">int</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItemReason_compare</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">lhs</span></em>, <a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction29TransactionItemReason_compareE21TransactionItemReason21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Compare transaction items and return: -1 if lhs &lt; rhs 1 if lhs &gt; rhs 0 if lhs == rhs Higher number means a better (or a stronger) reason. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transactionltE21TransactionItemReason21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transactionltE21TransactionItemReason21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transactionltE21TransactionItemReason21TransactionItemReason"></span><span id="libdnf::transaction::lt-operator__TransactionItemReason.TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1a2842d5689688c5ae89c61e7e5ba9c42e"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">operator&lt;</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">lhs</span></em>, <a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transactionltE21TransactionItemReason21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transactionleE21TransactionItemReason21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transactionleE21TransactionItemReason21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transactionleE21TransactionItemReason21TransactionItemReason"></span><span id="libdnf::transaction::lte-operator__TransactionItemReason.TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1affb15ac0352c154f8971623629f259c1"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">operator&lt;=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">lhs</span></em>, <a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transactionleE21TransactionItemReason21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transactiongtE21TransactionItemReason21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transactiongtE21TransactionItemReason21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transactiongtE21TransactionItemReason21TransactionItemReason"></span><span id="libdnf::transaction::gt-operator__TransactionItemReason.TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1a1687609372f40fb7d3e59d7b165c4c5c"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">operator&gt;</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">lhs</span></em>, <a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transactiongtE21TransactionItemReason21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transactiongeE21TransactionItemReason21TransactionItemReason">
+<span id="_CPPv3N6libdnf11transactiongeE21TransactionItemReason21TransactionItemReason"></span><span id="_CPPv2N6libdnf11transactiongeE21TransactionItemReason21TransactionItemReason"></span><span id="libdnf::transaction::gte-operator__TransactionItemReason.TransactionItemReason"></span><span class="target" id="transaction__item__reason_8hpp_1aa41203ab945d16ef2668576fd7beed26"></span><span class="pre">bool</span> <code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">operator&gt;=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">lhs</span></em>, <a class="reference internal" href="#_CPPv4N6libdnf11transaction21TransactionItemReasonE" title="libdnf::transaction::TransactionItemReason"><span class="pre">TransactionItemReason</span></a> <em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transactiongeE21TransactionItemReason21TransactionItemReason" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CompsEnvironment</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItemE" title="libdnf::transaction::libdnf::transaction::TransactionItem"><span class="pre">TransactionItem</span></a><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;comps_environment.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsEnvironment"><span class="std std-ref">CompsEnvironment</span></a> contains a copy of important data from comps::CompsEnvironment that is used to perform comps transaction and then stored in the transaction (history) database. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment18get_environment_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction16CompsEnvironment18get_environment_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction16CompsEnvironment18get_environment_idEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::get_environment_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a68911c96282fb87ff7cc2f843339c6f1"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_environment_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment18get_environment_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get text id of the environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;id&gt;VALUE&lt;/id&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment18set_environment_idERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment18set_environment_idERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment18set_environment_idERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::set_environment_id__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1aaa6b02cc4fb6d0d8c514adea7be674e8"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_environment_id</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment18set_environment_idERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> text id of the environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;id&gt;VALUE&lt;/id&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment8get_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction16CompsEnvironment8get_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction16CompsEnvironment8get_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::get_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a983f831bc7de95c838a135b319e48357"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get name of the environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;name&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment8set_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment8set_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment8set_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::set_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1ac6b62e0d70754ea35687c7b6076bad01"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment8set_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> name of the environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;name&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment19get_translated_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction16CompsEnvironment19get_translated_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction16CompsEnvironment19get_translated_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::get_translated_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1ab095b0cf962ca68e7cbd9f7b517c0552"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_translated_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment19get_translated_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get translated name of the environment in the current locale (xml element: &lt;comps&gt;&lt;environment&gt;&lt;name xml:lang=”…”&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment19set_translated_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment19set_translated_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment19set_translated_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::set_translated_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1ad0141c38b5987e9ce1bdc14248674ba2"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_translated_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment19set_translated_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> translated name of the environment in the current locale (xml element: &lt;comps&gt;&lt;environment&gt;&lt;name xml:lang=”…”&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment17get_package_typesEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction16CompsEnvironment17get_package_typesEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction16CompsEnvironment17get_package_typesEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::get_package_typesC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1aff2bd0e444d55ebf227a2b142d82b24f"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <code class="sig-name descname"><span class="pre">get_package_types</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment17get_package_typesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get types of the packages to be installed with the environment (related xml elements: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment17set_package_typesE16CompsPackageType">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment17set_package_typesE16CompsPackageType"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment17set_package_typesE16CompsPackageType"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::set_package_types__CompsPackageType"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a93dac70a1d9c560144ee4444d3484ae8"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_package_types</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment17set_package_typesE16CompsPackageType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> types of the packages to be installed with the environment (related xml elements: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment9new_groupEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment9new_groupEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment9new_groupEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::new_group"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a3d5eff17f002b2f5c073efc1cd101647"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE" title="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup"><span class="pre">CompsEnvironmentGroup</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">new_group</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment9new_groupEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsEnvironmentGroup"><span class="std std-ref">CompsEnvironmentGroup</span></a> object and return a reference to it. The object is owned by the <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsEnvironment"><span class="std std-ref">CompsEnvironment</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment10get_groupsEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16CompsEnvironment10get_groupsEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16CompsEnvironment10get_groupsEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::get_groups"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a269a770fe84d7ed6970f26245ebcb64c"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE" title="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup"><span class="pre">CompsEnvironmentGroup</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_groups</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironment10get_groupsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get list of groups associated with the environment. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment9to_stringEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction16CompsEnvironment9to_stringEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction16CompsEnvironment9to_stringEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironment::to_stringC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironment_1a23a95cda9982e397331077134ee0d929"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">to_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction16CompsEnvironment9to_stringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get string representation of the object, which equals to environment_id </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CompsEnvironmentGroup</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroupE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6get_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6get_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6get_idEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::get_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1aca03aa23ad7a7eb79e1714d1257dbc2f"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6get_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get database id (primary key) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6set_idE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6set_idE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6set_idE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::set_id__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1a71ba355c50dca0b00602bb9f130d75b6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_id</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup6set_idE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> database id (primary key) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12get_group_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12get_group_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12get_group_idEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::get_group_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1aa39ab5f6b0a71c8b83f784f8cfe0f6b7"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_group_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12get_group_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get groupid of a group associated with a comps environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;grouplist&gt;&lt;groupid&gt;VALUE&lt;/groupid&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12set_group_idERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12set_group_idERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12set_group_idERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::set_group_id__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1afd49572fb9395af8a428d1cb4819b7e6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_group_id</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup12set_group_idERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> groupid of a group associated with a comps environment (xml element: &lt;comps&gt;&lt;environment&gt;&lt;grouplist&gt;&lt;groupid&gt;VALUE&lt;/groupid&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13get_installedEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13get_installedEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13get_installedEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::get_installedC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1a726a27a817402ec4dd275c1b43a7585b"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">get_installed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13get_installedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get a flag that determines if the group was present after the transaction it’s associated with has finished. If the group was installed before running the transaction, it’s still counted as installed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13set_installedEb">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13set_installedEb"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13set_installedEb"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::set_installed__b"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1ae5016c77980bbc96845e00790f611da7"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_installed</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup13set_installedEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> a flag that determines if the group was present after the transaction it’s associated with has finished. If the group was installed before running the transaction, it’s still counted as installed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup15get_environmentEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup15get_environmentEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup15get_environmentEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsEnvironmentGroup::get_environmentC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsEnvironmentGroup_1aefc1a07ce0380a8ac315aff85c6f8743"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE" title="libdnf::transaction::libdnf::transaction::CompsEnvironment"><span class="pre">CompsEnvironment</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_environment</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction21CompsEnvironmentGroup15get_environmentEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the environment the group is part of </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroupE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroupE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroupE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CompsGroup</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItemE" title="libdnf::transaction::libdnf::transaction::TransactionItem"><span class="pre">TransactionItem</span></a><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroupE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;comps_group.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsGroup"><span class="std std-ref">CompsGroup</span></a> contains a copy of important data from comps::CompsGroup that is used to perform comps transaction and then stored in the transaction (history) database. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup12get_group_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction10CompsGroup12get_group_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction10CompsGroup12get_group_idEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::get_group_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a2341f3ee731073564d6683b0bbdae710"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_group_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup12get_group_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get text id of the group (xml element: &lt;comps&gt;&lt;group&gt;&lt;id&gt;VALUE&lt;/id&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup12set_group_idERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup12set_group_idERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup12set_group_idERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::set_group_id__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a99126de0033714f01380a7fd96b1ee40"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_group_id</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup12set_group_idERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get text id of the group (xml element: &lt;comps&gt;&lt;group&gt;&lt;id&gt;VALUE&lt;/id&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup8get_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction10CompsGroup8get_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction10CompsGroup8get_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::get_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1ae5dce366b8f51660823f637360d8ee2d"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get name of the group (xml element: &lt;comps&gt;&lt;group&gt;&lt;name&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup8set_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup8set_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup8set_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::set_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a31bc30322207e8762107a1b10aed2499"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup8set_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> name of the group (xml element: &lt;comps&gt;&lt;group&gt;&lt;name&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup19get_translated_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction10CompsGroup19get_translated_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction10CompsGroup19get_translated_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::get_translated_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a04fd6193cd94c396f9cc5b0e7ac3da53"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_translated_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup19get_translated_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get translated name of the group in the current locale (xml element: &lt;comps&gt;&lt;group&gt;&lt;name xml:lang=”…”&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup19set_translated_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup19set_translated_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup19set_translated_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::set_translated_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a75e047658df8423c6c8e98dce96f18a7"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_translated_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup19set_translated_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> translated name of the group in the current locale (xml element: &lt;comps&gt;&lt;group&gt;&lt;name xml:lang=”…”&gt;VALUE&lt;/name&gt;…) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup17get_package_typesEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction10CompsGroup17get_package_typesEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction10CompsGroup17get_package_typesEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::get_package_typesC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a2188c759755c65fdd99a345a08be95d7"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <code class="sig-name descname"><span class="pre">get_package_types</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup17get_package_typesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get types of the packages to be installed with the group (related xml elements: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup17set_package_typesE16CompsPackageType">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup17set_package_typesE16CompsPackageType"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup17set_package_typesE16CompsPackageType"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::set_package_types__CompsPackageType"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1af31459a856642dffd7ff83c42c65a9b3"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_package_types</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup17set_package_typesE16CompsPackageType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> types of the packages to be installed with the group (related xml elements: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup11new_packageEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup11new_packageEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup11new_packageEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::new_package"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a66f53f5e0537106db5a754c7479a0cce"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE" title="libdnf::transaction::libdnf::transaction::CompsGroupPackage"><span class="pre">CompsGroupPackage</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">new_package</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup11new_packageEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsGroupPackage"><span class="std std-ref">CompsGroupPackage</span></a> object and return a reference to it. The object is owned by the <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsGroup"><span class="std std-ref">CompsGroup</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup12get_packagesEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction10CompsGroup12get_packagesEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction10CompsGroup12get_packagesEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::get_packages"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a23d4f97ebcd5eed3560b22195a9d9af6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE" title="libdnf::transaction::libdnf::transaction::CompsGroupPackage"><span class="pre">CompsGroupPackage</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_packages</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroup12get_packagesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get list of packages associated with the group. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup9to_stringEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction10CompsGroup9to_stringEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction10CompsGroup9to_stringEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroup::to_stringC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroup_1a3937fcb74bdf8a8c88db2bfb8651068b"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">to_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction10CompsGroup9to_stringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get string representation of the object, which equals to group_id </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CompsGroupPackage</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;comps_group.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsGroupPackage"><span class="std std-ref">CompsGroupPackage</span></a> represents a package associated with a comps group </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage6get_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage6get_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage6get_idEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::get_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1ad16e97e5f040d4d1921df90ecb404a19"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage6get_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get database id (primary key) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage6set_idE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction17CompsGroupPackage6set_idE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction17CompsGroupPackage6set_idE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::set_id__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a4280f4e1b4de581aa9a6896d33235e32"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_id</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage6set_idE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> database id (primary key) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage8get_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage8get_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage8get_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::get_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a506b0e3b6ed9ac2ef81cbbf0d39a9ec7"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get name of a package associated with a comps group (xml element: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq&gt;VALUE&lt;/packagereq&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage8set_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction17CompsGroupPackage8set_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction17CompsGroupPackage8set_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::set_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a3a4c46f958f57a3a1008daa39f6ad06c"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage8set_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> name of a package associated with a comps group (xml element: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq&gt;VALUE&lt;/packagereq&gt;) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage13get_installedEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage13get_installedEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage13get_installedEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::get_installedC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a535e71355fd2bc495e024cb2c24a4830"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">get_installed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage13get_installedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get a flag that determines if the package was present after the transaction it’s associated with has finished. If the package was installed before running the transaction, it’s still counted as installed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage13set_installedEb">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction17CompsGroupPackage13set_installedEb"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction17CompsGroupPackage13set_installedEb"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::set_installed__b"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a28250aea5f0ecd23031e81eb3885bfee"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_installed</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage13set_installedEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> a flag that determines if the package was present after the transaction it’s associated with has finished. If the package was installed before running the transaction, it’s still counted as installed. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage16get_package_typeEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage16get_package_typeEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage16get_package_typeEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::get_package_typeC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1adbfcaf1fbc07c77778835a9a843e878e"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <code class="sig-name descname"><span class="pre">get_package_type</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage16get_package_typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get type of package associated with a comps group (xml element: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) See <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span> <span class="pre">CompsPackageType</span></code> documentation for more details. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage16set_package_typeE16CompsPackageType">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction17CompsGroupPackage16set_package_typeE16CompsPackageType"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction17CompsGroupPackage16set_package_typeE16CompsPackageType"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::set_package_type__CompsPackageType"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1aaec6119052291022a002f4093537684b"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_package_type</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction16CompsPackageTypeE" title="libdnf::transaction::CompsPackageType"><span class="pre">CompsPackageType</span></a> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction17CompsGroupPackage16set_package_typeE16CompsPackageType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> type of package associated with a comps group (xml element: &lt;comps&gt;&lt;group&gt;&lt;packagelist&gt;&lt;packagereq type=”VALUE” …&gt;) See <code class="docutils literal notranslate"><span class="pre">enum</span> <span class="pre">class</span> <span class="pre">CompsPackageType</span></code> documentation for more details. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage9get_groupEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage9get_groupEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage9get_groupEv"></span><span id="libdnf::transaction::libdnf::transaction::CompsGroupPackage::get_groupC"></span><span class="target" id="classlibdnf_1_1transaction_1_1CompsGroupPackage_1a9c2a7bde7297b510b030a821c93cb70f"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroupE" title="libdnf::transaction::libdnf::transaction::CompsGroup"><span class="pre">CompsGroup</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_group</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction17CompsGroupPackage9get_groupEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the group the package is part of </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction16TransactionQueryE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction16TransactionQueryE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction16TransactionQueryE"></span><span id="libdnf::transaction::libdnf::transaction::TransactionQuery"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionQuery"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">TransactionQuery</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><span class="pre">Query</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction18TransactionWeakPtrE" title="libdnf::transaction::TransactionWeakPtr"><span class="pre">TransactionWeakPtr</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16TransactionQueryE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7PackageE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7PackageE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7PackageE"></span><span id="libdnf::transaction::libdnf::transaction::Package"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Package</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItemE" title="libdnf::transaction::libdnf::transaction::TransactionItem"><span class="pre">TransactionItem</span></a><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7PackageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;rpm_package.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1Package"><span class="std std-ref">Package</span></a> contains a copy of important data from <a class="reference internal" href="api/libdnf_rpm_package.html#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">rpm::Package</span></a> that is used to perform rpm transaction and then stored in the transaction (history) database. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package8get_nameEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package8get_nameEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package8get_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_nameC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a5510cc16ed88b832ae72089c88577579"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package name </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7Package8set_nameERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7Package8set_nameERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7Package8set_nameERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Package::set_name__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a15a0f3bd073f7e952754ac8cdf44c13c"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_name</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7Package8set_nameERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> package name </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package9get_epochEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package9get_epochEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package9get_epochEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_epochC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1af64c25c8c57cc22dd2bf6841b09b87f6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_epoch</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package9get_epochEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package epoch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package13get_epoch_intEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package13get_epoch_intEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package13get_epoch_intEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_epoch_intC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a61362c1913c1dcd4ef5c3d94125c1cd6"></span><span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">get_epoch_int</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package13get_epoch_intEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package epoch as an integer. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7Package9set_epochERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7Package9set_epochERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7Package9set_epochERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Package::set_epoch__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a3b1118a6e59e4f868ff82070d620d99b"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_epoch</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7Package9set_epochERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> package epoch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package11get_versionEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package11get_versionEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package11get_versionEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_versionC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a7a06a18f3659b734f397751f62a92c4d"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_version</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package11get_versionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package version </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7Package11set_versionERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7Package11set_versionERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7Package11set_versionERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Package::set_version__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1ada6b92e2250f9d2c4c789c61ea1332a4"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_version</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7Package11set_versionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> package version </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package11get_releaseEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package11get_releaseEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package11get_releaseEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_releaseC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a3caf5d76621fc83f5e31634ba21b43b6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_release</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package11get_releaseEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package release </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7Package11set_releaseERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7Package11set_releaseERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7Package11set_releaseERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Package::set_release__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1a3e31fefb064968767a4ece3e30ab5d30"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_release</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7Package11set_releaseERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> package release </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package8get_archEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package8get_archEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package8get_archEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::get_archC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1afd7ba2672f82db0604c47f286fad27b6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_arch</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package8get_archEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get package arch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction7Package8set_archERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction7Package8set_archERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction7Package8set_archERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Package::set_arch__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1aad06674973d24bb730dca7987f27bf9a"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_arch</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7Package8set_archERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> package arch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction7Package9to_stringEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction7Package9to_stringEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction7Package9to_stringEv"></span><span id="libdnf::transaction::libdnf::transaction::Package::to_stringC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Package_1ab79e6bb9ed2e6b6315b468a00c8bf329"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">to_string</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction7Package9to_stringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get string representation of the object, which equals to package NEVRA </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionSackE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionSackE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionSackE"></span><span id="libdnf::transaction::libdnf::transaction::TransactionSack"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionSack"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionSack</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><span class="pre">Sack</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11TransactionE" title="libdnf::transaction::libdnf::transaction::Transaction"><span class="pre">Transaction</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16TransactionQueryE" title="libdnf::transaction::libdnf::transaction::TransactionQuery"><span class="pre">TransactionQuery</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionSackE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;sack.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1TransactionSack"><span class="std std-ref">TransactionSack</span></a> holds <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> objects. Unlike in other sacks, the data is loaded on-demand. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionSack15new_transactionEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionSack15new_transactionEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionSack15new_transactionEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionSack::new_transaction"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionSack_1ae76edaeb68a3e7315da8dc0214022feb"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction18TransactionWeakPtrE" title="libdnf::transaction::TransactionWeakPtr"><span class="pre">TransactionWeakPtr</span></a> <code class="sig-name descname"><span class="pre">new_transaction</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionSack15new_transactionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> object, store it in the sack and return a weak pointer to it. The <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> object is owned by the <a class="reference internal" href="#classlibdnf_1_1transaction_1_1TransactionSack"><span class="std std-ref">TransactionSack</span></a>. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11TransactionE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11TransactionE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11TransactionE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Transaction</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11TransactionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;transaction.hpp&gt;</em><p><a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> holds information about a transaction. It contains transaction items such as packages, comps groups and environments. <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> object are used to retrieve information about past transactions from the transaction history database as well as for performing a transaction to change packages on disk. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction6get_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction6get_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction6get_idEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a58157c260f14e28bd8213bc1b5d98689"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction6get_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> database id (primary key) Return 0 if the id wasn’t set yet </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction6set_idE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction6set_idE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction6set_idE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_id__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1acfab5db62477372b2c6c267b290da1b8"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_id</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction6set_idE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Transaction"><span class="std std-ref">Transaction</span></a> database id (primary key) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction12get_dt_startEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction12get_dt_startEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction12get_dt_startEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_dt_startC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a5debe292c46c1c42b162c8027cb3c8cb"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_dt_start</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction12get_dt_startEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get date and time of the transaction start </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction12set_dt_startE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction12set_dt_startE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction12set_dt_startE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_dt_start__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a0494b3c791cb46fcc72ba10748ef7b32"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_dt_start</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction12set_dt_startE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> date and time of the transaction start </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction10get_dt_endEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction10get_dt_endEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction10get_dt_endEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_dt_endC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a081ce4ff38651a96b9188cb1b8b1046a"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_dt_end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction10get_dt_endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get date and time of the transaction end </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction10set_dt_endE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction10set_dt_endE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction10set_dt_endE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_dt_end__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a04a5946447386f77d94a19cc6c4d9a59"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_dt_end</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction10set_dt_endE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> date and time of the transaction end </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction23get_rpmdb_version_beginEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction23get_rpmdb_version_beginEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction23get_rpmdb_version_beginEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_rpmdb_version_beginC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a8335ca5fa2b421d6abb0c795757cb344"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_rpmdb_version_begin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction23get_rpmdb_version_beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get RPM database version before the transaction Format: &lt;rpm_count&gt;:&lt;sha1 of sorted SHA1HEADER fields of installed RPMs&gt; </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction23set_rpmdb_version_beginERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction23set_rpmdb_version_beginERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction23set_rpmdb_version_beginERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_rpmdb_version_begin__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a81889cd50b6d0b9c3b5225db10c115ea"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_rpmdb_version_begin</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction23set_rpmdb_version_beginERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> RPM database version before the transaction Format: &lt;rpm_count&gt;:&lt;sha1 of sorted SHA1HEADER fields of installed RPMs&gt; </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction21get_rpmdb_version_endEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction21get_rpmdb_version_endEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction21get_rpmdb_version_endEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_rpmdb_version_endC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a1158d2a45405760131372875972073fd"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_rpmdb_version_end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction21get_rpmdb_version_endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get RPM database version after the transaction Format: &lt;rpm_count&gt;:&lt;sha1 of sorted SHA1HEADER fields of installed RPMs&gt; </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction21set_rpmdb_version_endERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction21set_rpmdb_version_endERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction21set_rpmdb_version_endERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_rpmdb_version_end__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a963e3b9f43ce8c9e8afea33affaa2115"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_rpmdb_version_end</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction21set_rpmdb_version_endERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> RPM database version after the transaction Format: &lt;rpm_count&gt;:&lt;sha1 of sorted SHA1HEADER fields of installed RPMs&gt; </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction14get_releaseverEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction14get_releaseverEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction14get_releaseverEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_releaseverC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1afee86508c231cd8e248ff7bbb3c12b1f"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_releasever</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction14get_releaseverEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get $releasever variable value that was used during the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction14set_releaseverERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction14set_releaseverERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction14set_releaseverERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_releasever__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a7097dbd274c6908ff4e79628e0bad687"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_releasever</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction14set_releaseverERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> $releasever variable value that was used during the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_user_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction11get_user_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction11get_user_idEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_user_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1aa7770ecc6b402e382d10ae23443602f0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">get_user_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_user_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get UID of a user that started the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_user_idE8uint32_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction11set_user_idE8uint32_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction11set_user_idE8uint32_t"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_user_id__uint32_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1ab998dd9f1c0933e5a0a2a16158f1390e"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_user_id</span></code><span class="sig-paren">(</span><span class="pre">uint32_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_user_idE8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> UID of a user that started the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_cmdlineEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction11get_cmdlineEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction11get_cmdlineEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_cmdlineC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1ab5ec56ffd897043077a15a4e6c181bd6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_cmdline</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_cmdlineEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get command line of a program that started the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_cmdlineERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction11set_cmdlineERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction11set_cmdlineERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_cmdline__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1aec7c15b7a118f9a0aaa12ef9aad58a01"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_cmdline</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_cmdlineERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> command line of a program that started the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_commentEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction11get_commentEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction11get_commentEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_commentC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1af955dfa5e1c0b36444bcf441b513952a"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_comment</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction11get_commentEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get a user-specified comment describing the transaction. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_commentERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction11set_commentERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction11set_commentERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_comment__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a0754a75b50876ecb8a95e4d69af4ba14"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_comment</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11set_commentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> a user-specified comment describing the transaction. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction9get_stateEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction9get_stateEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction9get_stateEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_stateC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a13d3043c7e8b730f1574f25bd7221214"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">State</span> <code class="sig-name descname"><span class="pre">get_state</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction9get_stateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get transaction state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction9set_stateE5State">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction9set_stateE5State"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction9set_stateE5State"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::set_state__State"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a75160f047e677ab2f1e006e1879aae24"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_state</span></code><span class="sig-paren">(</span><span class="pre">State</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction9set_stateE5State" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> transaction state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction20get_runtime_packagesEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction20get_runtime_packagesEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction20get_runtime_packagesEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_runtime_packagesC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1aefbd9f6a7835a01ec0052c563d51a416"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_runtime_packages</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction20get_runtime_packagesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get set of package NEVRAs of runtime packages (used to perform the transaction) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction19add_runtime_packageERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction19add_runtime_packageERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction19add_runtime_packageERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::add_runtime_package__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1abf076bcd93dafd5bf01e4b676e908106"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">add_runtime_package</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">nevra</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction19add_runtime_packageERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Add a package NEVRA to set of runtime packages (used to perform the transaction) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction18get_console_outputEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction18get_console_outputEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction18get_console_outputEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_console_outputC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a10034e430aaf3d4fe89585ed7de455fe"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">pair</span><span class="pre">&lt;</span><span class="pre">int</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_console_output</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction18get_console_outputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get lines recorded during the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction23add_console_output_lineEiRKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction23add_console_output_lineEiRKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction23add_console_output_lineEiRKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::add_console_output_line__i.ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1ae063b6b6d383a68ac6f6c8fc2bb0b202"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">add_console_output_line</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">file_descriptor</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">line</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction23add_console_output_lineEiRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Record a line printed during the transction to the database and also store it in the object</p>
+<p>The method must be called only on a started transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction5startEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction5startEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction5startEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::start"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a00999539310f08427c1f9d37e0fb91ab"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">start</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction5startEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Start the transaction by inserting it into the database </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction6finishE16TransactionState">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction6finishE16TransactionState"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction6finishE16TransactionState"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::finish__TransactionState"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1af6a9ba2580183874c39a28cdd6126ae4"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">finish</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction16TransactionStateE" title="libdnf::transaction::TransactionState"><span class="pre">TransactionState</span></a> <em><span class="pre">state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction6finishE16TransactionState" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Finish the transaction by updating it’s state in the database </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction22get_comps_environmentsEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction22get_comps_environmentsEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction22get_comps_environmentsEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_comps_environmentsC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a7283b6929ecee997a8a41ba89faa3c1a"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE" title="libdnf::transaction::libdnf::transaction::CompsEnvironment"><span class="pre">CompsEnvironment</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_comps_environments</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction22get_comps_environmentsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return all comps environments associated with the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction21new_comps_environmentEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction21new_comps_environmentEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction21new_comps_environmentEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::new_comps_environment"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a3092ebc4faca414e35055786b3fc347f"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction16CompsEnvironmentE" title="libdnf::transaction::libdnf::transaction::CompsEnvironment"><span class="pre">CompsEnvironment</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">new_comps_environment</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction21new_comps_environmentEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new comps environment in the transaction and return a reference to it. The environment is owned by the transaction. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction16get_comps_groupsEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction16get_comps_groupsEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction16get_comps_groupsEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_comps_groupsC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1ab08f684250c06980cc45a6c541355948"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroupE" title="libdnf::transaction::libdnf::transaction::CompsGroup"><span class="pre">CompsGroup</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_comps_groups</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction16get_comps_groupsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return all comps groups associated with the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction15new_comps_groupEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction15new_comps_groupEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction15new_comps_groupEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::new_comps_group"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a4cdc254d5cf80a45ae502f3f2868bb8d"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction10CompsGroupE" title="libdnf::transaction::libdnf::transaction::CompsGroup"><span class="pre">CompsGroup</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">new_comps_group</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction15new_comps_groupEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new comps group in the transaction and return a reference to it. The group is owned by the transaction. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction12get_packagesEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction11Transaction12get_packagesEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction11Transaction12get_packagesEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::get_packagesC"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1adf6a9491394f4a382e8bcf6f5cadd02f"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7PackageE" title="libdnf::transaction::libdnf::transaction::Package"><span class="pre">Package</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_packages</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction11Transaction12get_packagesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return all rpm packages associated with the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11new_packageEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction11Transaction11new_packageEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction11Transaction11new_packageEv"></span><span id="libdnf::transaction::libdnf::transaction::Transaction::new_package"></span><span class="target" id="classlibdnf_1_1transaction_1_1Transaction_1a425bb7522e9287aee55de0d16a6795c8"></span><a class="reference internal" href="#_CPPv4N6libdnf11transaction6libdnf11transaction7PackageE" title="libdnf::transaction::libdnf::transaction::Package"><span class="pre">Package</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">new_package</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction11Transaction11new_packageEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create a new rpm package in the transaction and return a reference to it. The package is owned by the transaction. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItemE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItemE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItemE"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><span class="pre">::</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">transaction</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">TransactionItem</span></code><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItemE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsEnvironment"><span class="std std-ref">libdnf::transaction::CompsEnvironment</span></a>, <a class="reference internal" href="#classlibdnf_1_1transaction_1_1CompsGroup"><span class="std std-ref">libdnf::transaction::CompsGroup</span></a>, <a class="reference internal" href="#classlibdnf_1_1transaction_1_1Package"><span class="std std-ref">libdnf::transaction::Package</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem6get_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem6get_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem6get_idEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a1ad7a75b1fe9bcba98af752060a5e72e"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem6get_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get database id (primary key) of the transaction item (table ‘trans_item’) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem6set_idE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem6set_idE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem6set_idE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_id__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1aa2f1b625d9575dd053aa5361fe5b02bd"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_id</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem6set_idE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> database id (primary key) of the transaction item (table ‘trans_item’) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_actionEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_actionEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_actionEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_actionC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ae2c155e93f9f95933a34375454ea19f0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">Action</span> <code class="sig-name descname"><span class="pre">get_action</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_actionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_actionE6Action">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem10set_actionE6Action"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem10set_actionE6Action"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_action__Action"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a3ee8ba10ce3e9bef8d612942ae01646e"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_action</span></code><span class="sig-paren">(</span><span class="pre">Action</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_actionE6Action" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem15get_action_nameEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem15get_action_nameEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem15get_action_nameEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_action_name"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ab378bd277995caadf8fef2211fdd9692"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_action_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem15get_action_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get name of the action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem16get_action_shortEv">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem16get_action_shortEv"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem16get_action_shortEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_action_short"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ac0aa607d57cfdaa07de7c33a45b9285a"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_action_short</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem16get_action_shortEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get abbreviated name of the action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_reasonEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_reasonEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_reasonEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_reasonC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a6828d5e72be7b344adda03cd66fcf7ea"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">Reason</span> <code class="sig-name descname"><span class="pre">get_reason</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_reasonEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get reason of the action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_reasonE6Reason">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem10set_reasonE6Reason"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem10set_reasonE6Reason"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_reason__Reason"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a1e3a0bd1aabea266dd87a88b35c4ab84"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_reason</span></code><span class="sig-paren">(</span><span class="pre">Reason</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_reasonE6Reason" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> reason of the action associated with the transaction item in the transaction </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem9get_stateEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem9get_stateEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem9get_stateEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_stateC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a05874246ec30fc624f5edc2f4e4bba7f"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">State</span> <code class="sig-name descname"><span class="pre">get_state</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem9get_stateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get transaction item state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem9set_stateE5State">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem9set_stateE5State"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem9set_stateE5State"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_state__State"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ae3cf1124574ad88894d9bc90c096134f"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_state</span></code><span class="sig-paren">(</span><span class="pre">State</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem9set_stateE5State" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> transaction item state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_repoidEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_repoidEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_repoidEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_repoidC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a0c918c548c54428dfd08130df53f12bb"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">get_repoid</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem10get_repoidEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get transaction item repoid (text identifier of a repository) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_repoidERKNSt6stringE">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem10set_repoidERKNSt6stringE"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem10set_repoidERKNSt6stringE"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_repoid__ssCR"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ae823675827df63116b09d794491198c6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_repoid</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem10set_repoidERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get transaction item repoid (text identifier of a repository) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem17is_forward_actionEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem17is_forward_actionEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem17is_forward_actionEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::is_forward_actionC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ac2ad0f5194b7ac06017bdd119f0a6545"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_forward_action</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem17is_forward_actionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Has the item appeared on the system during the transaction? </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem18is_backward_actionEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem18is_backward_actionEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem18is_backward_actionEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::is_backward_actionC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a930b9941750cf0115dbe522f38a9753e"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_backward_action</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem18is_backward_actionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Has the item got removed from the system during the transaction? </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem11get_item_idEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem11get_item_idEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem11get_item_idEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_item_idC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a0857d816d3755518adf4216b7224d9b1"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">get_item_id</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem11get_item_idEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get database id (primary key) of the item (table ‘item’; other item tables such ‘rpm’ inherit from it via 1:1 relation) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem11set_item_idE7int64_t">
+<span id="_CPPv3N6libdnf11transaction6libdnf11transaction15TransactionItem11set_item_idE7int64_t"></span><span id="_CPPv2N6libdnf11transaction6libdnf11transaction15TransactionItem11set_item_idE7int64_t"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::set_item_id__int64_t"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1a5628f3554c3cde296e7033acc2c8bb56"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">set_item_id</span></code><span class="sig-paren">(</span><span class="pre">int64_t</span> <em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf11transaction6libdnf11transaction15TransactionItem11set_item_idE7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="cpp_base.html#classlibdnf_1_1Set"><span class="std std-ref">Set</span></a> database id (primary key) of the item (table ‘item’; other item tables such ‘rpm’ inherit from it via 1:1 relation) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem13get_item_typeEv">
+<span id="_CPPv3NK6libdnf11transaction6libdnf11transaction15TransactionItem13get_item_typeEv"></span><span id="_CPPv2NK6libdnf11transaction6libdnf11transaction15TransactionItem13get_item_typeEv"></span><span id="libdnf::transaction::libdnf::transaction::TransactionItem::get_item_typeC"></span><span class="target" id="classlibdnf_1_1transaction_1_1TransactionItem_1ad8519396dad973eda7e6fb362d443ff3"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">Type</span> <code class="sig-name descname"><span class="pre">get_item_type</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf11transaction6libdnf11transaction15TransactionItem13get_item_typeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get an enum value representing the item type in the database table ‘item’ </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, Red Hat.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PackageQuery &mdash; libdnf  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PackageSack" href="libdnf_rpm_package_sack.html" />
+    <link rel="prev" title="Package" href="libdnf_rpm_package.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libdnf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libdnf.html">libdnf</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libdnf_rpm.html">libdnf::rpm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package.html">Package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PackageQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package_sack.html">PackageSack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libdnf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+          <li><a href="libdnf_rpm.html">libdnf::rpm</a> &raquo;</li>
+        
+      <li>PackageQuery</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/libdnf_rpm_package_query.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="packagequery">
+<h1>PackageQuery<a class="headerlink" href="#packagequery" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf3rpm9SolvQueryE">
+<span id="_CPPv3N6libdnf3rpm9SolvQueryE"></span><span id="_CPPv2N6libdnf3rpm9SolvQueryE"></span><span id="libdnf::rpm::SolvQuery"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">SolvQuery</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><span class="pre">::</span><span class="pre">PackageSet</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery6updateERK9SolvQuery">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery6updateERK9SolvQuery"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery6updateERK9SolvQuery"></span><span id="libdnf::rpm::SolvQuery::update__SolvQueryCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a5a4774b0145f0501ec7b8f52733d6b74"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery6updateERK9SolvQuery" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>update == union Unites query with other query (aka logical or) Result of the other query is added to result of this query Throw UsedDifferentSack exceptin when other has a different <a class="reference internal" href="libdnf_rpm_package_sack.html#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a> from this </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery12intersectionERK9SolvQuery">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery12intersectionERK9SolvQuery"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery12intersectionERK9SolvQuery"></span><span id="libdnf::rpm::SolvQuery::intersection__SolvQueryCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a984ea7ab99c24ee82ad5115f5b13d09b"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">intersection</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery12intersectionERK9SolvQuery" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Intersects query with other query (aka logical and) Keep only common packages for both queries in this query Throw UsedDifferentSack exceptin when other has a different <a class="reference internal" href="libdnf_rpm_package_sack.html#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a> from this </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery10differenceERK9SolvQuery">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery10differenceERK9SolvQuery"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery10differenceERK9SolvQuery"></span><span id="libdnf::rpm::SolvQuery::difference__SolvQueryCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ac25e9dd8606ec4eea18fab9af2ab91e7"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">difference</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery10differenceERK9SolvQuery" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Computes difference between query and other query (aka q and not other) Keep only packages in this query that are absent in other query Throw UsedDifferentSack exceptin when other has a different <a class="reference internal" href="libdnf_rpm_package_sack.html#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a> from this </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery12ifilter_nameEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery12ifilter_nameEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery12ifilter_nameEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_name__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a88f6614e758374eff5c5988f62957848"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_name</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery12ifilter_nameEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, ICONTAINS, NOT_ICONTAINS, IGLOB, NOT_IGLOB, CONTAINS, NOT_CONTAINS. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery11ifilter_evrEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery11ifilter_evrEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery11ifilter_evrEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_evr__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1af220a2c6351b2884ea7a21ce0189e4f3"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_evr</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery11ifilter_evrEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::GT, LT, GTE, LTE, EQ. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery12ifilter_archEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery12ifilter_archEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery12ifilter_archEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_arch__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a1188ca7f8f15ab65af3ebed3a3574ab4"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_arch</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery12ifilter_archEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_nevra__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a81e23749351bc18980243d166ef3427d"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_nevra</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Requires full nevra including epoch. QueryCmp::EQ, NEG, GT, GTE, LT, and LTE are tolerant when epoch 0 is not present. cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GT, GTE, LT, LTE, GLOB, NOT_GLOB, IGLOB, NOT_IGLOB, IEXACT, NOT_IEXACT. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKN6libdnf3rpm5NevraE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKN6libdnf3rpm5NevraE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKN6libdnf3rpm5NevraE"></span><span id="libdnf::rpm::SolvQuery::ifilter_nevra__libdnf::sack::QueryCmp.libdnf::rpm::NevraCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a56b84579dde9fc4e5c599b99d53a612d"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_nevra</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><span class="pre">::</span><span class="pre">Nevra</span> <span class="pre">&amp;</span><em><span class="pre">pattern</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery13ifilter_nevraEN6libdnf4sack8QueryCmpERKN6libdnf3rpm5NevraE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, IGLOB, NOT_IGLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery15ifilter_versionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery15ifilter_versionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery15ifilter_versionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_version__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ac459f47d28b70edfa99633c7c274a00c"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_version</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery15ifilter_versionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GT, GTE, LT, LTE, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery15ifilter_releaseEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery15ifilter_releaseEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery15ifilter_releaseEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_release__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a5234ab3fa3f7102aebd662893f5e2b4e"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_release</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery15ifilter_releaseEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GT, GTE, LT, LTE, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery14ifilter_repoidEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery14ifilter_repoidEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery14ifilter_repoidEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_repoid__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1af09e04749e9248584e9da42932cee7f3"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_repoid</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery14ifilter_repoidEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_sourcerpmEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_sourcerpmEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_sourcerpmEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_sourcerpm__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a1838e9fed26d1e3e190b544a08f49a2b"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_sourcerpm</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_sourcerpmEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorImEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorImEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorImEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_epoch__libdnf::sack::QueryCmp.std::vector:unsigned-l:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a13139688c8c5ada1e5803cd0545914c2"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_epoch</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">unsigned</span> <span class="pre">long</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorImEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GT, GTE, LT, LTE. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_epoch__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ae145a36e68592fb15c4c771da5632053"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_epoch</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery13ifilter_epochEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery12ifilter_fileEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery12ifilter_fileEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery12ifilter_fileEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_file__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a06568d10b5e1e93b6cebdcb1d1fbf5fe"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_file</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery12ifilter_fileEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, ICONTAINS, NOT_ICONTAINS, IGLOB, NOT_IGLOB, CONTAINS, NOT_CONTAINS. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery19ifilter_descriptionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery19ifilter_descriptionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery19ifilter_descriptionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_description__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a65f78486ce775b90bb48aafbe893561e"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_description</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery19ifilter_descriptionEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, ICONTAINS, NOT_ICONTAINS, IGLOB, NOT_IGLOB, CONTAINS, NOT_CONTAINS. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery15ifilter_summaryEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery15ifilter_summaryEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery15ifilter_summaryEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_summary__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a66a796aae4da279c2db5b7d1018bdad5"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_summary</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery15ifilter_summaryEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, ICONTAINS, NOT_ICONTAINS, IGLOB, NOT_IGLOB, CONTAINS, NOT_CONTAINS. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery11ifilter_urlEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery11ifilter_urlEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery11ifilter_urlEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_url__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a00af7f3585b7b2f10143a23643594631"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_url</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery11ifilter_urlEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB, IEXACT, NOT_IEXACT, ICONTAINS, NOT_ICONTAINS, IGLOB, NOT_IGLOB, CONTAINS, NOT_CONTAINS. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_locationEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_locationEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_locationEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_location__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a76afb0158e477851eabad1012f935350"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_location</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_locationEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_provides__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a867633ebac6bfe448f957a1c5b25f2b8"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_provides</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_provides__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1acde1c60f808f2286e2517656ee5d7582"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_provides</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_providesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_conflicts__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1aa2f42347ffa8570ce1c1bbce9de529d6"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_conflicts</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_conflicts__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a6d173468fd3c28496e11b4cecb532f5b"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_conflicts</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_conflicts__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1affa680b5f82b3f5b514178bd53f25bda"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_conflicts</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_conflictsEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_enhances__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a45b372cec1356f7e948b6d5ce5da6426"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_enhances</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_enhances__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a5014474b3729c0e97430eea2e6535679"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_enhances</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_enhances__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a5a0b7a7a129f0e8dcd5ac6f46c0da885"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_enhances</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_enhancesEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_obsoletes__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a1f291c83cff6f894449636110ee3aaa9"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_obsoletes</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_obsoletes__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a272cb604d4edb9637fd40556e776050c"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_obsoletes</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_obsoletes__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a19cf6b01485365647e6be6cdea34a2fb"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_obsoletes</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery17ifilter_obsoletesEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_recommends__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a6c2d1c15c8ae1db207974728ef8d081b"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_recommends</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_recommends__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ab0651a0202d7d308ad9ae1605c1b8a04"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_recommends</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_recommends__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a3f9c251cb05c7e150386ad558009d05c"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_recommends</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery18ifilter_recommendsEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_requires__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1aab6b1cbaceee91baa260c427c4b86887"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_requires</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_requires__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ab45a7cafc7ccbb9fd7618a515f671f2b"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_requires</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_requires__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a1f4274203df06b56ebd6249a488ffb07"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_requires</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_requiresEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_suggests__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a877336f0418338c470e75158c578aa5a"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_suggests</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_suggests__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a6cd9bd50e428b572d5a4f9b6794464f7"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_suggests</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_suggests__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1af086e6cecd9ed1c196d10d17568234b2"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_suggests</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_suggestsEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10ReldepList">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10ReldepList"></span><span id="libdnf::rpm::SolvQuery::ifilter_supplements__libdnf::sack::QueryCmp.ReldepListCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a5af26c285af1ca0e261c4fb5b8255f65"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_supplements</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ReldepList</span> <span class="pre">&amp;</span><em><span class="pre">reldep_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10ReldepList" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE"></span><span id="libdnf::rpm::SolvQuery::ifilter_supplements__libdnf::sack::QueryCmp.std::vector:ss:CR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1ab89f8e99cd93f9abb3435f4ada9bfdfa"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_supplements</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">patterns</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERKNSt6vectorINSt6stringEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ, GLOB, NOT_GLOB </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10PackageSet">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10PackageSet"></span><span id="libdnf::rpm::SolvQuery::ifilter_supplements__libdnf::sack::QueryCmp.PackageSetCR"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a0e0a1fcab72efba0a1164887a58d22be"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_supplements</span></code><span class="sig-paren">(</span><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">sack</span><span class="pre">::</span><a class="reference internal" href="../cpp_common.html#_CPPv4N6libdnf4sack8QueryCmpE" title="libdnf::sack::QueryCmp"><span class="pre">QueryCmp</span></a> <em><span class="pre">cmp_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">PackageSet</span> <span class="pre">&amp;</span><em><span class="pre">package_set</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery19ifilter_supplementsEN6libdnf4sack8QueryCmpERK10PackageSet" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>cmp_type could be only libdnf::sack::QueryCmp::EQ, NEQ </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery14ifilter_latestEi">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery14ifilter_latestEi"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery14ifilter_latestEi"></span><span id="libdnf::rpm::SolvQuery::ifilter_latest__i"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1aa8aaca13d9242615876957a71a576153"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_latest</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">limit</span></em> <span class="pre">=</span> <span class="pre">1</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery14ifilter_latestEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Keep number of latest versions of packages. When negative limit is used it removes a number of latest versions. </p>
+<p><ul class="simple">
+<li><p>libdnf/sack/query.hpp:method:addFilter(int keyname, int cmp_type, int match) - cmp_type = HY_PKG_LATEST</p></li>
+<li><p>libdnf/sack/query.hpp:method:addFilter(int keyname, int cmp_type, int match) - cmp_type = HY_PKG_LATEST_PER_ARCH </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Version</strong></dt><dd><p>1.0.0 </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Self</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">limit</span></code>: Default value is 1 </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery16ifilter_priorityEv">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery16ifilter_priorityEv"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery16ifilter_priorityEv"></span><span id="libdnf::rpm::SolvQuery::ifilter_priority"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvQuery_1a557277fec462455997d7cd5be750941c"></span><a class="reference internal" href="#_CPPv4N6libdnf3rpm9SolvQueryE" title="libdnf::rpm::SolvQuery"><span class="pre">SolvQuery</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">ifilter_priority</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery16ifilter_priorityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Keep all installed packages and available packages from repo with lower priority. </p>
+<p><ul class="simple">
+<li><p>libdnf/sack/query.hpp:method:addFilter(int keyname, int cmp_type, int match) - cmp_type = HY_PKG_UPGRADES_BY_PRIORITY</p></li>
+<li><p>libdnf/sack/query.hpp:method:addFilter(int keyname, int cmp_type, int match) - cmp_type = HY_PKG_OBSOLETES_BY_PRIORITY</p></li>
+<li><p>libdnf/sack/query.hpp:method:addFilter(int keyname, int cmp_type, int match) - cmp_type = HY_PKG_LATEST_PER_ARCH_BY_PRIORITY </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Version</strong></dt><dd><p>1.0.0 </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Self</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv4N6libdnf3rpm9SolvQuery19NotSupportedCmpTypeE">
+<span id="_CPPv3N6libdnf3rpm9SolvQuery19NotSupportedCmpTypeE"></span><span id="_CPPv2N6libdnf3rpm9SolvQuery19NotSupportedCmpTypeE"></span><span id="libdnf::rpm::SolvQuery::NotSupportedCmpType"></span><span class="target" id="structlibdnf_1_1rpm_1_1SolvQuery_1_1NotSupportedCmpType"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">NotSupportedCmpType</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">RuntimeError</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm9SolvQuery19NotSupportedCmpTypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_domain_nameEv">
+<span id="_CPPv3NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_domain_nameEv"></span><span id="_CPPv2NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_domain_nameEv"></span><span id="libdnf::rpm::SolvQuery::NotSupportedCmpType::get_domain_nameC"></span><span class="target" id="structlibdnf_1_1rpm_1_1SolvQuery_1_1NotSupportedCmpType_1a87c65fcd8531d4d4a12eb20f67f32443"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_domain_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_domain_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns domain name (namespace) of the exception as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType8get_nameEv">
+<span id="_CPPv3NK6libdnf3rpm9SolvQuery19NotSupportedCmpType8get_nameEv"></span><span id="_CPPv2NK6libdnf3rpm9SolvQuery19NotSupportedCmpType8get_nameEv"></span><span id="libdnf::rpm::SolvQuery::NotSupportedCmpType::get_nameC"></span><span class="target" id="structlibdnf_1_1rpm_1_1SolvQuery_1_1NotSupportedCmpType_1ace662c71503e812fe248ad0a612081fe"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class name as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_descriptionEv">
+<span id="_CPPv3NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_descriptionEv"></span><span id="_CPPv2NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_descriptionEv"></span><span id="libdnf::rpm::SolvQuery::NotSupportedCmpType::get_descriptionC"></span><span class="target" id="structlibdnf_1_1rpm_1_1SolvQuery_1_1NotSupportedCmpType_1a917c763a5c83158f51f7400e9c73567b"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_description</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm9SolvQuery19NotSupportedCmpType15get_descriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class description. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="libdnf_rpm_package_sack.html" class="btn btn-neutral float-right" title="PackageSack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="libdnf_rpm_package.html" class="btn btn-neutral float-left" title="Package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, Red Hat.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

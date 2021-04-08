@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>PackageSack &mdash; libdnf  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributing" href="../contributing/index.html" />
+    <link rel="prev" title="PackageQuery" href="libdnf_rpm_package_query.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libdnf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libdnf.html">libdnf</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libdnf_rpm.html">libdnf::rpm</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package.html">Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package_query.html">PackageQuery</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PackageSack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libdnf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+          <li><a href="libdnf_rpm.html">libdnf::rpm</a> &raquo;</li>
+        
+      <li>PackageSack</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/libdnf_rpm_package_sack.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="packagesack">
+<h1>PackageSack<a class="headerlink" href="#packagesack" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf3rpm8SolvSackE">
+<span id="_CPPv3N6libdnf3rpm8SolvSackE"></span><span id="_CPPv2N6libdnf3rpm8SolvSackE"></span><span id="libdnf::rpm::SolvSack"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">SolvSack</span></code><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSackE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack9load_repoER4Repo13LoadRepoFlags">
+<span id="_CPPv3N6libdnf3rpm8SolvSack9load_repoER4Repo13LoadRepoFlags"></span><span id="_CPPv2N6libdnf3rpm8SolvSack9load_repoER4Repo13LoadRepoFlags"></span><span id="libdnf::rpm::SolvSack::load_repo__RepoR.LoadRepoFlags"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1a89d7775b5b92091caf7267cb2131827d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">load_repo</span></code><span class="sig-paren">(</span><span class="pre">Repo</span> <span class="pre">&amp;</span><em><span class="pre">repo</span></em>, <span class="pre">LoadRepoFlags</span> <em><span class="pre">flags</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack9load_repoER4Repo13LoadRepoFlags" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Loads rpm::Repo into <a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack18create_system_repoEb">
+<span id="_CPPv3N6libdnf3rpm8SolvSack18create_system_repoEb"></span><span id="_CPPv2N6libdnf3rpm8SolvSack18create_system_repoEb"></span><span id="libdnf::rpm::SolvSack::create_system_repo__b"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1a2f0e2a34b678074c71734cb068d5558a"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">create_system_repo</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">build_cache</span></em> <span class="pre">=</span> <span class="pre">false</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack18create_system_repoEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates system repository and loads it into <a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a>. Only one system repository can be in <a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack19add_cmdline_packageERKNSt6stringEb">
+<span id="_CPPv3N6libdnf3rpm8SolvSack19add_cmdline_packageERKNSt6stringEb"></span><span id="_CPPv2N6libdnf3rpm8SolvSack19add_cmdline_packageERKNSt6stringEb"></span><span id="libdnf::rpm::SolvSack::add_cmdline_package__ssCR.b"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1ad63228d4c43b9455292c5714874faa34"></span><a class="reference internal" href="libdnf_rpm_package.html#_CPPv4N6libdnf3rpm7PackageE" title="libdnf::rpm::Package"><span class="pre">Package</span></a> <code class="sig-name descname"><span class="pre">add_cmdline_package</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">fn</span></em>, <span class="pre">bool</span> <em><span class="pre">add_with_hdrid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack19add_cmdline_packageERKNSt6stringEb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds the given .rpm file to the command line repo. When add_with_hdrid == true the rpm is loaded with additional flags (RPM_ADD_WITH_HDRID|RPM_ADD_WITH_SHA256SUM) It will calculate SHA256 checksum of header and store it in pool =&gt; Requires more CPU for loading When RPM is not accesible or corrupted it raises <a class="reference internal" href="../cpp_base.html#classlibdnf_1_1RuntimeError"><span class="std std-ref">libdnf::RuntimeError</span></a> Return added new <a class="reference internal" href="libdnf_rpm_package.html#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">Package</span></a><ul class="simple">
+<li><p>libdnf/dnf_sack.h:function:dnf_sack_add_cmdline_package(DnfSack *sack, const char *fn)</p></li>
+<li><p>libdnf/dnf_sack.h:function:dnf_sack_add_cmdline_package_nochecksum(DnfSack *sack, const char *fn)</p></li>
+<li><p>hawkey:hawkey/Sack:method:<a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack_1ad63228d4c43b9455292c5714874faa34"><span class="std std-ref">add_cmdline_package()</span></a> </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack18add_system_packageERKNSt6stringEbb">
+<span id="_CPPv3N6libdnf3rpm8SolvSack18add_system_packageERKNSt6stringEbb"></span><span id="_CPPv2N6libdnf3rpm8SolvSack18add_system_packageERKNSt6stringEbb"></span><span id="libdnf::rpm::SolvSack::add_system_package__ssCR.b.b"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1a8657af150ac713c5d822b27eec809bf8"></span><a class="reference internal" href="libdnf_rpm_package.html#_CPPv4N6libdnf3rpm7PackageE" title="libdnf::rpm::Package"><span class="pre">Package</span></a> <code class="sig-name descname"><span class="pre">add_system_package</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">fn</span></em>, <span class="pre">bool</span> <em><span class="pre">add_with_hdrid</span></em>, <span class="pre">bool</span> <em><span class="pre">build_cache</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack18add_system_packageERKNSt6stringEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds the given .rpm file to the system repo. The function is mostly for testing purpose (not only for unittests) When add_with_hdrid == true the rpm is loaded with additional flags (RPM_ADD_WITH_HDRID|RPM_ADD_WITH_SHA256SUM) It will calculate SHA256 checksum of header and store it in pool =&gt; Requires more CPU for loading When RPM is not accesible or corrupted it raises <a class="reference internal" href="../cpp_base.html#classlibdnf_1_1RuntimeError"><span class="std std-ref">libdnf::RuntimeError</span></a> Return added new <a class="reference internal" href="libdnf_rpm_package.html#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">Package</span></a> </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack12get_weak_ptrEv">
+<span id="_CPPv3N6libdnf3rpm8SolvSack12get_weak_ptrEv"></span><span id="_CPPv2N6libdnf3rpm8SolvSack12get_weak_ptrEv"></span><span id="libdnf::rpm::SolvSack::get_weak_ptr"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1aba130e8539ee7e4346f622ef5387e470"></span><span class="pre">SolvSackWeakPtr</span> <code class="sig-name descname"><span class="pre">get_weak_ptr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack12get_weak_ptrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Create <a class="reference internal" href="../cpp_base.html#structlibdnf_1_1WeakPtr"><span class="std std-ref">WeakPtr</span></a> to <a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack"><span class="std std-ref">SolvSack</span></a>. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack14get_nsolvablesEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack14get_nsolvablesEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack14get_nsolvablesEv"></span><span id="libdnf::rpm::SolvSack::get_nsolvablesC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1ad4033e54a64b327f7bca45fb8d3faed9"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">get_nsolvables</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack14get_nsolvablesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns number of solvables in pool. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack9ExceptionE">
+<span id="_CPPv3N6libdnf3rpm8SolvSack9ExceptionE"></span><span id="_CPPv2N6libdnf3rpm8SolvSack9ExceptionE"></span><span id="libdnf::rpm::SolvSack::Exception"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1Exception"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Exception</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">RuntimeError</span><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack9ExceptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="#classlibdnf_1_1rpm_1_1SolvSack_1_1NoCapability"><span class="std std-ref">libdnf::rpm::SolvSack::NoCapability</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack9Exception15get_domain_nameEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack9Exception15get_domain_nameEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack9Exception15get_domain_nameEv"></span><span id="libdnf::rpm::SolvSack::Exception::get_domain_nameC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1Exception_1a1ec54796ff53a94460421bc25068563e"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_domain_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack9Exception15get_domain_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns domain name (namespace) of the exception as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack9Exception8get_nameEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack9Exception8get_nameEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack9Exception8get_nameEv"></span><span id="libdnf::rpm::SolvSack::Exception::get_nameC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1Exception_1a4f47499d80256ecfb68554c0ae57ed61"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack9Exception8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class name as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack9Exception15get_descriptionEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack9Exception15get_descriptionEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack9Exception15get_descriptionEv"></span><span id="libdnf::rpm::SolvSack::Exception::get_descriptionC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1Exception_1ad8d747f7686c1795fbb818d07ce38897"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_description</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack9Exception15get_descriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class description. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf3rpm8SolvSack12NoCapabilityE">
+<span id="_CPPv3N6libdnf3rpm8SolvSack12NoCapabilityE"></span><span id="_CPPv2N6libdnf3rpm8SolvSack12NoCapabilityE"></span><span id="libdnf::rpm::SolvSack::NoCapability"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1NoCapability"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">NoCapability</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6libdnf3rpm8SolvSackE" title="libdnf::rpm::SolvSack"><span class="pre">SolvSack</span></a><span class="pre">::</span><a class="reference internal" href="#_CPPv4N6libdnf3rpm8SolvSack9ExceptionE" title="libdnf::rpm::SolvSack::Exception"><span class="pre">Exception</span></a><a class="headerlink" href="#_CPPv4N6libdnf3rpm8SolvSack12NoCapabilityE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack12NoCapability15get_domain_nameEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack12NoCapability15get_domain_nameEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack12NoCapability15get_domain_nameEv"></span><span id="libdnf::rpm::SolvSack::NoCapability::get_domain_nameC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1NoCapability_1aaeefddc24311ef1ff655efd5cf5e7bf4"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_domain_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack12NoCapability15get_domain_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns domain name (namespace) of the exception as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack12NoCapability8get_nameEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack12NoCapability8get_nameEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack12NoCapability8get_nameEv"></span><span id="libdnf::rpm::SolvSack::NoCapability::get_nameC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1NoCapability_1a1429ceffa0ef835cc8002f54893a03c2"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack12NoCapability8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class name as text. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm8SolvSack12NoCapability15get_descriptionEv">
+<span id="_CPPv3NK6libdnf3rpm8SolvSack12NoCapability15get_descriptionEv"></span><span id="_CPPv2NK6libdnf3rpm8SolvSack12NoCapability15get_descriptionEv"></span><span id="libdnf::rpm::SolvSack::NoCapability::get_descriptionC"></span><span class="target" id="classlibdnf_1_1rpm_1_1SolvSack_1_1NoCapability_1ad0f733a638547ef4c034d7a61ca7427d"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_description</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm8SolvSack12NoCapability15get_descriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns exception class description. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../contributing/index.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="libdnf_rpm_package_query.html" class="btn btn-neutral float-left" title="PackageQuery" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, Red Hat.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

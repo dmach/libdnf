@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Package &mdash; libdnf  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="PackageQuery" href="libdnf_rpm_package_query.html" />
+    <link rel="prev" title="libdnf::rpm" href="libdnf_rpm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> libdnf
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="libdnf.html">libdnf</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="libdnf_rpm.html">libdnf::rpm</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package_query.html">PackageQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="libdnf_rpm_package_sack.html">PackageSack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">libdnf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+          <li><a href="libdnf_rpm.html">libdnf::rpm</a> &raquo;</li>
+        
+      <li>Package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/libdnf_rpm_package.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="package">
+<h1>Package<a class="headerlink" href="#package" title="Permalink to this headline">¶</a></h1>
+<dl class="cpp class">
+<dt id="_CPPv4N6libdnf3rpm7PackageE">
+<span id="_CPPv3N6libdnf3rpm7PackageE"></span><span id="_CPPv2N6libdnf3rpm7PackageE"></span><span id="libdnf::rpm::Package"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">libdnf</span><span class="pre">::</span><span class="pre">rpm</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Package</span></code><a class="headerlink" href="#_CPPv4N6libdnf3rpm7PackageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Replaces</strong></dt><dd><p><ul class="simple">
+<li><p>libdnf/hy-package.h:struct:DnfPackage</p></li>
+<li><p>dnf:dnf/package.py:class:<a class="reference internal" href="#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">Package</span></a> </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package8get_nameEv">
+<span id="_CPPv3NK6libdnf3rpm7Package8get_nameEv"></span><span id="_CPPv2NK6libdnf3rpm7Package8get_nameEv"></span><span id="libdnf::rpm::Package::get_nameC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ab6934c83ca389677b6c98219eed21f11"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_name</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package8get_nameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>package name </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package9get_epochEv">
+<span id="_CPPv3NK6libdnf3rpm7Package9get_epochEv"></span><span id="_CPPv2NK6libdnf3rpm7Package9get_epochEv"></span><span id="libdnf::rpm::Package::get_epochC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1a242f708c7691380dd534720573e38343"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_epoch</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package9get_epochEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>package epoch </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package9get_nevraEv">
+<span id="_CPPv3NK6libdnf3rpm7Package9get_nevraEv"></span><span id="_CPPv2NK6libdnf3rpm7Package9get_nevraEv"></span><span id="libdnf::rpm::Package::get_nevraC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1a6baf937596fe86274bdbb2b5926dbfcc"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_nevra</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package9get_nevraEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">Package</span></a> NEVRA. If the epoch is 0, it is omitted from the output. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package14get_full_nevraEv">
+<span id="_CPPv3NK6libdnf3rpm7Package14get_full_nevraEv"></span><span id="_CPPv2NK6libdnf3rpm7Package14get_full_nevraEv"></span><span id="libdnf::rpm::Package::get_full_nevraC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1a9eeab58cfe5b85ddef3a456d2c379975"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_full_nevra</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package14get_full_nevraEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="#classlibdnf_1_1rpm_1_1Package"><span class="std std-ref">Package</span></a> full NEVRA. The epoch is always present even if it is 0. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package9get_groupEv">
+<span id="_CPPv3NK6libdnf3rpm7Package9get_groupEv"></span><span id="_CPPv2NK6libdnf3rpm7Package9get_groupEv"></span><span id="libdnf::rpm::Package::get_groupC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1add2386208ea237167443eacb5f2fe7a5"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_group</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package9get_groupEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>foo bar baz </p>
+<p>detailed text foo bar</p>
+<p><dl class="xrefsect">
+<dt>
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Dropped from the RPM upstream: <a class="reference external" href="https://github.com/rpm-software-management/rpm/commit/0d93b634ba8f179bb640bae2d2b262e2b859cfc2">https://github.com/rpm-software-management/rpm/commit/0d93b634ba8f179bb640bae2d2b262e2b859cfc2</a> </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A string describing </p>
+</dd>
+<dt><strong>Since</strong></dt><dd><p>5.0 </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package8get_sizeEv">
+<span id="_CPPv3NK6libdnf3rpm7Package8get_sizeEv"></span><span id="_CPPv2NK6libdnf3rpm7Package8get_sizeEv"></span><span id="libdnf::rpm::Package::get_sizeC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1a8fb26622f461603eb069f49f9a8aa982"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package8get_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>If package is installed, return <a class="reference internal" href="#classlibdnf_1_1rpm_1_1Package_1aef5878c49c93835017d94df26d0f935d"><span class="std std-ref">get_install_size()</span></a>. Return <a class="reference internal" href="#classlibdnf_1_1rpm_1_1Package_1a8d2de9eb63e5b46094b3160ced300cb0"><span class="std std-ref">get_download_size()</span></a> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package17get_download_sizeEv">
+<span id="_CPPv3NK6libdnf3rpm7Package17get_download_sizeEv"></span><span id="_CPPv2NK6libdnf3rpm7Package17get_download_sizeEv"></span><span id="libdnf::rpm::Package::get_download_sizeC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1a8d2de9eb63e5b46094b3160ced300cb0"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_download_size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package17get_download_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return size of an RPM package: &lt;size package=”…”&gt;</p>
+<p><dl class="simple">
+<dt><strong>Options:</strong></dt><dd><p><ul class="simple">
+<li><p><em>string</em> <strong>$option1</strong> This is option 1. </p></li>
+<li><p><em>string</em> <strong>$option2</strong> This is option 2.</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Replaces</strong></dt><dd><p><ul class="simple">
+<li><p>dnf:dnf/package.py:attribute:Package.downloadsize</p></li>
+<li><p>libdnf:libdnf/hy-package.h:function:dnf_package_get_downloadsize(DnfPackage * pkg) </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package16get_install_sizeEv">
+<span id="_CPPv3NK6libdnf3rpm7Package16get_install_sizeEv"></span><span id="_CPPv2NK6libdnf3rpm7Package16get_install_sizeEv"></span><span id="libdnf::rpm::Package::get_install_sizeC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1aef5878c49c93835017d94df26d0f935d"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_install_size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package16get_install_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Size of an RPM package installed on a system: &lt;size installed=”…”&gt; </p>
+</dd>
+<dt><strong>Warning</strong></dt><dd><p>The actual size on disk may vary due to block sizes and filesystem overhead. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package9get_filesEv">
+<span id="_CPPv3NK6libdnf3rpm7Package9get_filesEv"></span><span id="_CPPv2NK6libdnf3rpm7Package9get_filesEv"></span><span id="libdnf::rpm::Package::get_filesC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ae8c8386f9fe81357c9974a548c199975"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">get_files</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package9get_filesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TODO(dmach): files, directories, info about ghost etc. - existing implementation returns incomplete data. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package18get_local_filepathEv">
+<span id="_CPPv3NK6libdnf3rpm7Package18get_local_filepathEv"></span><span id="_CPPv2NK6libdnf3rpm7Package18get_local_filepathEv"></span><span id="libdnf::rpm::Package::get_local_filepathC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ac670b0738b231e919387bb72847d7451"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">get_local_filepath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package18get_local_filepathEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns package location (file path) in the filesystem. For packages in remote repo returns where the package will be/has been downloaded. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package12is_installedEv">
+<span id="_CPPv3NK6libdnf3rpm7Package12is_installedEv"></span><span id="_CPPv2NK6libdnf3rpm7Package12is_installedEv"></span><span id="libdnf::rpm::Package::is_installedC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ac171daf3db1b564bd710cb28cea096fc"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">is_installed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package12is_installedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TODO get_changelogs - requires changelog. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package11get_hdr_endEv">
+<span id="_CPPv3NK6libdnf3rpm7Package11get_hdr_endEv"></span><span id="_CPPv2NK6libdnf3rpm7Package11get_hdr_endEv"></span><span id="libdnf::rpm::Package::get_hdr_endC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ac89e146d2c93755e281a3685dc44d76c"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_hdr_end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package11get_hdr_endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TODO is_local. </p>
+<p>TODO get_from_repo_id - requires swdb For an installed package, return repoid of repo from the package was installed. For an available package, return an empty string. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package16get_media_numberEv">
+<span id="_CPPv3NK6libdnf3rpm7Package16get_media_numberEv"></span><span id="_CPPv2NK6libdnf3rpm7Package16get_media_numberEv"></span><span id="libdnf::rpm::Package::get_media_numberC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1abb162e7970a58f0634c0b6f4f7b46155"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_media_number</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package16get_media_numberEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Media number for the package. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package11get_rpmdbidEv">
+<span id="_CPPv3NK6libdnf3rpm7Package11get_rpmdbidEv"></span><span id="_CPPv2NK6libdnf3rpm7Package11get_rpmdbidEv"></span><span id="libdnf::rpm::Package::get_rpmdbidC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ad473bd793b1c2ce6a4efeb47e6053d68"></span><span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <code class="sig-name descname"><span class="pre">get_rpmdbid</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package11get_rpmdbidEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The rpmdb ID for the package. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK6libdnf3rpm7Package8get_repoEv">
+<span id="_CPPv3NK6libdnf3rpm7Package8get_repoEv"></span><span id="_CPPv2NK6libdnf3rpm7Package8get_repoEv"></span><span id="libdnf::rpm::Package::get_repoC"></span><span class="target" id="classlibdnf_1_1rpm_1_1Package_1ae60a7c6ce5861640e19d10228c1b71e0"></span><span class="pre">Repo</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">get_repo</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK6libdnf3rpm7Package8get_repoEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TODO get_repo - requires Repo. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="libdnf_rpm_package_query.html" class="btn btn-neutral float-right" title="PackageQuery" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="libdnf_rpm.html" class="btn btn-neutral float-left" title="libdnf::rpm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020-2021, Red Hat.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

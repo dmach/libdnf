@@ -1,0 +1,6 @@
+libdnf
+======
+
+
+
+.. doxygenenum:: libdnf::sack::QueryCmp

@@ -1,0 +1,60 @@
+========
+Examples
+========
+
+
+Making queries
+--------------
+
+.. code-block:: cpp
+
+    // prerequisite: a Base instance with loaded repos
+    Base base;
+    ...
+
+    // create a new query that corresponds 
+    auto query = base.get_package_sack().new_query();
+    query.ifilter_name(libdnf::sack::QueryCmp::EQ, "a-name");
+    query.ifilter_arch(libdnf::sack::QueryCmp::NEQ, "noarch");
+
+    // Iterate through the query results.
+    // Please note that we are **not** iterating through references,
+    // because packages are weak pointers that are cheap to copy.
+    for (auto pkg : query) {
+        std::cout << pkg.get_full_nevra() << std::endl;
+    }
+
+
+Set operations on queries
+-------------------------
+
+.. code-block:: cpp
+
+    // prerequisite: a Base instance with loaded repos
+    Base base;
+    ...
+
+    auto query1 = base.get_package_sack().new_query();
+    query1.ifilter_name(libdnf::sack::QueryCmp::EQ, "a-name");
+
+    auto query2 = base.get_package_sack().new_query();
+    query2.ifilter_arch(libdnf::sack::QueryCmp::NEQ, "noarch");
+
+    query1.update(query2);
+
+
+Working with excludes and includes
+----------------------------------
+
+.. code-block:: cpp
+
+    // prerequisite: a Base instance with loaded repos
+    Base base;
+    ...
+
+    TBD
+
+
+Reference
+=========
+
