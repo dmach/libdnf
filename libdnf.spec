@@ -1,295 +1,475 @@
-%global libsolv_version 0.7.7
-%global libmodulemd_version 2.5.0
-%global librepo_version 1.11.0
-%global dnf_conflict 4.2.13
-%global swig_version 3.0.12
-%global libdnf_major_version 0
-%global libdnf_minor_version 45
-%global libdnf_micro_version 1
-
-# set sphinx package name according to distro
-%global requires_python2_sphinx python2-sphinx
-%global requires_python3_sphinx python3-sphinx
-%if 0%{?rhel} == 7
-    %global requires_python2_sphinx python-sphinx
-%endif
-%if 0%{?suse_version}
-    %global requires_python2_sphinx python2-Sphinx
-    %global requires_python3_sphinx python3-Sphinx
-%endif
-
-%bcond_with valgrind
-
-# Do not build bindings for python3 for RHEL <= 7
-%if 0%{?rhel} && 0%{?rhel} <= 7
-%bcond_with python3
-%else
-%bcond_without python3
-%endif
-
-%if 0%{?rhel} > 7 || 0%{?fedora} > 29
-# Disable python2 build by default
-%bcond_with python2
-%else
-%bcond_without python2
-%endif
-
-%if 0%{?rhel} && ! 0%{?centos}
-%bcond_without rhsm
-%else
-%bcond_with rhsm
-%endif
-
-%if 0%{?rhel}
-%bcond_with zchunk
-%else
-%bcond_without zchunk
-%endif
-
-%global _cmake_opts \\\
-    -DENABLE_RHSM_SUPPORT=%{?with_rhsm:ON}%{!?with_rhsm:OFF} \\\
-    %{nil}
-
-Name:           libdnf
-Version:        %{libdnf_major_version}.%{libdnf_minor_version}.%{libdnf_micro_version}
+Name:           libdnf5
+Version:        5.0.0
 Release:        1%{?dist}
-Summary:        Library providing simplified C and Python API to libsolv
-License:        LGPLv2+
+Summary:        Package management library
+License:        LGPLv2.1+
 URL:            https://github.com/rpm-software-management/libdnf
-Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+Source0:        %{url}/archive/%{version}/libdnf-%{version}.tar.gz
+
+
+# ========== build options ==========
+
+%bcond_without dnfdaemon_client
+%bcond_without dnfdaemon_server
+%bcond_without libdnf_cli
+%bcond_without microdnf
+%bcond_without python_plugins_loader
+
+%bcond_without comps
+%bcond_without modulemd
+%bcond_without zchunk
+
+%bcond_with    html
+%if 0%{?rhel} == 8
+%bcond_with    man
+%else
+%bcond_without man
+%endif
+
+# TODO Go bindings fail to build, disable for now
+%bcond_with    go
+%bcond_without perl5
+%bcond_without python3
+%bcond_without ruby
+
+%bcond_with    clang
+%bcond_with    sanitizers
+%bcond_without tests
+%bcond_with    performance_tests
+%bcond_with    dnfdaemon_tests
+
+%if %{with clang}
+    %global toolchain clang
+%endif
+
+# ========== versions of dependencies ==========
+
+%global libmodulemd_version 2.5.0
+%global librepo_version 1.13.0
+%global libsolv_version 0.7.7
+%global swig_version 4
+%global zchunk_version 0.9.11
+
+
+# ========== build requires ==========
 
 BuildRequires:  cmake
-BuildRequires:  gcc
-BuildRequires:  gcc-c++
-BuildRequires:  libsolv-devel >= %{libsolv_version}
-BuildRequires:  pkgconfig(librepo) >= %{librepo_version}
-BuildRequires:  pkgconfig(check)
-%if %{with valgrind}
-BuildRequires:  valgrind
-%endif
-BuildRequires:  pkgconfig(gio-unix-2.0) >= 2.46.0
-BuildRequires:  pkgconfig(gtk-doc)
-BuildRequires:  rpm-devel >= 4.11.0
-%if %{with rhsm}
-BuildRequires:  pkgconfig(librhsm) >= 0.0.3
-%endif
-%if %{with zchunk}
-BuildRequires:  pkgconfig(zck) >= 0.9.11
-%endif
-BuildRequires:  pkgconfig(sqlite3)
-BuildRequires:  pkgconfig(json-c)
-BuildRequires:  pkgconfig(cppunit)
-BuildRequires:  pkgconfig(libcrypto)
-BuildRequires:  pkgconfig(modulemd-2.0) >= %{libmodulemd_version}
-BuildRequires:  pkgconfig(smartcols)
+BuildRequires:  doxygen
 BuildRequires:  gettext
-BuildRequires:  gpgme-devel
+%if %{with clang}
+BuildRequires:  clang
+%else
+BuildRequires:  gcc-c++
+%endif
 
-Requires:       libmodulemd%{?_isa} >= %{libmodulemd_version}
+BuildRequires:  pkgconfig(check)
+%if %{with tests}
+BuildRequires:  pkgconfig(cppunit)
+%endif
+BuildRequires:  pkgconfig(fmt)
+BuildRequires:  (pkgconfig(gpgme) or gpgme-devel)
+BuildRequires:  pkgconfig(json-c)
+%if %{with comps}
+BuildRequires:  pkgconfig(libcomps)
+%endif
+BuildRequires:  pkgconfig(libcrypto)
+BuildRequires:  pkgconfig(librepo) >= %{librepo_version}
+BuildRequires:  pkgconfig(libsolv) >= %{libsolv_version}
+BuildRequires:  pkgconfig(libsolvext) >= %{libsolv_version}
+%if %{with modulemd}
+BuildRequires:  pkgconfig(modulemd-2.0) >= %{libmodulemd_version}
+%endif
+BuildRequires:  pkgconfig(rpm) >= 4.11.0
+BuildRequires:  pkgconfig(sqlite3)
+%if %{with zchunk}
+BuildRequires:  pkgconfig(zck) >= %{zchunk_version}
+%endif
+
+%if %{with html} || %{with man}
+BuildRequires:  python3dist(breathe)
+BuildRequires:  python3dist(sphinx)
+BuildRequires:  python3dist(sphinx-rtd-theme)
+%endif
+
+%if %{with tests}
+BuildRequires:  rpm-build
+BuildRequires:  createrepo_c
+%endif
+
+%if %{with sanitizers}
+# compiler-rt is required by sanitizers in clang
+BuildRequires:  compiler-rt
+BuildRequires:  libasan
+BuildRequires:  liblsan
+BuildRequires:  libubsan
+%endif
+
+
+# ========== libdnf ==========
+#Requires:       libmodulemd{?_isa} >= {libmodulemd_version}
 Requires:       libsolv%{?_isa} >= %{libsolv_version}
 Requires:       librepo%{?_isa} >= %{librepo_version}
 
-%if %{without python2}
-# Obsoleted from here so we can track the fast growing version easily.
-# We intentionally only obsolete and not provide, this is a broken upgrade
-# prevention, not providing the removed functionality.
-Obsoletes:      python2-%{name} < %{version}-%{release}
-Obsoletes:      python2-hawkey < %{version}-%{release}
-Obsoletes:      python2-hawkey-debuginfo < %{version}-%{release}
-Obsoletes:      python2-libdnf-debuginfo < %{version}-%{release}
+%description
+Package management library
+
+%files
+%{_libdir}/libdnf.so.*
+%license lgpl-2.1.txt
+
+
+# ========== libdnf-cli ==========
+
+%if %{with libdnf_cli}
+%package -n libdnf-cli
+Summary:        Library for working with a terminal in a command-line package manager
+BuildRequires:  pkgconfig(smartcols)
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+
+%description -n libdnf-cli
+Library for working with a terminal in a command-line package manager.
+
+%files -n libdnf-cli
+%{_libdir}/libdnf-cli.so.*
+%license COPYING.md
+%license lgpl-2.1.txt
 %endif
 
-%description
-A Library providing simplified C and Python API to libsolv.
 
-%package devel
-Summary:        Development files for %{name}
+# ========== libdnf-devel ==========
+
+%package -n libdnf5-devel
+Summary:        Development files for libdnf
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       libsolv-devel%{?_isa} >= %{libsolv_version}
+Conflicts:      libdnf-devel < 5
 
-%description devel
-Development files for %{name}.
+%description -n libdnf5-devel
+Development files for libdnf.
 
-%if %{with python2}
-%package -n python2-%{name}
-%{?python_provide:%python_provide python2-%{name}}
-Summary:        Python 2 bindings for the libdnf library.
+%files -n libdnf5-devel
+%{_includedir}/libdnf/
+%{_libdir}/libdnf.so
+%{_libdir}/pkgconfig/libdnf.pc
+%license COPYING.md
+%license lgpl-2.1.txt
+
+
+# ========== libdnf-cli-devel ==========
+
+%package cli-devel
+Summary:        Development files for libdnf-cli
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+
+%description cli-devel
+Development files for libdnf-cli.
+
+%files cli-devel
+%{_includedir}/libdnf-cli/
+%{_libdir}/libdnf-cli.so
+%{_libdir}/pkgconfig/libdnf-cli.pc
+%license COPYING.md
+%license lgpl-2.1.txt
+
+
+# ========== perl5-libdnf ==========
+
+%if %{with perl5}
+%package -n perl5-libdnf
+Summary:        Perl 5 bindings for the libdnf library.
+Provides:       perl(libdnf) = %{version}-%{release}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-BuildRequires:  python2-devel
-%if !0%{?mageia}
-BuildRequires:  %{requires_python2_sphinx}
-%endif
-%if 0%{?rhel} == 7
-BuildRequires:  swig3 >= %{swig_version}
-%else
+BuildRequires:  perl-devel
+BuildRequires:  perl-macros
 BuildRequires:  swig >= %{swig_version}
+%if %{with tests}
+BuildRequires:  perl(strict)
+BuildRequires:  perl(Test::More)
+BuildRequires:  perl(Test::Exception)
+BuildRequires:  perl(warnings)
 %endif
 
-%description -n python2-%{name}
-Python 2 bindings for the libdnf library.
-%endif # with python2
+%description -n perl5-libdnf
+Perl 5 bindings for the libdnf library.
+
+%files -n perl5-libdnf
+%{perl_vendorarch}/libdnf
+%{perl_vendorarch}/auto/libdnf
+%license COPYING.md
+%license lgpl-2.1.txt
+%endif
+
+
+# ========== perl5-libdnf-cli ==========
+
+%if %{with perl5} && %{with libdnf_cli}
+%package -n perl5-libdnf-cli
+Summary:        Perl 5 bindings for the libdnf-cli library.
+Provides:       perl(libdnf_cli) = %{version}-%{release}
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+BuildRequires:  perl-devel
+BuildRequires:  perl-macros
+BuildRequires:  swig >= %{swig_version}
+%if %{with tests}
+BuildRequires:  perl(strict)
+BuildRequires:  perl(Test::More)
+BuildRequires:  perl(Test::Exception)
+BuildRequires:  perl(warnings)
+%endif
+
+%description -n perl5-libdnf-cli
+Perl 5 bindings for the libdnf-cli library.
+
+%files -n perl5-libdnf-cli
+%{perl_vendorarch}/libdnf_cli
+%{perl_vendorarch}/auto/libdnf_cli
+%license COPYING.md
+%license lgpl-2.1.txt
+%endif
+
+
+# ========== python3-libdnf ==========
 
 %if %{with python3}
-%package -n python3-%{name}
-%{?python_provide:%python_provide python3-%{name}}
+%package -n python3-libdnf5
+%{?python_provide:%python_provide python3-libdnf}
 Summary:        Python 3 bindings for the libdnf library.
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 BuildRequires:  python3-devel
-BuildRequires:  %{requires_python3_sphinx}
 BuildRequires:  swig >= %{swig_version}
 
-%description -n python3-%{name}
+%description -n python3-libdnf5
 Python 3 bindings for the libdnf library.
+
+%files -n python3-libdnf5
+%{python3_sitearch}/libdnf5/
+%license COPYING.md
+%license lgpl-2.1.txt
 %endif
 
-%if %{with python2}
-%package -n python2-hawkey
-Summary:        Python 2 bindings for the hawkey library
-%{?python_provide:%python_provide python2-hawkey}
-BuildRequires:  python2-devel
-%if 0%{?rhel} && 0%{?rhel} <= 7
-BuildRequires:  python-nose
-%else
-BuildRequires:  python2-nose
-%endif
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       python2-%{name} = %{version}-%{release}
-# Fix problem with hawkey - dnf version incompatibility
-# Can be deleted for distros where only python2-dnf >= 2.0.0
-Conflicts:      python2-dnf < %{dnf_conflict}
-Conflicts:      python-dnf < %{dnf_conflict}
 
-%description -n python2-hawkey
-Python 2 bindings for the hawkey library.
-%endif # with python2
+# ========== python3-libdnf-cli ==========
 
-%if %{with python3}
-%package -n python3-hawkey
-Summary:        Python 3 bindings for the hawkey library
-%{?python_provide:%python_provide python3-hawkey}
+%if %{with python3} && %{with libdnf_cli}
+%package -n python3-libdnf-cli
+%{?python_provide:%python_provide python3-libdnf-cli}
+Summary:        Python 3 bindings for the libdnf-cli library.
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
 BuildRequires:  python3-devel
-BuildRequires:  python3-nose
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       python3-%{name} = %{version}-%{release}
-# Fix problem with hawkey - dnf version incompatibility
-# Can be deleted for distros where only python3-dnf >= 2.0.0
-Conflicts:      python3-dnf < %{dnf_conflict}
-# Obsoletes F27 packages
-Obsoletes:      platform-python-hawkey < %{version}-%{release}
+BuildRequires:  swig >= %{swig_version}
 
-%description -n python3-hawkey
-Python 3 bindings for the hawkey library.
+%description -n python3-libdnf-cli
+Python 3 bindings for the libdnf-cli library.
+
+%files -n python3-libdnf-cli
+%{python3_sitearch}/libdnf_cli/
+%license COPYING.md
+%license lgpl-2.1.txt
 %endif
+
+
+# ========== ruby-libdnf ==========
+
+%if %{with ruby}
+%package -n ruby-libdnf
+Summary:        Ruby bindings for the libdnf library.
+Provides:       ruby(libdnf) = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       ruby(release)
+BuildRequires:  pkgconfig(ruby)
+BuildRequires:  swig >= %{swig_version}
+%if %{with tests}
+BuildRequires:  rubygem-test-unit
+%endif
+
+%description -n ruby-libdnf
+Ruby bindings for the libdnf library.
+
+%files -n ruby-libdnf
+%{ruby_vendorarchdir}/libdnf/
+%license COPYING.md
+%license lgpl-2.1.txt
+%endif
+
+
+# ========== ruby-libdnf-cli ==========
+
+%if %{with ruby} && %{with libdnf_cli}
+%package -n ruby-libdnf-cli
+Summary:        Ruby bindings for the libdnf-cli library.
+Provides:       ruby(libdnf_cli) = %{version}-%{release}
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+BuildRequires:  pkgconfig(ruby)
+BuildRequires:  swig >= %{swig_version}
+%if %{with tests}
+BuildRequires:  rubygem-test-unit
+%endif
+
+%description -n ruby-libdnf-cli
+Ruby bindings for the libdnf-cli library.
+
+%files -n ruby-libdnf-cli
+%{ruby_vendorarchdir}/libdnf_cli/
+%license COPYING.md
+%license lgpl-2.1.txt
+%endif
+
+
+# ========== libdnf-plugin-python-plugins-loader ==========
+
+%if %{with python_plugins_loader}
+%package -n python3-libdnf-python-plugins-loader
+Summary:        Libdnf plugin that allows loading Python plugins
+License:        LGPLv2.1+
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       python3-libdnf5%{?_isa} = %{version}-%{release}
+
+%description -n python3-libdnf-python-plugins-loader
+Libdnf plugin that allows loading Python plugins
+
+%files -n python3-libdnf-python-plugins-loader
+%{_libdir}/libdnf-plugins/python_plugins_loader.*
+%{python3_sitelib}/libdnf_plugins/
+%{python3_sitelib}/libdnf_plugins/README
+%endif
+
+
+# ========== dnfdaemon-client ==========
+
+%if %{with dnfdaemon_client}
+%package -n dnfdaemon-client
+Summary:        Command-line interface for dnfdaemon-server
+License:        GPLv2+
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+
+%description -n dnfdaemon-client
+Command-line interface for dnfdaemon-server
+
+%files -n dnfdaemon-client
+%{_bindir}/dnfdaemon-client
+%license COPYING.md
+%license gpl-2.0.txt
+%{_mandir}/man8/dnfdaemon-client.8.gz
+%endif
+
+
+# ========== dnfdaemon-server ==========
+
+%if %{with dnfdaemon_server}
+%package -n dnfdaemon-server
+Summary:        Package management service with a DBus interface
+License:        GPLv2+
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+Requires:       dnf-data
+BuildRequires:  pkgconfig(sdbus-c++) >= 0.8.1
+%if %{with dnfdaemon_tests}
+BuildRequires:  dbus-daemon
+BuildRequires:  polkit
+BuildRequires:  python3-devel
+BuildRequires:  python3dist(dbus-python)
+%endif
+
+%description -n dnfdaemon-server
+Package management service with a DBus interface
+
+%files -n dnfdaemon-server
+%{_bindir}/dnfdaemon-server
+%{_unitdir}/dnfdaemon-server.service
+%{_sysconfdir}/dbus-1/system.d/org.rpm.dnf.v0.conf
+%{_datadir}/dbus-1/system-services/org.rpm.dnf.v0.service
+%{_datadir}/dbus-1/interfaces/org.rpm.dnf.v0.*.xml
+%{_datadir}/polkit-1/actions/org.rpm.dnf.v0.policy
+%license COPYING.md
+%license gpl-2.0.txt
+%{_mandir}/man8/dnfdaemon-server.8.gz
+%endif
+
+
+# ========== microdnf ==========
+
+%if %{with microdnf}
+%package -n microdnf5
+Summary:        Command-line package manager
+License:        GPLv2+
+Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       libdnf-cli%{?_isa} = %{version}-%{release}
+Requires:       dnf-data
+
+%description -n microdnf5
+Microdnf is a command-line package manager that automates the process of installing,
+upgrading, configuring, and removing computer programs in a consistent manner.
+It supports RPM packages, modulemd modules, and comps groups & environments.
+
+%files -n microdnf5
+%{_bindir}/microdnf5
+%license COPYING.md
+%license gpl-2.0.txt
+%{_mandir}/man8/microdnf5.8.gz
+%endif
+
+
+# ========== unpack, build, check & install ==========
 
 %prep
-%autosetup
-%if %{with python2}
-mkdir build-py2
-%endif # with python2
-%if %{with python3}
-mkdir build-py3
-%endif
+%autosetup -p1 -n libdnf-%{version}
+
 
 %build
-%if %{with python2}
-pushd build-py2
-  %if 0%{?mageia} || 0%{?suse_version}
-    cd ..
-    %define _cmake_builddir build-py2
-    %define __builddir build-py2
-  %endif
-  %cmake -DPYTHON_DESIRED:FILEPATH=%{__python2} -DWITH_MAN=OFF ../ %{!?with_zchunk:-DWITH_ZCHUNK=OFF} %{!?with_valgrind:-DDISABLE_VALGRIND=1} %{_cmake_opts} -DLIBDNF_MAJOR_VERSION=%{libdnf_major_version} -DLIBDNF_MINOR_VERSION=%{libdnf_minor_version} -DLIBDNF_MICRO_VERSION=%{libdnf_micro_version}
-  %make_build
-popd
-%endif # with python2
-
-%if %{with python3}
-pushd build-py3
-  %if 0%{?mageia} || 0%{?suse_version}
-    cd ..
-    %define _cmake_builddir build-py3
-    %define __builddir build-py3
-  %endif
-  %cmake -DPYTHON_DESIRED:FILEPATH=%{__python3} -DWITH_GIR=0 -DWITH_MAN=0 -Dgtkdoc=0 ../ %{!?with_zchunk:-DWITH_ZCHUNK=OFF} %{!?with_valgrind:-DDISABLE_VALGRIND=1} %{_cmake_opts} -DLIBDNF_MAJOR_VERSION=%{libdnf_major_version} -DLIBDNF_MINOR_VERSION=%{libdnf_minor_version} -DLIBDNF_MICRO_VERSION=%{libdnf_micro_version}
-  %make_build
-popd
+%cmake \
+    -DPACKAGE_VERSION=%{version} \
+    -DPERL_INSTALLDIRS=vendor \
+    \
+    -DWITH_DNFDAEMON_CLIENT=%{?with_dnfdaemon_client:ON}%{!?with_dnfdaemon_client:OFF} \
+    -DWITH_DNFDAEMON_SERVER=%{?with_dnfdaemon_server:ON}%{!?with_dnfdaemon_server:OFF} \
+    -DWITH_LIBDNF_CLI=%{?with_libdnf_cli:ON}%{!?with_libdnf_cli:OFF} \
+    -DWITH_MICRODNF=%{?with_microdnf:ON}%{!?with_microdnf:OFF} \
+    -DWITH_PYTHON_PLUGINS_LOADER=%{?with_python_plugins_loader:ON}%{!?with_python_plugins_loader:OFF} \
+    \
+    -DWITH_COMPS=%{?with_comps:ON}%{!?with_comps:OFF} \
+    -DWITH_MODULEMD=%{?with_modulemd:ON}%{!?with_modulemd:OFF} \
+    -DWITH_ZCHUNK=%{?with_zchunk:ON}%{!?with_zchunk:OFF} \
+    \
+    -DWITH_HTML=%{?with_html:ON}%{!?with_html:OFF} \
+    -DWITH_MAN=%{?with_man:ON}%{!?with_man:OFF} \
+    \
+    -DWITH_GO=%{?with_go:ON}%{!?with_go:OFF} \
+    -DWITH_PERL5=%{?with_perl5:ON}%{!?with_perl5:OFF} \
+    -DWITH_PYTHON3=%{?with_python3:ON}%{!?with_python3:OFF} \
+    -DWITH_RUBY=%{?with_ruby:ON}%{!?with_ruby:OFF} \
+    \
+    -DWITH_SANITIZERS=%{?with_sanitizers:ON}%{!?with_sanitizers:OFF} \
+    -DWITH_TESTS=%{?with_tests:ON}%{!?with_tests:OFF} \
+    -DWITH_PERFORMANCE_TESTS=%{?with_performance_tests:ON}%{!?with_performance_tests:OFF} \
+    -DWITH_DNFDAEMON_TESTS=%{?with_dnfdaemon_tests:ON}%{!?with_dnfdaemon_tests:OFF}
+%cmake_build
+%if %{with man}
+    %cmake_build --target doc-man
 %endif
+
 
 %check
-%if %{with python2}
-pushd build-py2
-  make ARGS="-V" test
-popd
-%endif # with python2
-%if %{with python3}
-# If we didn't run the general tests yet, do it now.
-%if %{without python2}
-pushd build-py3
-  make ARGS="-V" test
-popd
-%else
-# Otherwise, run just the Python tests, not all of
-# them, since we have coverage of the core from the
-# first build
-pushd build-py3/python/hawkey/tests
-  make ARGS="-V" test
-popd
+%if %{with tests}
+    %ctest
 %endif
-%endif
+
 
 %install
-%if %{with python2}
-pushd build-py2
-  %make_install
-popd
-%endif # with python2
-%if %{with python3}
-pushd build-py3
-  %make_install
-popd
-%endif
+%cmake_install
 
-%find_lang %{name}
+# HACK: temporarily rename libdnf to ensure parallel installability with old libdnf
+mv $RPM_BUILD_ROOT/%{python3_sitearch}/libdnf $RPM_BUILD_ROOT/%{python3_sitearch}/libdnf5
 
-%if (0%{?rhel} && 0%{?rhel} <= 7) || 0%{?suse_version}
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-%else
+# HACK: temporarily rename microdnf to ensure parallel installability with old microdnf
+mv $RPM_BUILD_ROOT/%{_bindir}/microdnf $RPM_BUILD_ROOT/%{_bindir}/microdnf5
+mv $RPM_BUILD_ROOT/%{_mandir}/man8/microdnf.8 $RPM_BUILD_ROOT/%{_mandir}/man8/microdnf5.8
+
+
+#find_lang {name}
+
+
 %ldconfig_scriptlets
-%endif
 
-%files -f %{name}.lang
-%license COPYING
-%doc README.md AUTHORS
-%{_libdir}/%{name}.so.*
-%dir %{_libdir}/libdnf/
-%dir %{_libdir}/libdnf/plugins/
-%{_libdir}/libdnf/plugins/README
-
-%files devel
-%doc %{_datadir}/gtk-doc/html/%{name}/
-%{_libdir}/%{name}.so
-%{_libdir}/pkgconfig/%{name}.pc
-%{_includedir}/%{name}/
-
-%if %{with python2}
-%files -n python2-%{name}
-%{python2_sitearch}/%{name}/
-%endif # with python2
-
-%if %{with python3}
-%files -n python3-%{name}
-%{python3_sitearch}/%{name}/
-%endif
-
-%if %{with python2}
-%files -n python2-hawkey
-%{python2_sitearch}/hawkey/
-%endif # with python2
-
-%if %{with python3}
-%files -n python3-hawkey
-%{python3_sitearch}/hawkey/
-%endif
 
 %changelog

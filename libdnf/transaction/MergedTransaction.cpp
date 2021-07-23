@@ -1,35 +1,47 @@
 /*
- * Copyright (C) 2017-2018 Red Hat, Inc.
- *
- * Licensed under the GNU Lesser General Public License Version 2.1
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+Copyright Contributors to the libdnf project.
+
+This file is part of libdnf: https://github.com/rpm-software-management/libdnf/
+
+Libdnf is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+Libdnf is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+// TODO(dmach): keep refactoring and deliver something that works with the new code base
+// the whole file is disabled via the SKIP macro because it doesn't compile with the new code
+#ifdef SKIP
 
 #include "MergedTransaction.hpp"
+#include "comps_environment.hpp"
+#include "comps_group.hpp"
 
-namespace libdnf {
+namespace libdnf::transaction {
 
 /**
  * Create a new MergedTransaction object with a single transaction
  * \param trans initial transaction
  */
-MergedTransaction::MergedTransaction(TransactionPtr trans)
-  : transactions{trans}
+MergedTransaction::MergedTransaction(Transaction & trans)
+  : transactions{&trans}
 {
 }
+
+/*
+MergedTransaction::MergedTransaction(Transaction & trans)
+  : transactions{std::make_shared<Transaction>(trans)}
+{
+}
+*/
 
 /**
  * Merge \trans into this transaction
@@ -38,18 +50,18 @@ MergedTransaction::MergedTransaction(TransactionPtr trans)
  * \param trans transaction to be merged with
  */
 void
-MergedTransaction::merge(TransactionPtr trans)
+MergedTransaction::merge(Transaction & trans)
 {
     bool inserted = false;
     for (auto it = transactions.begin(); it < transactions.end(); ++it) {
-        if ((*it)->getId() > trans->getId()) {
-            transactions.insert(it, trans);
+        if ((*it)->get_id() > trans.get_id()) {
+            transactions.insert(it, &trans);
             inserted = true;
             break;
         }
     }
     if (!inserted) {
-        transactions.push_back(trans);
+        transactions.push_back(&trans);
     }
 }
 
@@ -62,7 +74,7 @@ MergedTransaction::listIds() const
 {
     std::vector< int64_t > ids;
     for (auto t : transactions) {
-        ids.push_back(t->getId());
+        ids.push_back(t->get_id());
     }
     return ids;
 }
@@ -76,7 +88,7 @@ MergedTransaction::listUserIds() const
 {
     std::vector< uint32_t > users;
     for (auto t : transactions) {
-        users.push_back(t->getUserId());
+        users.push_back(t->get_user_id());
     }
     return users;
 }
@@ -90,7 +102,7 @@ MergedTransaction::listCmdlines() const
 {
     std::vector< std::string > cmdLines;
     for (auto t : transactions) {
-        cmdLines.push_back(t->getCmdline());
+        cmdLines.push_back(t->get_cmdline());
     }
     return cmdLines;
 }
@@ -100,7 +112,7 @@ MergedTransaction::listStates() const
 {
     std::vector< TransactionState > result;
     for (auto t : transactions) {
-        result.push_back(t->getState());
+        result.push_back(t->get_state());
     }
     return result;
 }
@@ -110,50 +122,50 @@ MergedTransaction::listReleasevers() const
 {
     std::vector< std::string > result;
     for (auto t : transactions) {
-        result.push_back(t->getReleasever());
+        result.push_back(t->get_releasever());
     }
     return result;
 }
 
 int64_t
-MergedTransaction::getDtBegin() const noexcept
+MergedTransaction::get_dt_begin() const noexcept
 {
-    return transactions.front()->getDtBegin();
+    return transactions.front()->get_dt_begin();
 }
 int64_t
-MergedTransaction::getDtEnd() const noexcept
+MergedTransaction::get_dt_end() const noexcept
 {
-    return transactions.back()->getDtEnd();
+    return transactions.back()->get_dt_end();
 }
 const std::string &
-MergedTransaction::getRpmdbVersionBegin() const noexcept
+MergedTransaction::get_rpmdb_version_begin() const noexcept
 {
-    return transactions.front()->getRpmdbVersionBegin();
+    return transactions.front()->get_rpmdb_version_begin();
 }
 
 const std::string &
-MergedTransaction::getRpmdbVersionEnd() const noexcept
+MergedTransaction::get_rpmdb_version_end() const noexcept
 {
-    return transactions.back()->getRpmdbVersionEnd();
+    return transactions.back()->get_rpmdb_version_end();
 }
 
-std::set< RPMItemPtr >
-MergedTransaction::getSoftwarePerformedWith() const
-{
-    std::set< RPMItemPtr > software;
+
+std::set<std::string> MergedTransaction::get_runtime_packages() const {
+    std::set<std::string> result;
     for (auto t : transactions) {
-        auto tranSoft = t->getSoftwarePerformedWith();
-        software.insert(tranSoft.begin(), tranSoft.end());
+        auto runtime_packages = t->get_runtime_packages();
+        result.insert(runtime_packages.begin(), runtime_packages.end());
     }
-    return software;
+    return result;
 }
+
 
 std::vector< std::pair< int, std::string > >
-MergedTransaction::getConsoleOutput()
+MergedTransaction::get_console_output()
 {
     std::vector< std::pair< int, std::string > > output;
     for (auto t : transactions) {
-        auto tranOutput = t->getConsoleOutput();
+        auto tranOutput = t->get_console_output();
         output.insert(output.end(), tranOutput.begin(), tranOutput.end());
     }
     return output;
@@ -183,7 +195,8 @@ MergedTransaction::getConsoleOutput()
  *      With complete transaction pair we need to get a new Upgrade/Downgrade package and
  *      compare versions with original package from pair.
  */
-std::vector< TransactionItemBasePtr >
+/*
+std::vector< TransactionItemPtr >
 MergedTransaction::getItems()
 {
     ItemPairMap itemPairMap;
@@ -194,12 +207,12 @@ MergedTransaction::getItems()
         // iterate over transaction items
         for (auto transItem : transItems) {
             // get item and its type
-            auto mTransItem = std::dynamic_pointer_cast< TransactionItemBase >(transItem);
+            auto mTransItem = std::dynamic_pointer_cast< TransactionItem >(transItem);
             mergeItem(itemPairMap, mTransItem);
         }
     }
 
-    std::vector< TransactionItemBasePtr > items;
+    std::vector< TransactionItemPtr > items;
     for (const auto &row : itemPairMap) {
         ItemPair itemPair = row.second;
         items.push_back(itemPair.first);
@@ -209,24 +222,68 @@ MergedTransaction::getItems()
     }
     return items;
 }
+*/
+std::vector<std::unique_ptr<Package>> MergedTransaction::get_packages() {
+    ItemPairMap itemPairMap;
 
-static std::string
-getItemIdentifier(ItemPtr item)
-{
-    auto itemType = item->getItemType();
-    std::string name;
-    if (itemType == ItemType::RPM) {
-        auto rpm = std::dynamic_pointer_cast< RPMItem >(item);
-        name = rpm->getName() + "." + rpm->getArch();
-    } else if (itemType == ItemType::GROUP) {
-        auto group = std::dynamic_pointer_cast< CompsGroupItem >(item);
-        name = group->getGroupId();
-    } else if (itemType == ItemType::ENVIRONMENT) {
-        auto env = std::dynamic_pointer_cast< CompsEnvironmentItem >(item);
-        name = env->getEnvironmentId();
+    // iterate over transaction
+    for (auto & trans : transactions) {
+        //auto transItems = t->getItems();
+        // iterate over transaction items
+        for (auto & ti : trans->get_packages()) {
+            Package & pkg = *ti;
+            //auto pkg = std::dynamic_pointer_cast<Package *>(ti);
+            mergeItem(itemPairMap, &pkg);
+        }
     }
-    return name;
+
+    std::vector<std::unique_ptr<Package>> result;
+    return result;
 }
+
+
+static std::string getItemIdentifier(Package * pkg) {
+    return pkg->get_name() + "." + pkg->get_arch();
+}
+
+
+static std::string getItemIdentifier(CompsGroup * grp) {
+    return grp->get_group_id();
+}
+
+
+static std::string getItemIdentifier(CompsEnvironment * env) {
+    return env->get_environment_id();
+}
+
+/*
+    std::string result;
+
+    //manager &rm = dynamic_cast<manager&>(re);
+    CompsEnvironment & comps = dynamic_cast<CompsEnvironment &>(ti);
+
+//    TransactionItem * ti_ptr = &ti;
+//    CompsEnvironment & comps_environment = dynamic_cast<CompsEnvironment *>(ti_ptr);
+//    CompsEnvironment & comps_environment = dynamic_cast<CompsEnvironment &>(ti);
+//    auto comps_group = dynamic_cast<CompsGroup>(&ti);
+//    auto rpm = dynamic_cast<Package>(&ti);
+
+    
+    std::string name;
+    if (itemType == TransactionItemType::RPM) {
+        auto rpm = std::dynamic_pointer_cast< Package >(item);
+        name = rpm->get_name() + "." + rpm->get_arch();
+    } else if (itemType == TransactionItemType::GROUP) {
+        auto group = std::dynamic_pointer_cast< CompsGroup >(item);
+        name = group->get_group_id();
+    } else if (itemType == TransactionItemType::ENVIRONMENT) {
+        auto env = std::dynamic_pointer_cast< CompsEnvironment >(item);
+        name = env->get_environment_id();
+    }
+    return result;
+}
+*/
+
 
 /**
  * Resolve the difference between RPMs in the first and second transaction item
@@ -235,50 +292,48 @@ getItemIdentifier(ItemPtr item)
  * \param previousItemPair original item pair
  * \param mTransItem new transaction item
  */
-void
-MergedTransaction::resolveRPMDifference(ItemPair &previousItemPair,
-                                        TransactionItemBasePtr mTransItem)
-{
-    auto firstItem = previousItemPair.first->getItem();
-    auto secondItem = mTransItem->getItem();
+void MergedTransaction::resolveRPMDifference(ItemPair & previousItemPair, TransactionItem * mTransItem) {
+    auto * firstItem = previousItemPair.first;
+    auto * secondItem = mTransItem;
 
-    auto firstRPM = std::dynamic_pointer_cast< RPMItem >(firstItem);
-    auto secondRPM = std::dynamic_pointer_cast< RPMItem >(secondItem);
+    //auto * firstRPM = dynamic_cast<Package *>(firstItem);
+    //auto * firstRPM = std::dynamic_pointer_cast<Package>(firstItem);
+    //auto * secondRPM = std::dynamic_pointer_cast<Package>(secondItem);
+    auto * firstRPM = static_cast<Package *>(firstItem);
+    auto * secondRPM = static_cast<Package *>(secondItem);
 
-    if (firstRPM->getVersion() == secondRPM->getVersion() &&
-        firstRPM->getEpoch() == secondRPM->getEpoch()) {
+    if (firstRPM->get_version() == secondRPM->get_version() &&
+        firstRPM->get_epoch() == secondRPM->get_epoch()) {
         // reinstall
-        mTransItem->setAction(TransactionItemAction::REINSTALL);
+        mTransItem->set_action(TransactionItemAction::REINSTALL);
         previousItemPair.first = mTransItem;
         previousItemPair.second = nullptr;
         return;
     } else if ((*firstRPM) < (*secondRPM)) {
         // Upgrade to secondRPM
-        previousItemPair.first->setAction(TransactionItemAction::UPGRADED);
-        mTransItem->setAction(TransactionItemAction::UPGRADE);
+        previousItemPair.first->set_action(TransactionItemAction::UPGRADED);
+        mTransItem->set_action(TransactionItemAction::UPGRADE);
     } else {
         // Downgrade to secondRPM
-        previousItemPair.first->setAction(TransactionItemAction::DOWNGRADED);
-        mTransItem->setAction(TransactionItemAction::DOWNGRADE);
+        previousItemPair.first->set_action(TransactionItemAction::DOWNGRADED);
+        mTransItem->set_action(TransactionItemAction::DOWNGRADE);
     }
     previousItemPair.second = mTransItem;
 }
 
-void
-MergedTransaction::resolveErase(ItemPair &previousItemPair, TransactionItemBasePtr mTransItem)
-{
+void MergedTransaction::resolveErase(ItemPair & previousItemPair, TransactionItem * mTransItem) {
     /*
      * The original item has been removed - it has to be installed now unless the rpmdb
      *  has changed. Resolve the difference between packages and mark it as Upgrade,
      *  Reinstall or Downgrade
      */
-    if (mTransItem->getAction() == TransactionItemAction::INSTALL) {
-        if (mTransItem->getItem()->getItemType() == ItemType::RPM) {
+    if (mTransItem->get_action() == TransactionItemAction::INSTALL) {
+        if (mTransItem->get_item_type() == TransactionItemType::RPM) {
             // resolve the difference between RPM packages
             resolveRPMDifference(previousItemPair, mTransItem);
         } else {
             // difference between comps can't be resolved
-            mTransItem->setAction(TransactionItemAction::REINSTALL);
+            mTransItem->set_action(TransactionItemAction::REINSTALL);
         }
     }
     previousItemPair.first = mTransItem;
@@ -295,16 +350,14 @@ MergedTransaction::resolveErase(ItemPair &previousItemPair, TransactionItemBaseP
  * \param previousItemPair original item pair
  * \param mTransItem new transaction item
  */
-void
-MergedTransaction::resolveAltered(ItemPair &previousItemPair, TransactionItemBasePtr mTransItem)
-{
-    auto newState = mTransItem->getAction();
-    auto firstState = previousItemPair.first->getAction();
+void MergedTransaction::resolveAltered(ItemPair & previousItemPair, TransactionItem * mTransItem) {
+    auto newState = mTransItem->get_action();
+    auto firstState = previousItemPair.first->get_action();
 
     if (newState == TransactionItemAction::REMOVE || newState == TransactionItemAction::OBSOLETED) {
         // package is being Erased
         // move Erased action to the previous state
-        previousItemPair.first->setAction(newState);
+        previousItemPair.first->set_action(newState);
         previousItemPair.second = nullptr;
     } else if (newState == TransactionItemAction::DOWNGRADED ||
                newState == TransactionItemAction::UPGRADED) {
@@ -336,12 +389,12 @@ MergedTransaction::resolveAltered(ItemPair &previousItemPair, TransactionItemBas
         if (previousItemPair.second == nullptr) {
             previousItemPair.second = mTransItem;
         } else {
-            if (mTransItem->getItem()->getItemType() == ItemType::RPM) {
+            if (mTransItem->get_item_type() == TransactionItemType::RPM) {
                 // resolve the difference between RPM packages
                 resolveRPMDifference(previousItemPair, mTransItem);
             } else {
                 // difference between comps can't be resolved
-                previousItemPair.second->setAction(TransactionItemAction::REINSTALL);
+                previousItemPair.second->set_action(TransactionItemAction::REINSTALL);
                 previousItemPair.first = previousItemPair.second;
                 previousItemPair.second = nullptr;
             }
@@ -355,10 +408,26 @@ MergedTransaction::resolveAltered(ItemPair &previousItemPair, TransactionItemBas
  * \param mTransItem transaction item
  */
 void
-MergedTransaction::mergeItem(ItemPairMap &itemPairMap, TransactionItemBasePtr mTransItem)
+MergedTransaction::mergeItem(ItemPairMap & itemPairMap, TransactionItem * mTransItem)
 {
     // get item identifier
-    std::string name = getItemIdentifier(mTransItem->getItem());
+    std::string name;
+    switch (mTransItem->get_item_type()) {
+        case TransactionItemType::RPM:
+            name = getItemIdentifier(static_cast<Package *>(mTransItem));
+            break;
+        case TransactionItemType::GROUP:
+            name = getItemIdentifier(static_cast<CompsGroup *>(mTransItem));
+            break;
+        case TransactionItemType::ENVIRONMENT:
+            name = getItemIdentifier(static_cast<CompsEnvironment *>(mTransItem));
+            break;
+        case TransactionItemType::UNKNOWN:
+            break;
+    }
+
+//
+//        name = getItemIdentifier(static_cast<Package *>(mTransItem));
 
     auto previous = itemPairMap.find(name);
     if (previous == itemPairMap.end()) {
@@ -368,10 +437,10 @@ MergedTransaction::mergeItem(ItemPairMap &itemPairMap, TransactionItemBasePtr mT
 
     ItemPair &previousItemPair = previous->second;
 
-    auto firstState = previousItemPair.first->getAction();
-    auto newState = mTransItem->getAction();
+    auto firstState = previousItemPair.first->get_action();
+    auto newState = mTransItem->get_action();
 
-    if (firstState == TransactionItemAction::INSTALL && mTransItem->isBackwardAction()) {
+    if (firstState == TransactionItemAction::INSTALL && mTransItem->is_backward_action()) {
         return;
     }
 
@@ -389,8 +458,11 @@ MergedTransaction::mergeItem(ItemPairMap &itemPairMap, TransactionItemBasePtr mT
                 break;
             }
             // altered -> transfer install to the altered package
-            mTransItem->setAction(TransactionItemAction::INSTALL);
+            mTransItem->set_action(TransactionItemAction::INSTALL);
+
             // don't break
+            // gcc doesn't support [[fallthrough]]
+            __attribute__((fallthrough));
         case TransactionItemAction::REINSTALL:
         case TransactionItemAction::REASON_CHANGE:
             // The original item has been reinstalled or the reason has been changed
@@ -410,4 +482,5 @@ MergedTransaction::mergeItem(ItemPairMap &itemPairMap, TransactionItemBasePtr mT
     }
 }
 
-} // namespace libdnf
+}  // namespace libdnf::transaction
+#endif

@@ -1,136 +1,99 @@
-set(LIBDNF_SRCS
-    dnf-advisorypkg.cpp
-    dnf-advisoryref.cpp
-    dnf-advisory.cpp
-    hy-goal.cpp
-    hy-iutil.cpp
-    log.cpp
-    nevra.cpp
-    nsvcap.cpp
-    dnf-reldep.cpp
-    dnf-reldep-list.cpp
-    hy-package.cpp
-    hy-packageset.cpp
-    hy-query.cpp
-    dnf-sack.cpp
-    hy-selector.cpp
-    hy-subject.cpp
-    hy-util.cpp
-    dnf-db.cpp
-    dnf-context.cpp
-    dnf-goal.cpp
-    dnf-keyring.cpp
-    dnf-lock.cpp
-    dnf-package.cpp
-    dnf-packagedelta.cpp
-    dnf-repo-loader.cpp
-    dnf-rpmts.cpp
-    dnf-repo.cpp
-    dnf-state.cpp
-    dnf-transaction.cpp
-    dnf-utils.cpp
-)
+# use any sources found under the current directory
+file(GLOB_RECURSE LIBDNF_SOURCES *.cpp *.c)
 
-include_directories(transaction)
-add_subdirectory("transaction")
 
-configure_file("config.h.in" ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
-configure_file("dnf-version.h.in"  ${CMAKE_CURRENT_SOURCE_DIR}/dnf-version.h)
-configure_file("libdnf.pc.in" ${CMAKE_CURRENT_BINARY_DIR}/libdnf.pc @ONLY)
+# gather all pkg-config requires and write them to a .pc file later
+list(APPEND LIBDNF_PC_REQUIRES)
+list(APPEND LIBDNF_PC_REQUIRES_PRIVATE)
 
-add_subdirectory(goal)
-add_subdirectory(repo)
-add_subdirectory(module)
-add_subdirectory(utils)
-add_subdirectory(conf)
-add_subdirectory(sack)
-add_subdirectory(plugin)
+# set gettext domain for translations
+add_definitions(-DGETTEXT_DOMAIN=\"libdnf\")
 
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${GOAL_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${MODULE_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${UTILS_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${CONF_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${SACK_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${REPO_SOURCES})
-set(LIBDNF_SRCS ${LIBDNF_SRCS} ${PLUGIN_SOURCES})
-
-add_library(libdnf SHARED ${LIBDNF_SRCS})
-target_link_libraries(libdnf
-    ${CMAKE_DL_LIBS}
-    ${REPO_LIBRARIES}
-    ${GLIB_LIBRARIES}
-    ${GLIB_GOBJECT_LIBRARIES}
-    ${GLIB_GIO_LIBRARIES}
-    ${GLIB_GIO_UNIX_LIBRARIES}
-    ${LIBSOLV_LIBRARY}
-    ${LIBSOLV_EXT_LIBRARY}
-    ${OPENSSL_CRYPTO_LIBRARY}
-    ${RPM_LIBRARIES}
-    ${SCOLS_LIBRARIES}
-    ${SQLite3_LIBRARIES}
-    ${JSONC_LIBRARIES}
-    ${LIBMODULEMD_LIBRARIES}
-    ${SMARTCOLS_LIBRARIES}
-    ${GPGME_VANILLA_LIBRARIES}
-)
-
-if(ENABLE_RHSM_SUPPORT)
-    target_link_libraries(libdnf ${RHSM_LIBRARIES})
-endif()
-
-set(DNF_SO_VERSION 2)
+# build libdnf.so
+add_library(libdnf SHARED ${LIBDNF_SOURCES})
+set(DNF_SO_VERSION 3)
 set_target_properties(libdnf PROPERTIES OUTPUT_NAME "dnf")
 set_target_properties(libdnf PROPERTIES SOVERSION ${DNF_SO_VERSION})
+# required to have dlopen symbol
+target_link_libraries(libdnf ${CMAKE_DL_LIBS})
 
-set(LIBHAWKEY_headers
-    hy-goal.h
-    hy-nevra.h
-    hy-package.h
-    hy-packageset.h
-    hy-query.h
-    hy-repo.h
-    hy-selector.h
-    hy-subject.h
-    hy-types.h
-    hy-util.h
-)
+# required by clang
+target_link_libraries(libdnf stdc++)
 
-set(LIBDNF_headers
-    config.h
-    log.hpp
-    nevra.hpp
-    nsvcap.hpp
-    dnf-advisory.h
-    dnf-advisorypkg.h
-    dnf-advisoryref.h
-    dnf-db.h
-    dnf-context.h
-    dnf-enums.h
-    dnf-goal.h
-    dnf-keyring.h
-    dnf-lock.h
-    dnf-package.h
-    dnf-packagedelta.h
-    dnf-repo-loader.h
-    dnf-rpmts.h
-    dnf-sack.h
-    dnf-reldep.h
-    dnf-reldep-list.h
-    dnf-repo.h
-    dnf-state.h
-    dnf-transaction.h
-    dnf-types.h
-    dnf-utils.h
-    dnf-version.h
-    libdnf.h
-)
+# link stdc++fs to make experimental std::filesystem available on gcc 8:
+# https://gcc.gnu.org/onlinedocs/libstdc++/manual/using.html
+target_link_libraries(libdnf stdc++fs)
 
-message(STATUS "Building for python${PYTHON_VERSION_MAJOR}")
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libdnf.pc
-    DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/pkgconfig
-)
-install(FILES ${LIBDNF_headers} DESTINATION include/libdnf)
-install(FILES ${LIBHAWKEY_headers} DESTINATION include/libdnf)
+# install libdnf.so
 install(TARGETS libdnf LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
-install(FILES "README.plugins" DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}/libdnf/plugins" RENAME "README")
+
+
+# link libraries and set pkg-config requires
+
+pkg_check_modules(LIBFMT REQUIRED fmt)
+list(APPEND LIBDNF_PC_REQUIRES "${LIBFMT_MODULE_NAME}")
+target_link_libraries(libdnf ${LIBFMT_LIBRARIES})
+
+pkg_check_modules(JSONC REQUIRED json-c)
+include_directories(${JSONC_INCLUDE_DIRS})
+target_link_libraries(libdnf ${JSONC_LIBRARIES})
+
+pkg_check_modules(LIBSOLV REQUIRED libsolv>=0.7.7)
+list(APPEND LIBDNF_PC_REQUIRES "${LIBSOLV_MODULE_NAME}")
+target_link_libraries(libdnf ${LIBSOLV_LIBRARIES})
+
+pkg_check_modules(LIBSOLVEXT REQUIRED libsolvext>=0.7.7)
+list(APPEND LIBDNF_PC_REQUIRES_PRIVATE "${LIBSOLVEXT_MODULE_NAME}")
+target_link_libraries(libdnf ${LIBSOLVEXT_LIBRARIES})
+
+pkg_check_modules(RPM REQUIRED rpm>=4.11.0)
+list(APPEND LIBDNF_PC_REQUIRES "${RPM_MODULE_NAME}")
+target_link_libraries(libdnf ${RPM_LIBRARIES})
+
+if(WITH_COMPS)
+    pkg_check_modules(LIBXML2 REQUIRED libxml-2.0)
+    list(APPEND LIBDNF_PC_REQUIRES_PRIVATE "${LIBXML2_MODULE_NAME}")
+    include_directories(${LIBXML2_INCLUDE_DIRS})
+    target_link_libraries(libdnf ${LIBXML2_LIBRARIES})
+endif()
+
+if (WITH_ZCHUNK)
+    pkg_check_modules(ZCHUNKLIB zck>=0.9.11 REQUIRED)
+    add_definitions(-DWITH_ZCHUNK)
+endif()
+
+# GLIB librepo and libmodulemd uses glib2 in API :(
+pkg_check_modules (GLIB2 glib-2.0>=2.46.0)
+include_directories(${GLIB2_INCLUDE_DIRS})
+target_link_libraries(libdnf ${GLIB2_LIBRARIES})
+
+# GPGME
+pkg_check_modules(GPGME gpgme)
+if(NOT GPGME_FOUND)
+    # gpgme.pc is not available on RHEL 8 / CentOS Stream 8
+    set(GPGME_MODULE_NAME gpgme)
+    set(GPGME_LIBRARIES gpgme)
+endif()
+list(APPEND LIBDNF_PC_REQUIRES "${GPGME_MODULE_NAME}")
+target_link_libraries(libdnf ${GPGME_LIBRARIES})
+
+pkg_check_modules(LIBREPO REQUIRED librepo>=1.13.0)
+list(APPEND LIBDNF_PC_REQUIRES "${LIBREPO_MODULE_NAME}")
+target_link_libraries(libdnf ${LIBREPO_LIBRARIES})
+
+# SQLite3
+pkg_check_modules(SQLite3 REQUIRED sqlite3)
+list(APPEND LIBDNF_PC_REQUIRES "${SQLite3_MODULE_NAME}")
+target_link_libraries(libdnf ${SQLite3_LIBRARIES})
+
+
+# sort the pkg-config requires and concatenate them into a string
+list(SORT LIBDNF_PC_REQUIRES)
+list(JOIN LIBDNF_PC_REQUIRES ", " LIBDNF_PC_REQUIRES_STRING)
+list(SORT LIBDNF_PC_REQUIRES_PRIVATE)
+list(JOIN LIBDNF_PC_REQUIRES_PRIVATE ", " LIBDNF_PC_REQUIRES_PRIVATE_STRING)
+
+
+# create a .pc file
+configure_file("libdnf.pc.in" ${CMAKE_CURRENT_BINARY_DIR}/libdnf.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libdnf.pc DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}/pkgconfig)

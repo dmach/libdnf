@@ -1,171 +1,113 @@
-# print initial information about the project
 message("Running CMake on libdnf...")
-project(libdnf C CXX)
+cmake_minimum_required(VERSION 3.5)
 
 
-# cmake requirements and policies
-cmake_minimum_required(VERSION 2.8.5)
-cmake_policy(SET CMP0005 OLD)
-# Avoid a warning because "hth" links to
-# the in-tree libhawkey, but uses pkg-config to find
-# GLib.  There may be a better way to do this...
-cmake_policy(SET CMP0003 NEW)
+include(VERSION.cmake)
+project(libdnf LANGUAGES CXX C VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH})
+cmake_policy(VERSION ${CMAKE_VERSION})
+
+
+message("Building ${PROJECT_NAME} version ${PROJECT_VERSION}")
+
+
+if(DEFINED PACKAGE_VERSION)
+    if(NOT ${PACKAGE_VERSION} STREQUAL ${PROJECT_VERSION})
+        message(FATAL_ERROR "Variables PROJECT_VERSION and PACKAGE_VERSION differ. Make sure the versions in VERSION.cmake and the value provided via -DPACKAGE_VERSION are in sync.")
+    endif()
+endif()
+
+
+# build options - components (sub-packages)
+option(WITH_DNFDAEMON_CLIENT "Build command-line interface for dnfdaemon" ON)
+option(WITH_DNFDAEMON_SERVER "Build package management service with a DBus interface" ON)
+option(WITH_LIBDNF_CLI "Build library for working with a terminal in a command-line package manager" ON)
+option(WITH_MICRODNF "Build microdnf command-line package manager" ON)
+option(WITH_PYTHON_PLUGINS_LOADER "Build a special libdnf plugin that loads Python plugins. Requires WITH_PYTHON3=ON." ON)
+
+# build options - features
+option(WITH_COMPS "Build with comps groups and environments support" ON)
+option(WITH_MODULEMD "Build with modulemd modules support" ON)
+option(WITH_ZCHUNK "Build with zchunk delta compression support" ON)
+
+# build options - documentation
+option(WITH_HTML "Build HTML documentation" ON)
+option(WITH_MAN "Build man pages" ON)
+
+# build options - tests
+option(WITH_TESTS "Build tests" ON)
+option(WITH_PERFORMANCE_TESTS "Build performance tests (DEBUG ONLY)" OFF)
+option(WITH_DNFDAEMON_TESTS "Build dnfdaemon tests (requires configured dbus)" OFF)
+
+# build options - debugging
+option(WITH_SANITIZERS "Build with address, leak and undefined sanitizers (DEBUG ONLY)" OFF)
+
+# build options - bindings
+option(WITH_GO "Build Go bindings" OFF)
+option(WITH_PERL5 "Build Perl 5 bindings" ON)
+option(WITH_PYTHON3 "Build Python 3 bindings" ON)
+option(WITH_RUBY "Build Ruby bindings" ON)
+
+
+if(WITH_PERFORMANCE_TESTS AND WITH_SANITIZERS)
+    message(FATAL_ERROR "Cannot perform performance tests with sanitizers enabled because they influence the results. Disable sanitizers to continue.")
+endif()
+
+
+# includes
 include(GNUInstallDirs)
 
 
-# use project specific cmake modules
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
-if(${CMAKE_VERSION} VERSION_LESS 3)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH};${CMAKE_SOURCE_DIR}/cmake/modules-cmake-2)
-endif()
-
-
-# print exact name and version of the compiled project
-include(VERSION.cmake)
-message("Building ${PROJECT_NAME} version: ${LIBDNF_VERSION}")
-
-
-# build options
-option(WITH_BINDINGS "Enables python/SWIG bindings" ON)
-option(WITH_GTKDOC "Enables libdnf GTK-Doc HTML documentation" ON)
-option(WITH_HTML "Enables hawkey HTML generation" ON)
-option(WITH_MAN "Enables hawkey man page generation" ON)
-option(WITH_ZCHUNK "Build with zchunk support" ON)
-option(ENABLE_RHSM_SUPPORT "Build with Red Hat Subscription Manager support?" OFF)
-option(ENABLE_SOLV_URPMREORDER "Build with support for URPM-like solution reordering?" OFF)
-
-
-# load pkg-config first; it's required by other modules
+# common dependencies
 find_package(PkgConfig REQUIRED)
-if(APPLE)
-    set(ENV{PKG_CONFIG_PATH} "$ENV{PKG_CONFIG_PATH}:/usr/local/lib64/pkgconfig")
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH};/usr/local/share/cmake/Modules/)
-    include_directories(/usr/local/include)
+
+
+# C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# warnings
+add_compile_options(-Wall -Wextra -Werror)
+add_compile_options(-Wcast-align -Wformat-nonliteral -Wmissing-format-attribute -Wredundant-decls -Wsign-compare -Wtype-limits -Wuninitialized -Wwrite-strings)
+add_compile_options(-Werror=unused-result -Wodr)
+
+# not sure about the conversion warnings being errors; review later
+add_compile_options(-Wconversion)
+
+# linker options
+if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    # clang doesn't support this option
+    add_compile_options(-Wl,--as-needed)
+endif()
+
+add_definitions(-DPROJECT_BINARY_DIR="${PROJECT_BINARY_DIR}")
+add_definitions(-DPROJECT_SOURCE_DIR="${PROJECT_SOURCE_DIR}")
+
+if(WITH_SANITIZERS)
+    message(WARNING "Building with sanitizers enabled!")
+    add_compile_options(-fsanitize=address -fsanitize=undefined -fsanitize=leak)
+    link_libraries(asan ubsan)
 endif()
 
 
-# build dependencies
-find_package(Gpgme REQUIRED)
-find_package(LibSolv 0.6.30 REQUIRED COMPONENTS ext)
-find_package(OpenSSL REQUIRED)
+include_directories("${PROJECT_SOURCE_DIR}/include")
+include_directories("${PROJECT_SOURCE_DIR}")
 
 
-# build dependencies via pkg-config
-pkg_check_modules(CHECK REQUIRED check)
-pkg_check_modules(GLIB REQUIRED gio-unix-2.0>=2.46.0)
-include_directories(${GLIB_INCLUDE_DIRS})
-pkg_check_modules(JSONC REQUIRED json-c)
-include_directories(${JSONC_INCLUDE_DIRS})
-pkg_check_modules(LIBMODULEMD REQUIRED modulemd-2.0>=2.5.0)
-pkg_check_modules(REPO REQUIRED librepo>=0.11.0)
-include_directories(${REPO_INCLUDE_DIRS})
-link_directories(${REPO_LIBRARY_DIRS})
-pkg_check_modules(RPM REQUIRED rpm>=4.11.0)
-pkg_check_modules(SMARTCOLS REQUIRED smartcols)
-pkg_check_modules(SQLite3 REQUIRED sqlite3)
+# libdnf
+add_subdirectory("include")
+add_subdirectory("libdnf")
+add_subdirectory("libdnf-cli")
+add_subdirectory("libdnf-plugins")
+add_subdirectory("doc")
+add_subdirectory("bindings")
 
-# always enable linking with libdnf utils
-include_directories(${CMAKE_SOURCE_DIR} libdnf/utils/)
+# dnfdaemon
+add_subdirectory("dnfdaemon-server")
+add_subdirectory("dnfdaemon-client")
 
-if (WITH_ZCHUNK)
-    pkg_check_modules(ZCHUNKLIB zck>=0.9.11 REQUIRED)
-    set (CMAKE_CXX_FLAGS          "${CMAKE_CXX_FLAGS} -DWITH_ZCHUNK")
-    set (CMAKE_CXX_FLAGS_DEBUG    "${CMAKE_CXX_FLAGS_DEBUG} -DWITH_ZCHUNK")
-endif ()
-
-if(ENABLE_RHSM_SUPPORT)
-    pkg_check_modules(RHSM REQUIRED librhsm>=0.0.3)
-    include_directories(${RHSM_INCLUDE_DIRS})
-endif()
-
-
-# glibc: check if fnmatch.h has FNM_CASEFOLD symbol
-include(CheckSymbolExists)
-list(APPEND CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
-check_symbol_exists(FNM_CASEFOLD "fnmatch.h" HAS_FNM_CASEFOLD)
-if(NOT HAS_FNM_CASEFOLD)
-    message(SEND_ERROR "FNM_CASEFOLD is not available in fnmatch.h")
-endif()
-
-# python
-if(WITH_BINDINGS)
-    if(NOT PYTHON_DESIRED)
-        find_package(PythonInterp REQUIRED)
-    elseif(${PYTHON_DESIRED} STREQUAL "2")
-        find_package(PythonInterp 2 EXACT REQUIRED)
-    elseif(${PYTHON_DESIRED} STREQUAL "3")
-        find_package(PythonInterp 3 EXACT REQUIRED)
-    elseif(EXISTS ${PYTHON_DESIRED})
-        set(PYTHON_EXECUTABLE ${PYTHON_DESIRED})
-        find_package(PythonInterp REQUIRED)
-    else()
-        message(FATAL_ERROR "Invalid PYTHON_DESIRED value: " ${PYTHON_DESIRED})
-    endif()
-    find_package(PythonLibs REQUIRED)
-endif()
-
-
-# valgrind path
-find_program(VALGRIND_PROGRAM NAMES valgrind PATH /usr/bin /usr/local/bin)
-
-
-# compiler options
-add_compile_options(-Wcast-align -Wno-uninitialized -Wredundant-decls -Wwrite-strings -Wformat-nonliteral -Wmissing-format-attribute -Wsign-compare -Wtype-limits -Wuninitialized -Wall -Wl,--as-needed)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=gnu11 -Wmissing-prototypes -Waggregate-return -Wshadow -Werror=implicit-function-declaration")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wmissing-declarations")
-
-# apple: turn rpath off
-set(CMAKE_MACOSX_RPATH 0)
-
-# package/project version
-add_definitions(-DPACKAGE_VERSION=\\"${LIBDNF_VERSION}\\")
-
-# The libdnf API is under development now. This enables it for internal usage.
-add_definitions(-DLIBDNF_UNSTABLE_API)
-
-# gettext
-add_definitions(-DGETTEXT_DOMAIN=\\"libdnf\\")
-add_definitions(-DG_LOG_DOMAIN=\\"libdnf\\")
-
-# gpgme: LargeFile Support is required on 32bit architectures
-add_definitions(-D_FILE_OFFSET_BITS=64)
+# microdnf
+add_subdirectory("microdnf")
 
 # tests
-add_definitions(-DTESTDATADIR=\\"${CMAKE_SOURCE_DIR}/data/tests\\")
-
-# librhsm
-if(ENABLE_RHSM_SUPPORT)
-    add_definitions(-DRHSM_SUPPORT)
-endif()
-
-# libsolv
-if(ENABLE_SOLV_URPMREORDER)
-    add_definitions(-DLIBSOLV_FLAG_URPMREORDER=1)
-endif()
-
-
-# build binaries
-add_subdirectory(libdnf)
-if(WITH_BINDINGS)
-    # add_subdirectory(bindings/perl)
-    add_subdirectory(bindings/python)
-endif()
-
-
-# build translations
-add_subdirectory(po)
-
-
-# build docs
-add_subdirectory(docs/libdnf)
-if(WITH_BINDINGS)
-    add_subdirectory(docs/hawkey)
-endif()
-
-
-# build tests
 enable_testing()
-add_subdirectory(tests)
-if(WITH_BINDINGS)
-    add_subdirectory(python/hawkey)
-endif()
+add_subdirectory("test")

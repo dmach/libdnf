@@ -1,22 +1,25 @@
 /*
- * Copyright (C) 2017-2018 Red Hat, Inc.
- *
- * Licensed under the GNU Lesser General Public License Version 2.1
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- */
+Copyright Contributors to the libdnf project.
+
+This file is part of libdnf: https://github.com/rpm-software-management/libdnf/
+
+Libdnf is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+Libdnf is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with libdnf.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+// TODO(dmach): keep refactoring and deliver something that works with the new code base
+// the whole file is disabled via the SKIP macro because it doesn't compile with the new code
+#ifdef SKIP
 
 #ifndef LIBDNF_TRANSACTION_MERGEDTRANSACTION_HPP
 #define LIBDNF_TRANSACTION_MERGEDTRANSACTION_HPP
@@ -27,59 +30,60 @@
 #include <map>
 #include <vector>
 
-namespace libdnf {
+namespace libdnf::transaction {
 
 class MergedTransaction;
 typedef std::shared_ptr< MergedTransaction > MergedTransactionPtr;
 }
 
-#include "RPMItem.hpp"
-#include "Transaction.hpp"
-#include "TransactionItem.hpp"
+#include "rpm_package.hpp"
+#include "transaction.hpp"
+#include "transaction_item.hpp"
 
-namespace libdnf {
+namespace libdnf::transaction {
 
 class MergedTransaction {
 public:
-    explicit MergedTransaction(TransactionPtr trans);
-    void merge(TransactionPtr trans);
+    explicit MergedTransaction(Transaction & trans);
+    void merge(Transaction & trans);
 
     std::vector< int64_t > listIds() const;
     std::vector< uint32_t > listUserIds() const;
     std::vector< std::string > listCmdlines() const;
     std::vector< TransactionState > listStates() const;
     std::vector< std::string > listReleasevers() const;
-    int64_t getDtBegin() const noexcept;
-    int64_t getDtEnd() const noexcept;
-    const std::string &getRpmdbVersionBegin() const noexcept;
-    const std::string &getRpmdbVersionEnd() const noexcept;
-    std::set< RPMItemPtr > getSoftwarePerformedWith() const;
-    std::vector< std::pair< int, std::string > > getConsoleOutput();
+    int64_t get_dt_begin() const noexcept;
+    int64_t get_dt_end() const noexcept;
+    const std::string &get_rpmdb_version_begin() const noexcept;
+    const std::string &get_rpmdb_version_end() const noexcept;
+    std::set<std::string> get_runtime_packages() const;
+    std::vector< std::pair< int, std::string > > get_console_output();
 
-    std::vector< TransactionItemBasePtr > getItems();
+    std::vector<std::unique_ptr<CompsEnvironment>> get_comps_environments();
+    std::vector<std::unique_ptr<CompsGroup>> get_comps_groups();
+    std::vector<std::unique_ptr<Package>> get_packages();
 
 protected:
-    std::vector< TransactionPtr > transactions;
+    std::vector<Transaction *> transactions;
 
-    struct ItemPair {
-        ItemPair(TransactionItemBasePtr first, TransactionItemBasePtr second)
-          : first{first}
-          , second{second}
-        {
-        }
-        ItemPair(){};
-        TransactionItemBasePtr first = nullptr;
-        TransactionItemBasePtr second = nullptr;
+    class ItemPair {
+    public:
+        ItemPair(TransactionItem * first, TransactionItem * second) : first{first}, second{second} {}
+        //ItemPair(){};
+        TransactionItem * first = nullptr;
+        TransactionItem * second = nullptr;
     };
 
-    typedef std::map< std::string, ItemPair > ItemPairMap;
+    using ItemPairMap = std::map<std::string, ItemPair>;
 
-    void mergeItem(ItemPairMap &itemPairMap, TransactionItemBasePtr transItem);
-    void resolveRPMDifference(ItemPair &previousItemPair, TransactionItemBasePtr mTransItem);
-    void resolveErase(ItemPair &previousItemPair, TransactionItemBasePtr mTransItem);
-    void resolveAltered(ItemPair &previousItemPair, TransactionItemBasePtr mTransItem);
+    void mergeItem(ItemPairMap & itemPairMap, TransactionItem * transItem);
+    void resolveRPMDifference(ItemPair & previousItemPair, TransactionItem * mTransItem);
+    void resolveErase(ItemPair & previousItemPair, TransactionItem * mTransItem);
+    void resolveAltered(ItemPair & previousItemPair, TransactionItem * mTransItem);
 };
 
-} // namespace libdnf
+}  // namespace libdnf::transaction
 
 #endif // LIBDNF_TRANSACTION_TRANSACTION_HPP
+
+#endif

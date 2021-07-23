@@ -1,6 +1,4 @@
-# These are currently the only two things that
-# show up in a srcdir != builddir build.
-/docs/libdnf/version.xml
-/libdnf/dnf-version.h
-build
-*.pyc
+build/*
+__pycache__
+*.log
+*.tar.gz
